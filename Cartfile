@@ -1,0 +1,4 @@
+github "mxcl/PromiseKit"
+github "PromiseKit/Foundation"
+github "dduan/BitArray"
+github "onmyway133/DeepDiff"

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AddLinkController" customModule="TransmissionRemote" customModuleProvider="target">
+            <connections>
+                <outlet property="linkField" destination="r1K-cx-L4v" id="e58-LU-3rL"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="713" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gVF-uI-895">
+                    <rect key="frame" x="617" y="13" width="82" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="Xb6-sm-4Nx"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Zez-kn-jYf">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                    </buttonCell>
+                    <connections>
+                        <action selector="okAction:" target="-2" id="aUQ-0v-Sbt"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cw6-pl-vpW">
+                    <rect key="frame" x="527" y="13" width="82" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="MY0-6H-LXw"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SGz-O8-8sC">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                    </buttonCell>
+                    <connections>
+                        <action selector="cancelAction:" target="-2" id="pUZ-o2-cSG"/>
+                    </connections>
+                </button>
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r1K-cx-L4v">
+                    <rect key="frame" x="20" y="61" width="673" height="22"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="TWd-9m-HA0">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wbe-qi-OGL">
+                    <rect key="frame" x="18" y="91" width="677" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="URL of .torrent file or magnet link:" id="Ijz-R5-RfV">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Wbe-qi-OGL" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="F9s-4w-fzy"/>
+                <constraint firstItem="gVF-uI-895" firstAttribute="top" secondItem="r1K-cx-L4v" secondAttribute="bottom" constant="20" id="GzK-Oz-vfx"/>
+                <constraint firstItem="gVF-uI-895" firstAttribute="leading" secondItem="Cw6-pl-vpW" secondAttribute="trailing" constant="20" id="L8e-z5-G21"/>
+                <constraint firstAttribute="trailing" secondItem="r1K-cx-L4v" secondAttribute="trailing" constant="20" id="S1V-cK-wA3"/>
+                <constraint firstAttribute="trailing" secondItem="gVF-uI-895" secondAttribute="trailing" constant="20" id="Tpf-jA-Cd4"/>
+                <constraint firstItem="r1K-cx-L4v" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="bAN-Xe-vay"/>
+                <constraint firstAttribute="trailing" secondItem="Wbe-qi-OGL" secondAttribute="trailing" constant="20" id="fJ3-68-QKl"/>
+                <constraint firstItem="Wbe-qi-OGL" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="hlv-qa-vlG"/>
+                <constraint firstItem="r1K-cx-L4v" firstAttribute="top" secondItem="Wbe-qi-OGL" secondAttribute="bottom" constant="8" id="pXQ-ys-Vfg"/>
+                <constraint firstAttribute="bottom" secondItem="Cw6-pl-vpW" secondAttribute="bottom" constant="20" id="sTP-TK-bey"/>
+                <constraint firstAttribute="bottom" secondItem="gVF-uI-895" secondAttribute="bottom" constant="20" id="z1p-3X-OPz"/>
+            </constraints>
+            <point key="canvasLocation" x="24.5" y="108"/>
+        </customView>
+    </objects>
+</document>

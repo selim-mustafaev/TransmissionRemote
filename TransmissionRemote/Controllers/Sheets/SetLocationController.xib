@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SetLocationController" customModule="Transmission_Remote" customModuleProvider="target">
+            <connections>
+                <outlet property="move" destination="LvR-a7-Z9H" id="mrG-Q2-rpt"/>
+                <outlet property="path" destination="HEE-GP-8Ng" id="w4Z-gL-YPy"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="635" height="159"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HEE-GP-8Ng">
+                    <rect key="frame" x="20" y="90" width="505" height="26"/>
+                    <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="wb6-9h-5BX">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </comboBoxCell>
+                </comboBox>
+                <button horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="tj8-oP-loe">
+                    <rect key="frame" x="536" y="87" width="85" height="32"/>
+                    <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YUN-3q-e7E">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="browse:" target="-2" id="H39-FX-i7t"/>
+                    </connections>
+                </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gkg-Cg-aw3">
+                    <rect key="frame" x="18" y="122" width="599" height="17"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="New location for torrent data:" id="T0s-Gf-JC3">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="etb-JW-cvA">
+                    <rect key="frame" x="539" y="13" width="82" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="0XX-x8-eZ9"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CUL-Ti-0jl">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                    </buttonCell>
+                    <connections>
+                        <action selector="ok:" target="-2" id="zLn-lJ-cUT"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JBl-aM-tZN">
+                    <rect key="frame" x="449" y="13" width="82" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="uwu-Aa-GfG"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VNd-vc-6mh">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                        <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                    </buttonCell>
+                    <connections>
+                        <action selector="cancel:" target="-2" id="6bn-1E-YNq"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LvR-a7-Z9H">
+                    <rect key="frame" x="18" y="58" width="599" height="18"/>
+                    <buttonCell key="cell" type="check" title="Move torrent data from current location to new location" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ILX-6H-Sfi">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="LvR-a7-Z9H" secondAttribute="trailing" constant="20" id="01b-QW-pE1"/>
+                <constraint firstItem="HEE-GP-8Ng" firstAttribute="top" secondItem="Gkg-Cg-aw3" secondAttribute="bottom" constant="8" id="02w-CD-Bbx"/>
+                <constraint firstItem="etb-JW-cvA" firstAttribute="leading" secondItem="JBl-aM-tZN" secondAttribute="trailing" constant="20" id="4tM-Ij-5xh"/>
+                <constraint firstItem="Gkg-Cg-aw3" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="9vd-2B-FD9"/>
+                <constraint firstAttribute="bottom" secondItem="etb-JW-cvA" secondAttribute="bottom" constant="20" id="CLQ-8S-JcP"/>
+                <constraint firstItem="LvR-a7-Z9H" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="FWP-cb-q5g"/>
+                <constraint firstItem="HEE-GP-8Ng" firstAttribute="centerY" secondItem="tj8-oP-loe" secondAttribute="centerY" id="NEP-Ca-mMi"/>
+                <constraint firstItem="LvR-a7-Z9H" firstAttribute="top" secondItem="HEE-GP-8Ng" secondAttribute="bottom" constant="20" id="NHX-3I-Gns"/>
+                <constraint firstItem="tj8-oP-loe" firstAttribute="leading" secondItem="HEE-GP-8Ng" secondAttribute="trailing" constant="20" id="TCs-aE-3hq"/>
+                <constraint firstAttribute="bottom" secondItem="JBl-aM-tZN" secondAttribute="bottom" constant="20" id="aq0-7Y-Apc"/>
+                <constraint firstItem="etb-JW-cvA" firstAttribute="leading" secondItem="JBl-aM-tZN" secondAttribute="trailing" constant="20" id="eSU-cg-uYA"/>
+                <constraint firstItem="Gkg-Cg-aw3" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="gSC-CA-mjz"/>
+                <constraint firstAttribute="trailing" secondItem="etb-JW-cvA" secondAttribute="trailing" constant="20" id="gVm-Ef-AZB"/>
+                <constraint firstAttribute="trailing" secondItem="tj8-oP-loe" secondAttribute="trailing" constant="20" id="l97-qb-bRr"/>
+                <constraint firstItem="HEE-GP-8Ng" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="sX8-YM-HmV"/>
+                <constraint firstAttribute="trailing" secondItem="Gkg-Cg-aw3" secondAttribute="trailing" constant="20" id="zbH-8e-lXo"/>
+            </constraints>
+            <point key="canvasLocation" x="63.5" y="97.5"/>
+        </customView>
+    </objects>
+</document>
