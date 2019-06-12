@@ -1,10 +1,10 @@
 import Foundation
 
-class Settings {
+public class Settings {
     private static let defaults = UserDefaults.standard
     public static let shared = Settings()
     
-    var connection: Connection = Connection() {
+    public var connection: Connection = Connection() {
         didSet {
             if let json = try? JSONEncoder().encode(self.connection) {
                 Settings.defaults.set(json, forKey: "connection")
@@ -13,35 +13,35 @@ class Settings {
         }
     }
     
-    var authRequired: Bool = false {
+    public var authRequired: Bool = false {
         didSet {
             Settings.defaults.set(self.authRequired, forKey: "authRequired")
             Settings.defaults.synchronize()
         }
     }
     
-    var refreshInterval: Int = 0 {
+    public var refreshInterval: Int = 0 {
         didSet {
             Settings.defaults.set(self.refreshInterval, forKey: "refreshInterval")
             Settings.defaults.synchronize()
         }
     }
     
-    var refreshIntervalWhenMinimized: Int = 0 {
+    public var refreshIntervalWhenMinimized: Int = 0 {
         didSet {
             Settings.defaults.set(self.refreshInterval, forKey: "refreshIntervalWhenMinimized")
             Settings.defaults.synchronize()
         }
     }
     
-    var deleteTorrentFile: Bool = false {
+    public var deleteTorrentFile: Bool = false {
         didSet {
             Settings.defaults.set(self.refreshInterval, forKey: "deleteTorrentFile")
             Settings.defaults.synchronize()
         }
     }
     
-    var pathAssociations: [PathAssociation] = [] {
+    public var pathAssociations: [PathAssociation] = [] {
         didSet {
             if let json = try? JSONEncoder().encode(self.pathAssociations) {
                 Settings.defaults.set(json, forKey: "pathAssociations")
@@ -50,14 +50,14 @@ class Settings {
         }
     }
     
-    var torrentColumns: [String] = [] {
+    public var torrentColumns: [String] = [] {
         didSet {
             Settings.defaults.set(self.torrentColumns, forKey: "torrentColumns")
             Settings.defaults.synchronize()
         }
     }
     
-    var closingWindowQuitsApp: Bool = true {
+    public var closingWindowQuitsApp: Bool = true {
         didSet {
             Settings.defaults.set(self.closingWindowQuitsApp, forKey: "ClosingWindowQuitsApp")
             Settings.defaults.synchronize()

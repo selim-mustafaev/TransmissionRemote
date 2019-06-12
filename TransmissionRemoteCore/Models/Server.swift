@@ -1,12 +1,12 @@
 import Foundation
 
-struct Server: Decodable {
-    let version: String
-    let downloadDir: String
-    let peerLimitPerTorrent: Int
-    let incompleteDirEnabled: Bool
-    let incompleteDir: String
-    let freeSpace: Int64
+public struct Server: Decodable {
+    public let version: String
+    public let downloadDir: String
+    public let peerLimitPerTorrent: Int
+    public let incompleteDirEnabled: Bool
+    public let incompleteDir: String
+    public let freeSpace: Int64
     
     enum CodingKeys: String, CodingKey {
         case version

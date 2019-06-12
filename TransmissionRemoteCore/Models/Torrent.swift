@@ -2,46 +2,46 @@ import Foundation
 import BitArray
 import DeepDiff
 
-class Torrent: Decodable, Mergeable, CustomStringConvertible {
-    var id: Int = 0
-    var name: String = ""
-    var totalSize: Int64 = 0
-    var status: Int = 0
-    var downloadDir: String = ""
-    var eta: Int = 0
-    var leftUntilDone: Int64 = 0
-    var peersGettingFromUs: Int = 0
-    var peersSendingToUs: Int = 0
-    var rateUpload: Int64 = 0
-    var rateDownload: Int64 = 0
-    var sizeWhenDone: Int64 = 0
-    var uploadRatio: Float = 0
-    var metadataPercentComplete: Float = 0
-    var files: [TorrentFile] = []
-	var errorString: String = ""
-	var addedDate: Int = 0
-	var doneDate: Int = 0
-	var pieceCount: Int = 0
-	var pieceSize: Int64 = 0
-	var pieces: String = ""
-	var comment: String = ""
-	var downloadedEver: Int64 = 0
-	var downloadLimit: Int64 = 0
-	var downloadLimited: Bool = false
-	var uploadedEver: Int64 = 0
-	var uploadLimit: Int64 = 0
-	var uploadLimited: Bool = false
-	var maxConnectedPeers: Int = 0
-	var activityDate: Int = 0
-	var trackerStats: [Tracker] = []
-	var peers: [Peer] = []
-	var priorities: [Int] = []
-    var wanted: [Int] = []
-    var bandwidthPriority: Priority = .normal
-    var queuePosition: Int = 0
-    var secondsSeeding: Int64 = 0
+public class Torrent: Decodable, Mergeable, CustomStringConvertible {
+    public var id: Int = 0
+    public var name: String = ""
+    public var totalSize: Int64 = 0
+    public var status: Int = 0
+    public var downloadDir: String = ""
+    public var eta: Int = 0
+    public var leftUntilDone: Int64 = 0
+    public var peersGettingFromUs: Int = 0
+    public var peersSendingToUs: Int = 0
+    public var rateUpload: Int64 = 0
+    public var rateDownload: Int64 = 0
+    public var sizeWhenDone: Int64 = 0
+    public var uploadRatio: Float = 0
+    public var metadataPercentComplete: Float = 0
+    public var files: [TorrentFile] = []
+	public var errorString: String = ""
+	public var addedDate: Int = 0
+	public var doneDate: Int = 0
+	public var pieceCount: Int = 0
+	public var pieceSize: Int64 = 0
+	public var pieces: String = ""
+	public var comment: String = ""
+	public var downloadedEver: Int64 = 0
+	public var downloadLimit: Int64 = 0
+	public var downloadLimited: Bool = false
+	public var uploadedEver: Int64 = 0
+	public var uploadLimit: Int64 = 0
+	public var uploadLimited: Bool = false
+	public var maxConnectedPeers: Int = 0
+	public var activityDate: Int = 0
+	public var trackerStats: [Tracker] = []
+	public var peers: [Peer] = []
+	public var priorities: [Int] = []
+    public var wanted: [Int] = []
+    public var bandwidthPriority: Priority = .normal
+    public var queuePosition: Int = 0
+    public var secondsSeeding: Int64 = 0
     
-	enum Status: Int, CustomStringConvertible {
+	public enum Status: Int, CustomStringConvertible {
         case stopped = 0
         case checkWait = 1
         case checking = 2
@@ -50,7 +50,7 @@ class Torrent: Decodable, Mergeable, CustomStringConvertible {
         case seedWait = 5
         case seeding = 6
 		
-		var description: String {
+        public var description: String {
 			switch self {
 			case .stopped: return "Stopped"
 			case .checkWait: return "Waiting check"
@@ -63,20 +63,20 @@ class Torrent: Decodable, Mergeable, CustomStringConvertible {
 		}
     }
     
-    enum Source {
+    public enum Source {
         case file(URL)
         case link(String)
     }
     
     // MARK: - CustomStringConvertible
     
-    var description: String {
+    public var description: String {
         return self.name
     }
 	
 	// MARK: - Mergeable
     
-    var diffId: Int {
+    public var diffId: Int {
         return self.id
     }
     
@@ -103,7 +103,7 @@ class Torrent: Decodable, Mergeable, CustomStringConvertible {
             && a.secondsSeeding == b.secondsSeeding
     }
     
-    func copy(from item: Torrent) {
+    public func copy(from item: Torrent) {
         self.id = item.id
         self.name = item.name
         self.totalSize = item.totalSize
@@ -149,7 +149,7 @@ class Torrent: Decodable, Mergeable, CustomStringConvertible {
 		case id, name, totalSize, status, downloadDir, eta, leftUntilDone, peersGettingFromUs, peersSendingToUs, rateUpload, rateDownload, sizeWhenDone, uploadRatio, metadataPercentComplete, files, errorString, addedDate, doneDate, pieceCount, pieceSize, comment, downloadedEver, downloadLimit, downloadLimited, uploadedEver, uploadLimit, uploadLimited, maxConnectedPeers, activityDate, pieces, trackerStats, peers, priorities, wanted, bandwidthPriority, queuePosition, secondsSeeding
 	}
 	
-    required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.id = try container.decode(Int.self, forKey: .id)
 		self.name = try container.decode(String.self, forKey: .name)
@@ -200,12 +200,12 @@ class Torrent: Decodable, Mergeable, CustomStringConvertible {
 	
 	// MARK: - Common
     
-    init(name: String, files: [TorrentFile]) {
+    public init(name: String, files: [TorrentFile]) {
         self.name = name
         self.files = files
     }
     
-    func downloadedPercents() -> Float {
+    public func downloadedPercents() -> Float {
         if self.leftUntilDone == 0 {
             return self.totalSize == 0 ? 0.0 : 100.0
         } else {
@@ -213,30 +213,30 @@ class Torrent: Decodable, Mergeable, CustomStringConvertible {
         }
     }
     
-    func getStatus() -> Status {
+    public func getStatus() -> Status {
         return Status(rawValue: self.status) ?? .stopped
     }
 	
-	func isFinished() -> Bool {
+	public func isFinished() -> Bool {
 		let status = self.getStatus();
 		return status == .seeding || (status == .stopped && self.leftUntilDone == 0)
 	}
 	
-	func isActive() -> Bool {
+	public func isActive() -> Bool {
 		return self.rateDownload > 0 || self.rateUpload > 0
 	}
 	
-	func isError() -> Bool {
+	public func isError() -> Bool {
 		return self.errorString.count > 0
 	}
 	
-	func getPieces() -> BitArray {
+	public func getPieces() -> BitArray {
 		guard let data = Data(base64Encoded: self.pieces) else { return [] }
 		return BitArray(self.pieceCount, contentByBytes: Array(data))
 	}
     
     // We cannot figure out real torrent path here, so, return array of possible locations
-    func serverPath() -> [URL] {
+    public func serverPath() -> [URL] {
         var result = [
             URL(fileURLWithPath: self.downloadDir + "/" + self.name),
             URL(fileURLWithPath: self.downloadDir + "/" + self.name + ".part")

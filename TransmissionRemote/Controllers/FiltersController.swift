@@ -1,5 +1,6 @@
 import Cocoa
 import DeepDiff
+import TransmissionRemoteCore
 
 class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
     
@@ -9,7 +10,7 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
     @IBOutlet weak var download: NSTextField!
     @IBOutlet weak var upload: NSTextField!
 	
-    let categories = Category.allCases
+    let categories = TorrentFilter.Category.allCases
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +44,10 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
 		for change in statusChanges {
 			switch change {
             case .insert(let insert):
-				self.outlineView.insertItems(at: IndexSet([insert.index]), inParent: Category.statuses)
+				self.outlineView.insertItems(at: IndexSet([insert.index]), inParent: TorrentFilter.Category.statuses)
 				break
             case .delete(let delete):
-				self.outlineView.removeItems(at: IndexSet([delete.index]), inParent: Category.statuses)
+				self.outlineView.removeItems(at: IndexSet([delete.index]), inParent: TorrentFilter.Category.statuses)
 				break
             case .replace(let replace):
                 self.outlineView.reloadItem(replace.oldItem)
@@ -59,7 +60,7 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
 		for change in dirChanges {
 			switch change {
 			case .insert(let insert):
-				self.outlineView.insertItems(at: IndexSet([insert.index]), inParent: Category.downloadDirs)
+				self.outlineView.insertItems(at: IndexSet([insert.index]), inParent: TorrentFilter.Category.downloadDirs)
 				break
 			case .delete(_):
 				break
@@ -73,7 +74,7 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
         
         let deletes = dirChanges.compactMap { $0.delete }.sorted { $0.index > $1.index }
         for delete in deletes {
-            self.outlineView.removeItems(at: IndexSet([delete.index]), inParent: Category.downloadDirs)
+            self.outlineView.removeItems(at: IndexSet([delete.index]), inParent: TorrentFilter.Category.downloadDirs)
         }
 		
 		self.outlineView.endUpdates()
@@ -102,9 +103,9 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
             return self.categories.count
         }
         
-        if let category = item as? Category {
+        if let category = item as? TorrentFilter.Category {
             switch category {
-                case .statuses: return StatusFilter.allCases.count
+                case .statuses: return TorrentFilter.Status.allCases.count
                 case .downloadDirs: return Service.shared.dirFilters.count
             }
         }
@@ -117,7 +118,7 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
             return self.categories[index]
         }
         
-        if let category = item as? Category {
+        if let category = item as? TorrentFilter.Category {
             switch category {
             case .statuses:
 				return Service.shared.statusFilters[index]
@@ -130,7 +131,7 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
     }
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        if let category = item as? Category {
+        if let category = item as? TorrentFilter.Category {
             switch category {
 			case .statuses: return true
 			case .downloadDirs: return Service.shared.dirFilters.count > 0
@@ -147,7 +148,7 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
             cell?.configure(with: filter)
 			return cell
         }
-        else if let category = item as? Category {
+        else if let category = item as? TorrentFilter.Category {
             let cell = outlineView.makeView(withIdentifier: .headerCell, owner: nil) as? NSTableCellView
             cell?.textField?.stringValue = category.rawValue
 			return cell
@@ -157,11 +158,11 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
     }
     
     func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
-        return item is Category
+        return item is TorrentFilter.Category
     }
 	
 	func outlineView(_ outlineView: NSOutlineView, persistentObjectForItem item: Any?) -> Any? {
-		if let category  = item as? Category {
+		if let category  = item as? TorrentFilter.Category {
 			return category.rawValue
 		}
 		
@@ -170,7 +171,7 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
 	
 	func outlineView(_ outlineView: NSOutlineView, itemForPersistentObject object: Any) -> Any? {
 		if let category  = object as? String {
-			return Category(rawValue: category)
+			return TorrentFilter.Category(rawValue: category)
 		}
 		
 		return nil

@@ -1,12 +1,12 @@
 import Foundation
 
-class Magnet {
-    private(set) var link: String = ""
-    private(set) var dn: String = ""
-    private(set) var xt: String = ""
-    private(set) var tr: String = ""
+public class Magnet {
+    private(set) public var link: String = ""
+    private(set) public var dn: String = ""
+    private(set) public var xt: String = ""
+    private(set) public var tr: String = ""
     
-    init?(_ link: String) {
+    public init?(_ link: String) {
         self.link = link
         
         if !link.starts(with: "magnet:") {

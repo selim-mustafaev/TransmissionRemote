@@ -1,5 +1,6 @@
 import Foundation
 import Cocoa
+import TransmissionRemoteCore
 
 class FileProgressCell: ConfigurableCell<TorrentFile> {
 	

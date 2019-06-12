@@ -1,6 +1,7 @@
 import Foundation
 import Cocoa
 import DeepDiff
+import TransmissionRemoteCore
 
 public class ArrayDataProvider<T>: CollectionDataProvider where T: Mergeable & DiffAware & AnyObject {
     

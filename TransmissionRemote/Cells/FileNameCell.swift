@@ -1,5 +1,6 @@
 import Foundation
 import Cocoa
+import TransmissionRemoteCore
 
 class FileNameCell: ConfigurableCell<TorrentFile> {
     @IBOutlet weak var name: NSTextField!

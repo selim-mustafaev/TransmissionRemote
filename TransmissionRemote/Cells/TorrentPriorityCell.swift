@@ -1,5 +1,6 @@
 import Foundation
 import Cocoa
+import TransmissionRemoteCore
 
 class TorrentPriorityCell: ConfigurableCell<Torrent> {
     @IBOutlet weak var priorityBadge: NSImageView!

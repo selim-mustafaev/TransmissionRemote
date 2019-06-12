@@ -5,7 +5,7 @@ public protocol Mergeable: DiffAware {
     mutating func copy(from item: Self)
 }
 
-extension Array where Element: Mergeable {
+public extension Array where Element: Mergeable {
     mutating func merge(with array: Array<Element>) -> [Change<Element>] {
         let wf = WagnerFischer<Element>(reduceMove: true)
         let changes = wf.diff(old: self, new: array)

@@ -1,5 +1,6 @@
 import Cocoa
 import PromiseKit
+import TransmissionRemoteCore
 
 class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
     

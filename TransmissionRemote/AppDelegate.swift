@@ -1,4 +1,5 @@
 import Cocoa
+import TransmissionRemoteCore
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

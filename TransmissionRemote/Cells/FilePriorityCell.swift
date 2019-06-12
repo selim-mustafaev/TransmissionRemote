@@ -1,5 +1,6 @@
 import Foundation
 import Cocoa
+import TransmissionRemoteCore
 
 class FilePriorityCell: ConfigurableCell<TorrentFile> {
     @IBOutlet weak var priorityText: NSTextField!

@@ -2,13 +2,13 @@ import Foundation
 import DeepDiff
 
 public class Tracker: Decodable, Mergeable {
-	var host: String
-	var announce: String
-	var lastAnnounceSucceeded: Bool
-	var lastAnnounceResult: String
-	var lastAnnounceTime: Int64
-	var nextAnnounceTime: Int64
-	var seederCount: Int
+	public var host: String
+	public var announce: String
+	public var lastAnnounceSucceeded: Bool
+	public var lastAnnounceResult: String
+	public var lastAnnounceTime: Int64
+	public var nextAnnounceTime: Int64
+	public var seederCount: Int
 	
 	public var diffId: Int {
 		return self.host.hashValue

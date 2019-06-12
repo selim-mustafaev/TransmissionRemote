@@ -2,14 +2,14 @@ import Foundation
 import Cocoa
 import PromiseKit
 
-class Service {
-    static let shared = Service()
+public class Service {
+    public static let shared = Service()
     
-    private(set) var torrents: [Torrent] = []
+    private(set) public var torrents: [Torrent] = []
 	private(set) var selectedTorrents: [Torrent] = []
-    private(set) var session: Server? = nil
-	private(set) var statusFilters: [TorrentFilter] = StatusFilter.allCases.map { TorrentFilter(filtered: [], status: $0) }
-	private(set) var dirFilters: [TorrentFilter] = []
+    private(set) public var session: Server? = nil
+	private(set) public var statusFilters: [TorrentFilter] = TorrentFilter.Status.allCases.map { TorrentFilter(filtered: [], status: $0) }
+	private(set) public var dirFilters: [TorrentFilter] = []
 	private(set) var trackerFilters:[TorrentFilter] = []
 	private(set) var currentFilter: TorrentFilter = TorrentFilter(filtered: [], status: .all)
 	
@@ -59,7 +59,7 @@ class Service {
 		}
 	}
     
-    func startUpdatingTorrents() {
+    public func startUpdatingTorrents() {
         guard Settings.shared.connection.isComplete() else { return }
         
         self.updateTorrents()
@@ -69,12 +69,12 @@ class Service {
         }
     }
     
-    func stopUpdatingTorrents() {
+    public func stopUpdatingTorrents() {
         self.updateTimer?.invalidate()
         self.updateTimer = nil
     }
     
-    func updateTorrents() {
+    public func updateTorrents() {
         Api.getTorrents().done { torrents in
             self.torrents = torrents
 			self.updateFilters()
@@ -93,11 +93,11 @@ class Service {
         }
     }
     
-    func updateSession() -> Promise<Void> {
+    public func updateSession() -> Promise<Void> {
         return Api.getSession().done { self.session = $0 }
     }
 	
-	func updateFilters() {
+	public func updateFilters() {
 		let dict = Dictionary(grouping: self.torrents, by: { $0.downloadDir })
 		var dirFlt = dict.map { key, value -> TorrentFilter in
 			return TorrentFilter(name: key, filtered: value, category: .downloadDirs)
@@ -135,7 +135,7 @@ class Service {
 		NotificationCenter.default.post(name: .updateFilters, object: nil, userInfo: ui)
 	}
 	
-	func setCurrentFilter(_ filter: TorrentFilter) {
+	public func setCurrentFilter(_ filter: TorrentFilter) {
 		self.currentFilter = filter
 		NotificationCenter.default.post(name: .updateTorrents, object: nil, userInfo: ["torrents": self.currentFilter.filteredTorrents])
 	}

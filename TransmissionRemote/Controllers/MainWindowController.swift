@@ -1,5 +1,6 @@
 import Cocoa
 import PromiseKit
+import TransmissionRemoteCore
 
 class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldDelegate {
     

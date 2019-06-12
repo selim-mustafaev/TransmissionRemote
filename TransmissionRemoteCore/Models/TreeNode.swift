@@ -1,41 +1,41 @@
 import Cocoa
 
-class TreeNode {
-    var name: String = ""
-    var size: Int64 = 0
-    var state: NSControl.StateValue = .on {
+public class TreeNode {
+    public var name: String = ""
+    public var size: Int64 = 0
+    public var state: NSControl.StateValue = .on {
         didSet {
             if self.state != .mixed {
                 self.file?.enabled = self.state == .on
             }
         }
     }
-    var file: TorrentFile?
+    public var file: TorrentFile?
     
-    weak var parent: TreeNode?
-    var children = [TreeNode]()
+    public weak var parent: TreeNode?
+    public var children = [TreeNode]()
     
-    var isLeaf: Bool {
+    public var isLeaf: Bool {
         return children.count == 0
     }
     
-    init(_ value: TorrentFile) {
+    public init(_ value: TorrentFile) {
         self.name = value.name
         self.size = value.length
     }
     
-    init(name: String, size: Int64) {
+    public init(name: String, size: Int64) {
         self.name = name
         self.size = size
     }
     
-    func addChild(_ node: TreeNode) {
+    public func addChild(_ node: TreeNode) {
         children.append(node)
         node.parent = self
         self.size += node.size
     }
     
-    func recalculateState() {
+    public func recalculateState() {
         if self.children.count > 0 {
             var onChildren = 0
             var mixedChildren = 0
@@ -59,7 +59,7 @@ class TreeNode {
         self.parent?.recalculateState()
     }
     
-    func propagateStateDown() {
+    public func propagateStateDown() {
         if self.state != .mixed {
             for node in self.children {
                 node.state = self.state
@@ -68,7 +68,7 @@ class TreeNode {
         }
     }
     
-    func setState(_ newState: NSControl.StateValue) {
+    public func setState(_ newState: NSControl.StateValue) {
         self.state = newState
         self.propagateStateDown()
         self.parent?.recalculateState()

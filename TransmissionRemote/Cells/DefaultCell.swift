@@ -1,5 +1,6 @@
 import Foundation
 import Cocoa
+import TransmissionRemoteCore
 
 class TrackerCell: ConfigurableCell<Tracker> {
 	public override func configure(with item: Tracker, at column: NSUserInterfaceItemIdentifier) {

@@ -1,6 +1,6 @@
 import Foundation
 
-extension CocoaError {
+public extension CocoaError {
     
     static func error(_ description: String) -> Error {
         return error(Code(rawValue: 0), userInfo: [NSLocalizedDescriptionKey: description], url: nil)

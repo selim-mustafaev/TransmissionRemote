@@ -1,4 +1,5 @@
 import Cocoa
+import TransmissionRemoteCore
 
 class FilterCell: NSTableCellView {
 	
@@ -19,7 +20,7 @@ class FilterCell: NSTableCellView {
 		self.badge.title = String(filter.filteredTorrents.count)
 	}
 	
-	func imageName(for status: StatusFilter) -> String {
+	func imageName(for status: TorrentFilter.Status) -> String {
 		switch status {
 		case .all: return "all"
 		case .downloading: return "downloading"

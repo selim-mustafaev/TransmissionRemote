@@ -1,6 +1,6 @@
 import Foundation
 
-extension Notification.Name {
+public extension Notification.Name {
     static let selectedTorrentsChanged = Notification.Name("SelectedTorrentsChanged")
     static let updateFileState = Notification.Name("UpdateFileState")
     static let connectionSettingsUpdated = Notification.Name("ConnectionSettingsUpdated")

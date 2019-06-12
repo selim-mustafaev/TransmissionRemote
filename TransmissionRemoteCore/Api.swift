@@ -2,7 +2,7 @@ import Foundation
 import PromiseKit
 import PMKFoundation
 
-class Api {
+public class Api {
     private static var sessionId = UserDefaults.standard.string(forKey: "SessionID") ?? ""
     private static let queue = DispatchQueue.global(qos: .background)
     

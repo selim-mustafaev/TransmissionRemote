@@ -1,12 +1,12 @@
 import Foundation
 import DeepDiff
 
-enum Priority: Int, CustomStringConvertible {
+public enum Priority: Int, CustomStringConvertible {
     case low = -1
     case normal = 0
     case high = 1
     
-    var description: String {
+    public var description: String {
         switch self {
         case .low: return "Low"
         case .normal: return "Normal"
@@ -15,21 +15,21 @@ enum Priority: Int, CustomStringConvertible {
     }
 }
 
-class TorrentFile: Decodable, Mergeable {
-    var name: String
-    var length: Int64
-    var bytesCompleted: Int64
-    var enabled: Bool = true
-	var priority: Priority = .normal
-    var wanted: Bool = true
+public class TorrentFile: Decodable, Mergeable {
+    public var name: String
+    public var length: Int64
+    public var bytesCompleted: Int64
+    public var enabled: Bool = true
+	public var priority: Priority = .normal
+    public var wanted: Bool = true
     
-    init() {
+    public init() {
         self.name = ""
         self.length = 0
         self.bytesCompleted = 0
     }
     
-    init(name: String, length: Int64) {
+    public init(name: String, length: Int64) {
         self.name = name
         self.length = length
         self.bytesCompleted = 0
@@ -41,7 +41,7 @@ class TorrentFile: Decodable, Mergeable {
 		return name.hashValue
 	}
     
-    static func compareContent(_ a: TorrentFile, _ b: TorrentFile) -> Bool {
+    public static func compareContent(_ a: TorrentFile, _ b: TorrentFile) -> Bool {
         return a.name == b.name
             && a.length == b.length
             && a.bytesCompleted == b.bytesCompleted
@@ -65,7 +65,7 @@ class TorrentFile: Decodable, Mergeable {
 	
 	// MARK: - Common
 	
-	func downloadedPercents() -> Float {
+	public func downloadedPercents() -> Float {
 		if self.length == 0 {
 			return 0.0
 		} else {

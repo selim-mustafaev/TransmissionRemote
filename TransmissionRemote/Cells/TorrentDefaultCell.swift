@@ -1,4 +1,5 @@
 import Cocoa
+import TransmissionRemoteCore
 
 class TorrentCell: ConfigurableCell<Torrent> {
     override func configure(with torrent: Torrent, at column: NSUserInterfaceItemIdentifier) {

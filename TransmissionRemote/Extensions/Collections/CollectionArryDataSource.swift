@@ -1,6 +1,7 @@
 import Foundation
 import Cocoa
 import DeepDiff
+import TransmissionRemoteCore
 
 open class CollectionArrayDataSource<T: Mergeable & AnyObject>: CollectionDataSource<ArrayDataProvider<T>>
 {

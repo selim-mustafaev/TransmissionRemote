@@ -1,4 +1,5 @@
 import Cocoa
+import TransmissionRemoteCore
 
 enum TorrentTab: Int {
 	case general = 0

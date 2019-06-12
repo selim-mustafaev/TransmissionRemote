@@ -1,4 +1,5 @@
 import Cocoa
+import TransmissionRemoteCore
 
 class TorrentsListController: NSViewController, NSMenuDelegate {
     

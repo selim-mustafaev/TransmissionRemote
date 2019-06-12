@@ -1,17 +1,17 @@
 import Foundation
 import DeepDiff
 
-class PathAssociation: Codable, Mergeable {
-    var localPath: String
-    var remotePath: String
-    var bookmark: Data?
+public class PathAssociation: Codable, Mergeable {
+    public var localPath: String
+    public var remotePath: String
+    private var bookmark: Data?
     
-    init(remote: String) {
+    public init(remote: String) {
         self.localPath = ""
         self.remotePath = remote
     }
     
-    func setLocal(url: URL) {
+    public func setLocal(url: URL) {
         self.localPath = url.path
         do {
             self.bookmark = try url.bookmarkData(options: [.withSecurityScope, .securityScopeAllowOnlyReadAccess], includingResourceValuesForKeys: nil, relativeTo: nil)
@@ -20,7 +20,7 @@ class PathAssociation: Codable, Mergeable {
         }
     }
     
-    func withLocalUrl(closure: (URL?) -> Void) {
+    public func withLocalUrl(closure: (URL?) -> Void) {
         guard let data = self.bookmark else {
             closure(nil)
             return
@@ -41,15 +41,15 @@ class PathAssociation: Codable, Mergeable {
         }
     }
     
-    var diffId: Int {
+    public var diffId: Int {
         return remotePath.hashValue
     }
     
-    static func compareContent(_ a: PathAssociation, _ b: PathAssociation) -> Bool {
+    public static func compareContent(_ a: PathAssociation, _ b: PathAssociation) -> Bool {
         return a.remotePath == b.remotePath && a.localPath == b.localPath
     }
     
-    func copy(from item: PathAssociation) {
+    public func copy(from item: PathAssociation) {
         self.localPath = item.localPath
         self.remotePath = item.remotePath
         self.bookmark = item.bookmark
