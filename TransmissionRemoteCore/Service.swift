@@ -1,6 +1,8 @@
 import Foundation
 import Cocoa
 import PromiseKit
+import CoreSpotlight
+import AVFoundation
 
 public class Service {
     public static let shared = Service()
@@ -15,6 +17,8 @@ public class Service {
 	
     private var updateTimer: Timer? = nil
     private var refreshInterval: TimeInterval = 5
+    private var indexPromise: Promise<Void> = .value(())
+    private var indexItems: Set<TorrentFile> = []
 	
 	init() {
 		self.currentFilter = self.statusFilters.first!
@@ -24,6 +28,8 @@ public class Service {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshIntervalChanged(_:)), name: .refreshIntervalChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(movingToBackground(_:)), name: NSApplication.didResignActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(movingToForeground(_:)), name: NSApplication.didBecomeActiveNotification, object: nil)
+        
+        CSSearchableIndex.default().deleteAllSearchableItems(completionHandler: nil)
 	}
     
 	@objc func torrentSelectionChanged(_ notification: Notification) {
@@ -79,6 +85,11 @@ public class Service {
             self.torrents = torrents
 			self.updateFilters()
 			self.updateSelectedTorrent()
+            
+            if self.indexPromise.isResolved {
+                self.indexPromise = self.updateIndex()
+            }
+            
             NotificationCenter.default.post(name: .updateTorrents, object: nil, userInfo: ["torrents": self.currentFilter.filteredTorrents])
         }.catch { error in
             self.torrents = []
@@ -139,4 +150,55 @@ public class Service {
 		self.currentFilter = filter
 		NotificationCenter.default.post(name: .updateTorrents, object: nil, userInfo: ["torrents": self.currentFilter.filteredTorrents])
 	}
+    
+    private func updateIndex() -> Promise<Void> {
+        let items: Set<TorrentFile> = Set(self.torrents.flatMap { $0.files }.filter { $0.downloadedPercents() == 100 })
+        let removedItems = Array(self.indexItems.subtracting(items))
+        
+        let newItemsPromises = items.subtracting(self.indexItems).map { (file: TorrentFile) -> Promise<CSSearchableItem> in
+            return self.getSerchableItem(for: file)
+        }
+        
+        return when(resolved: newItemsPromises).map { (results: [PromiseKit.Result<CSSearchableItem>]) -> [CSSearchableItem]  in
+                return results.compactMap {
+                    switch $0 {
+                    case .fulfilled(let value): return value
+                    case .rejected: return nil
+                    }
+                }
+            }
+            .then(CSSearchableIndex.default().index)
+            .then { CSSearchableIndex.default().remove(ids: removedItems.compactMap { $0.name }) }
+            .done { self.indexItems = items }
+    }
+    
+    func getSerchableItem(for file: TorrentFile) -> Promise<CSSearchableItem> {
+        return Promise { seal in
+            file.withLocalURL { url in
+                guard let localURL = url else {
+                    seal.reject(CocoaError.error("Failed to get local URL of torrent file"))
+                    return
+                }
+                
+                let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+                attributeSet.displayName = localURL.lastPathComponent
+                attributeSet.contentURL = localURL
+                
+                // Detect type of file and add specific attributes
+                let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, localURL.pathExtension as CFString, nil)
+                if let uti = uti?.takeRetainedValue() {
+                    if UTTypeConformsTo(uti, kUTTypeMovie) {
+                        let asset = AVURLAsset(url: localURL)
+                        asset.loadValuesAsynchronously(forKeys: ["duration"]) {
+                            print(uti, " - ", localURL.path, " - ", CMTimeGetSeconds(asset.duration))
+                            attributeSet.duration = NSNumber(value: asset.duration.seconds)
+                        }
+                    }
+                }
+                
+                let item = CSSearchableItem(uniqueIdentifier: file.name, domainIdentifier: "torrent_files", attributeSet: attributeSet)
+                seal.fulfill(item)
+            }
+        }
+    }
 }

@@ -24,7 +24,9 @@ class LocalPathCell: ConfigurableCell<PathAssociation> {
                     for index in Settings.shared.pathAssociations.indices {
                         if Settings.shared.pathAssociations[index].remotePath == self.remotePath {
                             self.textField?.stringValue = url.path
-                            Settings.shared.pathAssociations[index].setLocal(url: url)
+                            let association = Settings.shared.pathAssociations[index]
+                            association.setLocal(url: url)
+                            Settings.shared.pathAssociations[index] = association
                         }
                     }
                 }

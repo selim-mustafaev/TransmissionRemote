@@ -196,6 +196,10 @@ public class Torrent: Decodable, Mergeable, CustomStringConvertible {
         for index in self.wanted.indices {
             self.files[index].wanted = self.wanted[index] == 0 ? false : true
         }
+        
+        for index in self.files.indices {
+            self.files[index].torrent = self
+        }
 	}
 	
 	// MARK: - Common

@@ -18,14 +18,13 @@
 		7A36FB9821EBE2FF006AD83C /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36FB9721EBE2FF006AD83C /* ProgressCell.swift */; };
 		7A483B542205BCFF00EF6038 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A483B532205BCFF00EF6038 /* FilterCell.swift */; };
 		7A483B58220712A200EF6038 /* CustomOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A483B57220712A200EF6038 /* CustomOutlineView.swift */; };
+		7A540C9022B519EB00287942 /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A540C8F22B519EB00287942 /* Spotlight.swift */; };
 		7A68CF3721E2A911004001C6 /* FiltersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68CF3621E2A911004001C6 /* FiltersController.swift */; };
 		7A68CF3A21E2A929004001C6 /* TorrentsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68CF3821E2A929004001C6 /* TorrentsListController.swift */; };
 		7A68CF3E21E2A949004001C6 /* TorrentDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68CF3C21E2A949004001C6 /* TorrentDetailsController.swift */; };
 		7A68CF4321E2B593004001C6 /* HorizontalSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68CF4221E2B593004001C6 /* HorizontalSplitViewController.swift */; };
 		7A68CF4621E2BF47004001C6 /* VerticalSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68CF4421E2BF47004001C6 /* VerticalSplitViewController.swift */; };
 		7A68CF4921E2C329004001C6 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68CF4821E2C329004001C6 /* MainWindowController.swift */; };
-		7A6AF41222B12C3500FEBF82 /* IndexRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6AF41122B12C3500FEBF82 /* IndexRequestHandler.swift */; };
-		7A6AF41722B12C3500FEBF82 /* TorrentsIndexExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 7A6AF40F22B12C3500FEBF82 /* TorrentsIndexExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7A6AF42522B12DC600FEBF82 /* TransmissionRemoteCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6AF42322B12DC600FEBF82 /* TransmissionRemoteCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A6AF42822B12DC600FEBF82 /* TransmissionRemoteCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A6AF42122B12DC600FEBF82 /* TransmissionRemoteCore.framework */; };
 		7A6AF42922B12DC600FEBF82 /* TransmissionRemoteCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A6AF42122B12DC600FEBF82 /* TransmissionRemoteCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -97,13 +96,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7A6AF41522B12C3500FEBF82 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7AB4E3A721DF7D85000B0A03 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A6AF40E22B12C3500FEBF82;
-			remoteInfo = TorrentsIndexExtension;
-		};
 		7A6AF42622B12DC600FEBF82 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7AB4E3A721DF7D85000B0A03 /* Project object */;
@@ -120,7 +112,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				7A6AF41722B12C3500FEBF82 /* TorrentsIndexExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,16 +147,13 @@
 		7A36FB9721EBE2FF006AD83C /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		7A483B532205BCFF00EF6038 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		7A483B57220712A200EF6038 /* CustomOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOutlineView.swift; sourceTree = "<group>"; };
+		7A540C8F22B519EB00287942 /* Spotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotlight.swift; sourceTree = "<group>"; };
 		7A68CF3621E2A911004001C6 /* FiltersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersController.swift; sourceTree = "<group>"; };
 		7A68CF3821E2A929004001C6 /* TorrentsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentsListController.swift; sourceTree = "<group>"; };
 		7A68CF3C21E2A949004001C6 /* TorrentDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDetailsController.swift; sourceTree = "<group>"; };
 		7A68CF4221E2B593004001C6 /* HorizontalSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSplitViewController.swift; sourceTree = "<group>"; };
 		7A68CF4421E2BF47004001C6 /* VerticalSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSplitViewController.swift; sourceTree = "<group>"; };
 		7A68CF4821E2C329004001C6 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		7A6AF40F22B12C3500FEBF82 /* TorrentsIndexExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TorrentsIndexExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		7A6AF41122B12C3500FEBF82 /* IndexRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexRequestHandler.swift; sourceTree = "<group>"; };
-		7A6AF41322B12C3500FEBF82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7A6AF41422B12C3500FEBF82 /* TorrentsIndexExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TorrentsIndexExtension.entitlements; sourceTree = "<group>"; };
 		7A6AF42122B12DC600FEBF82 /* TransmissionRemoteCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TransmissionRemoteCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A6AF42322B12DC600FEBF82 /* TransmissionRemoteCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransmissionRemoteCore.h; sourceTree = "<group>"; };
 		7A6AF42422B12DC600FEBF82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -231,13 +219,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7A6AF40C22B12C3500FEBF82 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7A6AF41E22B12DC600FEBF82 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -345,16 +326,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		7A6AF41022B12C3500FEBF82 /* TorrentsIndexExtension */ = {
-			isa = PBXGroup;
-			children = (
-				7A6AF41122B12C3500FEBF82 /* IndexRequestHandler.swift */,
-				7A6AF41322B12C3500FEBF82 /* Info.plist */,
-				7A6AF41422B12C3500FEBF82 /* TorrentsIndexExtension.entitlements */,
-			);
-			path = TorrentsIndexExtension;
-			sourceTree = "<group>";
-		};
 		7A6AF42222B12DC600FEBF82 /* TransmissionRemoteCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +347,7 @@
 				7AAD1CB921F354E400394648 /* CocoaError.swift */,
 				7AFB99662285D829002BF723 /* Notifications.swift */,
 				7A7448622212C13D009874BD /* ArrayMerge.swift */,
+				7A540C8F22B519EB00287942 /* Spotlight.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -453,7 +425,6 @@
 			isa = PBXGroup;
 			children = (
 				7AB4E3CC21DF819E000B0A03 /* Frameworks */,
-				7A6AF41022B12C3500FEBF82 /* TorrentsIndexExtension */,
 				7A6AF42222B12DC600FEBF82 /* TransmissionRemoteCore */,
 				7AB4E3B121DF7D85000B0A03 /* TransmissionRemote */,
 				7AB4E3B021DF7D85000B0A03 /* Products */,
@@ -464,7 +435,6 @@
 			isa = PBXGroup;
 			children = (
 				7AB4E3AF21DF7D85000B0A03 /* Transmission Remote.app */,
-				7A6AF40F22B12C3500FEBF82 /* TorrentsIndexExtension.appex */,
 				7A6AF42122B12DC600FEBF82 /* TransmissionRemoteCore.framework */,
 			);
 			name = Products;
@@ -512,23 +482,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		7A6AF40E22B12C3500FEBF82 /* TorrentsIndexExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7A6AF41A22B12C3500FEBF82 /* Build configuration list for PBXNativeTarget "TorrentsIndexExtension" */;
-			buildPhases = (
-				7A6AF40B22B12C3500FEBF82 /* Sources */,
-				7A6AF40C22B12C3500FEBF82 /* Frameworks */,
-				7A6AF40D22B12C3500FEBF82 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TorrentsIndexExtension;
-			productName = TorrentsIndexExtension;
-			productReference = 7A6AF40F22B12C3500FEBF82 /* TorrentsIndexExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		7A6AF42022B12DC600FEBF82 /* TransmissionRemoteCore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A6AF42A22B12DC600FEBF82 /* Build configuration list for PBXNativeTarget "TransmissionRemoteCore" */;
@@ -560,7 +513,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				7A6AF41622B12C3500FEBF82 /* PBXTargetDependency */,
 				7A6AF42722B12DC600FEBF82 /* PBXTargetDependency */,
 			);
 			name = "Transmission Remote";
@@ -578,10 +530,6 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "selim mustafaev";
 				TargetAttributes = {
-					7A6AF40E22B12C3500FEBF82 = {
-						CreatedOnToolsVersion = 10.2.1;
-						ProvisioningStyle = Automatic;
-					};
 					7A6AF42022B12DC600FEBF82 = {
 						CreatedOnToolsVersion = 10.2.1;
 						ProvisioningStyle = Automatic;
@@ -612,20 +560,12 @@
 			projectRoot = "";
 			targets = (
 				7AB4E3AE21DF7D85000B0A03 /* Transmission Remote */,
-				7A6AF40E22B12C3500FEBF82 /* TorrentsIndexExtension */,
 				7A6AF42022B12DC600FEBF82 /* TransmissionRemoteCore */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7A6AF40D22B12C3500FEBF82 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7A6AF41F22B12DC600FEBF82 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -650,14 +590,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7A6AF40B22B12C3500FEBF82 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7A6AF41222B12C3500FEBF82 /* IndexRequestHandler.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7A6AF41D22B12DC600FEBF82 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -677,6 +609,7 @@
 				7A6AF44122B1301900FEBF82 /* Peer.swift in Sources */,
 				7A6AF43D22B1301900FEBF82 /* TreeNode.swift in Sources */,
 				7A6AF44822B1307F00FEBF82 /* Notifications.swift in Sources */,
+				7A540C9022B519EB00287942 /* Spotlight.swift in Sources */,
 				7A6AF44A22B130C400FEBF82 /* DiffAware.swift in Sources */,
 				7A6AF42D22B12E7F00FEBF82 /* Api.swift in Sources */,
 				7A6AF43E22B1301900FEBF82 /* TorrentFile.swift in Sources */,
@@ -739,11 +672,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7A6AF41622B12C3500FEBF82 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A6AF40E22B12C3500FEBF82 /* TorrentsIndexExtension */;
-			targetProxy = 7A6AF41522B12C3500FEBF82 /* PBXContainerItemProxy */;
-		};
 		7A6AF42722B12DC600FEBF82 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7A6AF42022B12DC600FEBF82 /* TransmissionRemoteCore */;
@@ -763,36 +691,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		7A6AF41822B12C3500FEBF82 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = TorrentsIndexExtension/TorrentsIndexExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46DTTB8X4S;
-				INFOPLIST_FILE = TorrentsIndexExtension/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = pro.aliencat.TransmissionRemote.TorrentsIndexExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		7A6AF41922B12C3500FEBF82 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = TorrentsIndexExtension/TorrentsIndexExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46DTTB8X4S;
-				INFOPLIST_FILE = TorrentsIndexExtension/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = pro.aliencat.TransmissionRemote.TorrentsIndexExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		7A6AF42B22B12DC600FEBF82 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -913,6 +811,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -966,6 +865,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1020,15 +920,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7A6AF41A22B12C3500FEBF82 /* Build configuration list for PBXNativeTarget "TorrentsIndexExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7A6AF41822B12C3500FEBF82 /* Debug */,
-				7A6AF41922B12C3500FEBF82 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		7A6AF42A22B12DC600FEBF82 /* Build configuration list for PBXNativeTarget "TransmissionRemoteCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

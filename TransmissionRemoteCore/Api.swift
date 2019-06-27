@@ -4,7 +4,7 @@ import PMKFoundation
 
 public class Api {
     private static var sessionId = UserDefaults.standard.string(forKey: "SessionID") ?? ""
-    private static let queue = DispatchQueue.global(qos: .background)
+    private static let queue = DispatchQueue(label: "ApiQueriesQueue")
     
     private static func genError(_ msg: String, suggestion: String, code: Int = 0) -> Error {
         return NSError(domain: "", code: code, userInfo: [NSLocalizedDescriptionKey: msg, NSLocalizedRecoverySuggestionErrorKey: suggestion])

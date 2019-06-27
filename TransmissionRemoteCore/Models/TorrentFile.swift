@@ -15,13 +15,15 @@ public enum Priority: Int, CustomStringConvertible {
     }
 }
 
-public class TorrentFile: Decodable, Mergeable {
+public class TorrentFile: Decodable, Mergeable, Hashable {
     public var name: String
     public var length: Int64
     public var bytesCompleted: Int64
     public var enabled: Bool = true
 	public var priority: Priority = .normal
     public var wanted: Bool = true
+    
+    public weak var torrent: Torrent?
     
     public init() {
         self.name = ""
@@ -33,6 +35,18 @@ public class TorrentFile: Decodable, Mergeable {
         self.name = name
         self.length = length
         self.bytesCompleted = 0
+    }
+    
+    // MARK: - Hashable
+    
+    public static func == (lhs: TorrentFile, rhs: TorrentFile) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.name)
+        hasher.combine(self.length)
+        hasher.combine(self.bytesCompleted)
     }
 	
 	// MARK: - Mergeable
@@ -72,4 +86,26 @@ public class TorrentFile: Decodable, Mergeable {
 			return 100.0*Float(self.bytesCompleted)/Float(self.length)
 		}
 	}
+    
+    public func withLocalURL(closure: (URL?) -> Void) {
+        guard let torrent = self.torrent else {
+            closure(nil)
+            return
+        }
+        
+        let serverPath = torrent.downloadDir + "/" + self.name
+        
+        for association in Settings.shared.pathAssociations {
+            if serverPath.starts(with: association.remotePath) {
+                let localPath = serverPath.replacingOccurrences(of: association.remotePath, with: association.localPath)
+                association.withLocalUrl { _ in
+                    closure(URL(fileURLWithPath: localPath))
+                }
+                return
+            }
+        }
+        
+        closure(nil)
+    }
+    
 }
