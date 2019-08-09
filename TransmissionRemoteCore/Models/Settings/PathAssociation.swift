@@ -41,6 +41,19 @@ public class PathAssociation: Codable, Mergeable {
         }
     }
     
+    public func securityScopedURL() -> URL? {
+        guard let data = self.bookmark else { return nil }
+        
+        var isStale = false
+        let url = try? URL.init(resolvingBookmarkData: data, options: .withSecurityScope, relativeTo: nil, bookmarkDataIsStale: &isStale)
+        
+        if isStale {
+            return nil
+        }
+        
+        return url
+    }
+    
     public var diffId: Int {
         return remotePath.hashValue
     }

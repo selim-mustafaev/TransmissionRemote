@@ -24,6 +24,7 @@ public class TorrentFile: Decodable, Mergeable, Hashable {
     public var wanted: Bool = true
     
     public weak var torrent: Torrent?
+    public var securityScopedUrl: URL?
     
     public init() {
         self.name = ""
@@ -83,7 +84,8 @@ public class TorrentFile: Decodable, Mergeable, Hashable {
 		if self.length == 0 {
 			return 0.0
 		} else {
-			return 100.0*Float(self.bytesCompleted)/Float(self.length)
+            let result = 100.0*Float(self.bytesCompleted)/Float(self.length)
+            return result <= 100.0 ? result : 100.0
 		}
 	}
     
@@ -98,7 +100,11 @@ public class TorrentFile: Decodable, Mergeable, Hashable {
         for association in Settings.shared.pathAssociations {
             if serverPath.starts(with: association.remotePath) {
                 let localPath = serverPath.replacingOccurrences(of: association.remotePath, with: association.localPath)
-                association.withLocalUrl { _ in
+                association.withLocalUrl { url in
+                    guard url != nil else {
+                        closure(nil)
+                        return
+                    }
                     closure(URL(fileURLWithPath: localPath))
                 }
                 return
@@ -106,6 +112,29 @@ public class TorrentFile: Decodable, Mergeable, Hashable {
         }
         
         closure(nil)
+    }
+    
+    public func startAccess() -> URL? {
+        guard let torrent = self.torrent else { return nil }
+        
+        let serverPath = torrent.downloadDir + "/" + self.name
+        for association in Settings.shared.pathAssociations {
+            if serverPath.starts(with: association.remotePath) {
+                let localPath = serverPath.replacingOccurrences(of: association.remotePath, with: association.localPath)
+                self.securityScopedUrl = association.securityScopedURL()
+                if self.securityScopedUrl?.startAccessingSecurityScopedResource() == true {
+                    return URL(fileURLWithPath: localPath)
+                } else {
+                    return nil
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    public func stopAccess() {
+        self.securityScopedUrl?.stopAccessingSecurityScopedResource()
     }
     
 }

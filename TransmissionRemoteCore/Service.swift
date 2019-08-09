@@ -3,6 +3,7 @@ import Cocoa
 import PromiseKit
 import CoreSpotlight
 import AVFoundation
+import os.log
 
 public class Service {
     public static let shared = Service()
@@ -154,10 +155,7 @@ public class Service {
     private func updateIndex() -> Promise<Void> {
         let items: Set<TorrentFile> = Set(self.torrents.flatMap { $0.files }.filter { $0.downloadedPercents() == 100 })
         let removedItems = Array(self.indexItems.subtracting(items))
-        
-        let newItemsPromises = items.subtracting(self.indexItems).map { (file: TorrentFile) -> Promise<CSSearchableItem> in
-            return self.getSerchableItem(for: file)
-        }
+        let newItemsPromises = items.subtracting(self.indexItems).map(getSerchableItem)
         
         return when(resolved: newItemsPromises).map { (results: [PromiseKit.Result<CSSearchableItem>]) -> [CSSearchableItem]  in
                 return results.compactMap {
@@ -167,37 +165,60 @@ public class Service {
                     }
                 }
             }
-            .then(CSSearchableIndex.default().index)
-            .then { CSSearchableIndex.default().remove(ids: removedItems.compactMap { $0.name }) }
+            .then(on: DispatchQueue.global(), CSSearchableIndex.default().index)
+            .then(on: DispatchQueue.global()) { CSSearchableIndex.default().remove(ids: removedItems.compactMap { $0.name }) }
             .done { self.indexItems = items }
     }
     
     func getSerchableItem(for file: TorrentFile) -> Promise<CSSearchableItem> {
         return Promise { seal in
-            file.withLocalURL { url in
-                guard let localURL = url else {
+            DispatchQueue.global().async {
+                guard let localURL = file.startAccess() else {
                     seal.reject(CocoaError.error("Failed to get local URL of torrent file"))
                     return
                 }
                 
-                let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
-                attributeSet.displayName = localURL.lastPathComponent
-                attributeSet.contentURL = localURL
-                
-                // Detect type of file and add specific attributes
-                let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, localURL.pathExtension as CFString, nil)
-                if let uti = uti?.takeRetainedValue() {
-                    if UTTypeConformsTo(uti, kUTTypeMovie) {
-                        let asset = AVURLAsset(url: localURL)
-                        asset.loadValuesAsynchronously(forKeys: ["duration"]) {
-                            print(uti, " - ", localURL.path, " - ", CMTimeGetSeconds(asset.duration))
-                            attributeSet.duration = NSNumber(value: asset.duration.seconds)
-                        }
-                    }
+                if !FileManager.default.fileExists(atPath: localURL.path) {
+                    seal.reject(CocoaError.error("File not found: \(localURL)"))
+                    return
                 }
                 
-                let item = CSSearchableItem(uniqueIdentifier: file.name, domainIdentifier: "torrent_files", attributeSet: attributeSet)
-                seal.fulfill(item)
+                self.searchableAttributes(for: localURL).done { attributeSet in
+                    file.stopAccess()
+                    let item = CSSearchableItem(uniqueIdentifier: file.name, domainIdentifier: "torrent_files", attributeSet: attributeSet)
+                    seal.fulfill(item)
+                }
+            }
+        }
+    }
+    
+    func searchableAttributes(for url: URL) -> Guarantee<CSSearchableItemAttributeSet> {
+        return Guarantee { seal in
+            DispatchQueue.global().async {
+                let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
+                attributeSet.displayName = url.lastPathComponent
+                attributeSet.contentURL = url
+                
+                // Detect type of file and add specific attributes
+//                let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, url.pathExtension as CFString, nil)
+//                if let uti = uti?.takeRetainedValue() {
+//                    if UTTypeConformsTo(uti, kUTTypeMovie) {
+//                        let asset = AVURLAsset(url: url)
+//                        asset.loadValuesAsynchronously(forKeys: ["duration"]) {
+//                            let seconds = CMTimeGetSeconds(asset.duration)
+//                            if seconds > 0 {
+//                                attributeSet.duration = NSNumber(value: seconds)
+//                            }
+//                            seal.fulfill(attributeSet)
+//                        }
+//                    } else {
+//                        seal.fulfill(attributeSet)
+//                    }
+//                } else {
+//                    seal.fulfill(attributeSet)
+//                }
+                
+                seal(attributeSet)
             }
         }
     }
