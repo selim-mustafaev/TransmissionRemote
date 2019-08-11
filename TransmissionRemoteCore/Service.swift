@@ -178,11 +178,6 @@ public class Service {
                     return
                 }
                 
-                if !FileManager.default.fileExists(atPath: localURL.path) {
-                    seal.reject(CocoaError.error("File not found: \(localURL)"))
-                    return
-                }
-                
                 self.searchableAttributes(for: localURL).done { attributeSet in
                     file.stopAccess()
                     let item = CSSearchableItem(uniqueIdentifier: file.name, domainIdentifier: "torrent_files", attributeSet: attributeSet)

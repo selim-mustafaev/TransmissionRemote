@@ -121,6 +121,9 @@ public class TorrentFile: Decodable, Mergeable, Hashable {
         for association in Settings.shared.pathAssociations {
             if serverPath.starts(with: association.remotePath) {
                 let localPath = serverPath.replacingOccurrences(of: association.remotePath, with: association.localPath)
+                if !FileManager.default.fileExists(atPath: localPath) {
+                    return nil
+                }
                 self.securityScopedUrl = association.securityScopedURL()
                 if self.securityScopedUrl?.startAccessingSecurityScopedResource() == true {
                     return URL(fileURLWithPath: localPath)
