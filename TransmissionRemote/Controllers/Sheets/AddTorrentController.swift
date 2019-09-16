@@ -117,7 +117,7 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
                         }
                     }
                     
-                    NSAlert.showError("Path selection error", description: "Cannot find remote path associated with selected local path", for: wnd)
+                    NSAlert.showError("Path selection error", suggestion: "Cannot find remote path associated with selected local path", for: wnd)
                 }
             }
         }

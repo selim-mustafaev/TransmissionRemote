@@ -23,7 +23,7 @@ class SetLocationController: NSViewController {
     @IBAction func ok(_ sender: NSButton) {
         guard let wnd = self.view.window else { return }
         guard self.path.stringValue.count > 0 else {
-            NSAlert.showError("Invalid new location", description: "New path must not be empty", for: wnd)
+            NSAlert.showError("Invalid new location", suggestion: "New path must not be empty", for: wnd)
             return
         }
         
@@ -56,7 +56,7 @@ class SetLocationController: NSViewController {
                         }
                     }
                     
-                    NSAlert.showError("Path selection error", description: "Cannot find remote path associated with selected local path", for: wnd)
+                    NSAlert.showError("Path selection error", suggestion: "Cannot find remote path associated with selected local path", for: wnd)
                 }
             }
         }

@@ -41,9 +41,9 @@ class PathsSettingController: NSViewController {
             if response == .alertFirstButtonReturn {
                 let path = textField.stringValue
                 if path.count == 0 {
-                    NSAlert.showError("Path must not be empty", description: "", for: wnd)
+                    NSAlert.showError("Path must not be empty", suggestion: "", for: wnd)
                 } else if Settings.shared.pathAssociations.contains(where: { assoc in assoc.remotePath == path }) {
-                    NSAlert.showError("Path already exists", description: "", for: wnd)
+                    NSAlert.showError("Path already exists", suggestion: "", for: wnd)
                 } else {
                     Settings.shared.pathAssociations.append(PathAssociation(remote: path))
                     self.associationsDS?.setData(Settings.shared.pathAssociations)

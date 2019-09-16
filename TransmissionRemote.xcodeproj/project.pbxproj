@@ -77,6 +77,8 @@
 		7A9ADBA222707D89008339B7 /* FilePriorityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9ADBA122707D89008339B7 /* FilePriorityCell.swift */; };
 		7A9ADBA422708CE6008339B7 /* FileNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9ADBA322708CE6008339B7 /* FileNameCell.swift */; };
 		7A9ADBA822709AEB008339B7 /* TorrentDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9ADBA722709AEB008339B7 /* TorrentDefaultCell.swift */; };
+		7AA6DB32232EE24E00531ED5 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA6DB31232EE24E00531ED5 /* Errors.swift */; };
+		7AA6DB36232EE5C000531ED5 /* PresentableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA6DB34232EE47200531ED5 /* PresentableError.swift */; };
 		7AA89FEF2289ECC10008C380 /* RemotePathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA89FEE2289ECC10008C380 /* RemotePathCell.swift */; };
 		7AA89FF12289ECCE0008C380 /* LocalPathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA89FF02289ECCE0008C380 /* LocalPathCell.swift */; };
 		7AA89FF3228AE5290008C380 /* SegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA89FF2228AE5290008C380 /* SegmentedCell.swift */; };
@@ -191,6 +193,8 @@
 		7A9ADBA122707D89008339B7 /* FilePriorityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePriorityCell.swift; sourceTree = "<group>"; };
 		7A9ADBA322708CE6008339B7 /* FileNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNameCell.swift; sourceTree = "<group>"; };
 		7A9ADBA722709AEB008339B7 /* TorrentDefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TorrentDefaultCell.swift; sourceTree = "<group>"; };
+		7AA6DB31232EE24E00531ED5 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		7AA6DB34232EE47200531ED5 /* PresentableError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableError.swift; sourceTree = "<group>"; };
 		7AA89FEB2289E54F0008C380 /* PathAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathAssociation.swift; sourceTree = "<group>"; };
 		7AA89FEE2289ECC10008C380 /* RemotePathCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePathCell.swift; sourceTree = "<group>"; };
 		7AA89FF02289ECCE0008C380 /* LocalPathCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPathCell.swift; sourceTree = "<group>"; };
@@ -329,6 +333,7 @@
 		7A6AF42222B12DC600FEBF82 /* TransmissionRemoteCore */ = {
 			isa = PBXGroup;
 			children = (
+				7AA6DB30232EE22700531ED5 /* Utils */,
 				7A6AF44622B1305200FEBF82 /* Extensions */,
 				7A9103E121E38D7B00BCE5CF /* Models */,
 				7A997BF22296A7660047F6A5 /* ThirdParty */,
@@ -402,6 +407,22 @@
 			path = Bencode;
 			sourceTree = "<group>";
 		};
+		7AA6DB30232EE22700531ED5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7AA6DB31232EE24E00531ED5 /* Errors.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7AA6DB33232EE44A00531ED5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7AA6DB34232EE47200531ED5 /* PresentableError.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		7AA89FED2289EC990008C380 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +464,7 @@
 		7AB4E3B121DF7D85000B0A03 /* TransmissionRemote */ = {
 			isa = PBXGroup;
 			children = (
+				7AA6DB33232EE44A00531ED5 /* Utils */,
 				7A36FB9521EBE2C4006AD83C /* Cells */,
 				7A68CF3521E2A801004001C6 /* Controllers */,
 				7A68CF3221E285E6004001C6 /* Custom views */,
@@ -617,6 +639,7 @@
 				7A6AF42D22B12E7F00FEBF82 /* Api.swift in Sources */,
 				7A6AF43E22B1301900FEBF82 /* TorrentFile.swift in Sources */,
 				7A6AF44922B1309D00FEBF82 /* CocoaError.swift in Sources */,
+				7AA6DB32232EE24E00531ED5 /* Errors.swift in Sources */,
 				7A6AF44022B1301900FEBF82 /* Tracker.swift in Sources */,
 				7A6AF42E22B12E7F00FEBF82 /* Service.swift in Sources */,
 				7A6AF43B22B1301900FEBF82 /* Torrent.swift in Sources */,
@@ -661,6 +684,7 @@
 				7A3071CC2258C7400078E970 /* CollectionDataProvider.swift in Sources */,
 				7A997BEE22955B380047F6A5 /* SetLocationController.swift in Sources */,
 				7A9ADBA822709AEB008339B7 /* TorrentDefaultCell.swift in Sources */,
+				7AA6DB36232EE5C000531ED5 /* PresentableError.swift in Sources */,
 				7AA89FF3228AE5290008C380 /* SegmentedCell.swift in Sources */,
 				7AFB996B22872146002BF723 /* PathsSettingsController.swift in Sources */,
 				7A9103EE21EA1AEA00BCE5CF /* GeneralSettingsController.swift in Sources */,

@@ -126,7 +126,8 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
         }.compactMap { $0 }
     }
     
-    func withLocalPath(for torrent: Torrent, closure: (String?) -> Void) {
+    func withLocalPath(for torrent: Torrent, closure: (String?, TorrentError?) -> Void) {
+        var error: TorrentError? = nil
         let urls = torrent.serverPath()
         for url in urls {
             let path = url.path
@@ -134,28 +135,36 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
                 if path.starts(with: association.remotePath) {
                     let localPath = path.replacingOccurrences(of: association.remotePath, with: association.localPath)
                     
-                    if !FileManager.default.fileExists(atPath: localPath) {
+                    if !FileManager.default.fileExists(atPath: localPath) && error == nil {
+                        error = .localPathNotFound(torrentName: torrent.name, localPath: localPath)
                         continue
                     }
                     
                     association.withLocalUrl { url in
                         if url != nil {
-                            closure(localPath)
+                            closure(localPath, nil)
                         } else {
-                            closure(nil)
+                            closure(nil, .localPathNotFound(torrentName: torrent.name, localPath: localPath))
                         }
                     }
                     return
                 }
             }
         }
+        
+        if error != nil {
+            closure(nil, error)
+        } else {
+            closure(nil, .associationNotFound(torrentName: torrent.name))
+        }
     }
     
     func openClickedTorrent() {
         let indexPath = IndexPath(item: self.tableView.clickedRow, section: 0)
         guard let torrent = self.torrentsDS?.item(at: indexPath) else { return }
+        guard let wnd = self.view.window else { return }
         
-        self.withLocalPath(for: torrent) { path in
+        self.withLocalPath(for: torrent) { path, error in
             if let path = path {
                 var isDir: ObjCBool = false
                 if !FileManager.default.fileExists(atPath: path, isDirectory: &isDir) {
@@ -167,6 +176,10 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
                 } else {
                     NSWorkspace.shared.openFile(path)
                 }
+            } else if let error = error {
+               error.displayAlert(for: wnd)
+            } else {
+               NSAlert.showError("Cannot open torrent", suggestion: "Unknown error", for: wnd)
             }
         }
     }
@@ -209,11 +222,13 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
         guard let torrent = self.contextMenuTorrents().first else { return }
         guard let wnd = self.view.window else { return }
         
-        self.withLocalPath(for: torrent) { path in
+        self.withLocalPath(for: torrent) { path, error in
             if let path = path {
                 NSWorkspace.shared.selectFile(path, inFileViewerRootedAtPath: "")
+            } else if let error = error {
+                error.displayAlert(for: wnd)
             } else {
-                NSAlert.showError("Cannot open torrent", description: "Error finding local path for the torrent: \(torrent.name)", for: wnd)
+                NSAlert.showError("Cannot open torrent", suggestion: "Unknown error", for: wnd)
             }
         }
     }

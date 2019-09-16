@@ -1,4 +1,4 @@
 github "PromiseKit/Foundation" "3.3.3"
 github "dduan/BitArray" "0.0.1"
-github "mxcl/PromiseKit" "6.10.0"
+github "mxcl/PromiseKit" "6.11.0"
 github "onmyway133/DeepDiff" "2.3.0"
