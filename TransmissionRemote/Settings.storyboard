@@ -39,7 +39,7 @@
                     <tabView key="tabView" type="noTabsNoBorder" id="jHg-TC-Zei">
                         <rect key="frame" x="0.0" y="0.0" width="540" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="label" size="13"/>
+                        <font key="font" metaFont="system"/>
                         <connections>
                             <outlet property="delegate" destination="YkN-c0-epe" id="K7V-iA-bUA"/>
                         </connections>
@@ -59,8 +59,8 @@
         <scene sceneID="9M6-jq-pWh">
             <objects>
                 <viewController id="TtZ-Ye-8D9" customClass="GeneralSettingsController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="sZ4-Qv-fIA">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="154"/>
+                    <view key="view" id="sZ4-Qv-fIA">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="141"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <gridView horizontalHuggingPriority="600" verticalHuggingPriority="600" xPlacement="leading" yPlacement="top" rowAlignment="firstBaseline" rowSpacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IgV-8k-mBd">
@@ -94,7 +94,7 @@
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="jGN-IE-WHm">
                                                 <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="m1p-IH-ugz"/>
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -121,7 +121,7 @@
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="V91-7S-7b7">
                                                 <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="KOg-PG-A5C"/>
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -136,7 +136,7 @@
                                             <rect key="frame" x="214" y="27" width="217" height="18"/>
                                             <buttonCell key="cell" type="check" title="Delete .torrent file after addition" bezelStyle="regularSquare" imagePosition="left" inset="2" id="gP6-WT-nFV">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="deleteTorrentFileChanged:" target="TtZ-Ye-8D9" id="pZm-tz-WGU"/>
@@ -158,7 +158,7 @@
                                             <rect key="frame" x="214" y="-3" width="218" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="quits the app" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="JRC-a3-uP9" id="3r9-iJ-u1p">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                                 <menu key="menu" id="wxp-t5-RIk">
                                                     <items>
                                                         <menuItem title="quits the app" state="on" id="JRC-a3-uP9">
@@ -306,7 +306,7 @@
                                             <rect key="frame" x="87" y="100" width="204" height="18"/>
                                             <buttonCell key="cell" type="check" title="Use SSL" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="upP-Hg-Lsx">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                             </buttonCell>
                                         </button>
                                     </gridCell>
@@ -316,7 +316,7 @@
                                             <rect key="frame" x="87" y="78" width="204" height="18"/>
                                             <buttonCell key="cell" type="check" title="Authentication required" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="asO-SK-VZa">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="authRequiredChanged:" target="gsK-42-BLa" id="Pty-4T-qDq"/>
@@ -366,7 +366,7 @@
                                                 <constraint firstAttribute="width" constant="150" id="90j-tp-Ihw"/>
                                             </constraints>
                                             <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="yr2-EN-dQu">
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 <allowedInputSourceLocales>
@@ -384,7 +384,7 @@
                                             <rect key="frame" x="87" y="-2" width="204" height="18"/>
                                             <buttonCell key="cell" type="check" title="Ask for password" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="DvQ-r8-xP6">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="label" size="13"/>
+                                                <font key="font" metaFont="system"/>
                                             </buttonCell>
                                         </button>
                                     </gridCell>
@@ -418,12 +418,12 @@
         <scene sceneID="Pbj-xV-bTW">
             <objects>
                 <viewController id="v81-tv-7Ld" customClass="PathsSettingController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="gvS-DE-fuH">
-                        <rect key="frame" x="0.0" y="0.0" width="640" height="265"/>
+                    <view key="view" id="gvS-DE-fuH">
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="194"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bld-p5-WuL">
-                                <rect key="frame" x="18" y="176" width="575" height="21"/>
+                                <rect key="frame" x="18" y="153" width="575" height="21"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Remote to local path mappings" id="UiA-9e-WKe">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -431,13 +431,13 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jb-2X-zUd">
-                                <rect key="frame" x="20" y="37" width="600" height="131"/>
+                                <rect key="frame" x="20" y="37" width="600" height="108"/>
                                 <clipView key="contentView" id="mFV-u2-dqw">
-                                    <rect key="frame" x="1" y="0.0" width="598" height="130"/>
+                                    <rect key="frame" x="1" y="0.0" width="598" height="107"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="aBh-Bp-5Rx" viewBased="YES" id="dKM-zA-Kmx">
-                                            <rect key="frame" x="0.0" y="0.0" width="598" height="107"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="598" height="84"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -445,19 +445,19 @@
                                             <tableColumns>
                                                 <tableColumn width="240" minWidth="40" maxWidth="1000" id="IvE-fB-yX0">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Remote path">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="e62-mJ-XvF">
-                                                        <font key="font" metaFont="label" size="13"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView misplaced="YES" id="GSL-T0-h1U" customClass="RemotePathCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="240" height="17"/>
+                                                        <tableCellView id="GSL-T0-h1U" customClass="RemotePathCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="1" y="1" width="240" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j9b-B3-UQw">
@@ -483,25 +483,25 @@
                                                 </tableColumn>
                                                 <tableColumn width="352" minWidth="40" maxWidth="1000" id="nMa-kX-68b">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Local path">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="gHy-uq-66H">
-                                                        <font key="font" metaFont="label" size="13"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView misplaced="YES" id="sIp-aT-hCg" customClass="LocalPathCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="244" y="1" width="352" height="17"/>
+                                                        <tableCellView id="sIp-aT-hCg" customClass="LocalPathCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="244" y="1" width="352" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dcI-pJ-rHy">
                                                                     <rect key="frame" x="0.0" y="0.0" width="291" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="pP8-o1-B0f">
-                                                                        <font key="font" metaFont="label" size="13"/>
+                                                                        <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -510,7 +510,7 @@
                                                                     <rect key="frame" x="297" y="-1" width="53" height="17"/>
                                                                     <buttonCell key="cell" type="roundRect" title="Browse" bezelStyle="roundedRect" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="J5A-na-rpa">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                                        <font key="font" metaFont="message" size="11"/>
                                                                     </buttonCell>
                                                                     <connections>
                                                                         <action selector="browseAction:" target="sIp-aT-hCg" id="JqL-CD-NP9"/>
@@ -553,17 +553,17 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Tqx-vt-jW1">
-                                <rect key="frame" x="597" y="172" width="25" height="25"/>
+                                <rect key="frame" x="597" y="149" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BJf-uy-0Hz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button horizontalHuggingPriority="249" verticalHuggingPriority="749" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="4S7-62-TWb">
                                 <rect key="frame" x="76" y="19" width="544" height="20"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="left" alignment="center" lineBreakMode="truncatingTail" refusesFirstResponder="YES" state="on" borderStyle="border" inset="2" id="TEL-C8-O2X">
                                     <behavior key="behavior" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0YR-U3-POZ">
@@ -573,7 +573,7 @@
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oyJ-iC-48d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="removeAction:" target="v81-tv-7Ld" id="rPU-LP-Asi"/>
@@ -583,7 +583,7 @@
                                 <rect key="frame" x="20" y="19" width="32" height="20"/>
                                 <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="1BF-e8-Kfr" id="4DP-Xm-JoM">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" id="VUW-wm-JLN">
                                         <items>
                                             <menuItem state="on" image="NSAddTemplate" hidden="YES" id="1BF-e8-Kfr"/>
