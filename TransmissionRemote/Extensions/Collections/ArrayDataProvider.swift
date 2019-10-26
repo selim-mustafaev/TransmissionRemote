@@ -84,7 +84,7 @@ public class ArrayDataProvider<T>: CollectionDataProvider where T: Mergeable & D
             processed = processed.map { $0.sorted(using: self.sortPredicates) }
         }
         
-        let wf = WagnerFischer<T>(reduceMove: true)
+        let wf = WagnerFischer<T>(reduceMove: false)
         var changes: [[Change<T>]] = []
         for index in self.filteredItems.indices {
             let change = wf.diff(old: self.filteredItems[index], new: processed[index])
