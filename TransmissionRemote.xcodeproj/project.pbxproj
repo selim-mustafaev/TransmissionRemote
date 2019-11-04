@@ -93,6 +93,7 @@
 		7AB4E3BA21DF7D87000B0A03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AB4E3B821DF7D87000B0A03 /* Main.storyboard */; };
 		7AB4E3C921DF8190000B0A03 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */; };
 		7AB4E3CA21DF8190000B0A03 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7AF5B578236604BC00603A4F /* UNCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5B577236604BC00603A4F /* UNCenter.swift */; };
 		7AFB99692285FE38002BF723 /* InterfaceIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB99682285FE38002BF723 /* InterfaceIdentifiers.swift */; };
 		7AFB996B22872146002BF723 /* PathsSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB996A22872146002BF723 /* PathsSettingsController.swift */; };
 /* End PBXBuildFile section */
@@ -217,6 +218,7 @@
 		7AB4E3BC21DF7D87000B0A03 /* TransmissionRemote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TransmissionRemote.entitlements; sourceTree = "<group>"; };
 		7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/Mac/PromiseKit.framework; sourceTree = "<group>"; };
 		7AE8ADDD21EA589E0022E816 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		7AF5B577236604BC00603A4F /* UNCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNCenter.swift; sourceTree = "<group>"; };
 		7AFB99662285D829002BF723 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		7AFB99682285FE38002BF723 /* InterfaceIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceIdentifiers.swift; sourceTree = "<group>"; };
 		7AFB996A22872146002BF723 /* PathsSettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathsSettingsController.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 				7AFB99662285D829002BF723 /* Notifications.swift */,
 				7A7448622212C13D009874BD /* ArrayMerge.swift */,
 				7A540C8F22B519EB00287942 /* Spotlight.swift */,
+				7AF5B577236604BC00603A4F /* UNCenter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				7A6AF43D22B1301900FEBF82 /* TreeNode.swift in Sources */,
 				7A6AF44822B1307F00FEBF82 /* Notifications.swift in Sources */,
 				7A540C9022B519EB00287942 /* Spotlight.swift in Sources */,
+				7AF5B578236604BC00603A4F /* UNCenter.swift in Sources */,
 				7A6AF44A22B130C400FEBF82 /* DiffAware.swift in Sources */,
 				7A6AF42D22B12E7F00FEBF82 /* Api.swift in Sources */,
 				7A6AF43E22B1301900FEBF82 /* TorrentFile.swift in Sources */,

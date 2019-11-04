@@ -2,11 +2,11 @@ import Cocoa
 import TransmissionRemoteCore
 
 protocol PresentableError: Error {
-    func displayAlert(for window: NSWindow)
+    func displayAlert(for window: NSWindow?)
 }
 
 extension TorrentError: PresentableError {
-    func displayAlert(for window: NSWindow) {
+    func displayAlert(for window: NSWindow?) {
         switch self {
         case .general(let description, let suggestion):
             NSAlert.showError(description, suggestion: suggestion, for: window)

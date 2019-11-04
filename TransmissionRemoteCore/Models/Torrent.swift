@@ -252,6 +252,39 @@ public class Torrent: Decodable, Mergeable, CustomStringConvertible {
         
         return result
     }
+	
+    public func withLocalPath(closure: (String?, TorrentError?) -> Void) {
+        var error: TorrentError? = nil
+        let urls = self.serverPath()
+        for url in urls {
+            let path = url.path
+            for association in Settings.shared.pathAssociations {
+                if path.starts(with: association.remotePath) {
+                    let localPath = path.replacingOccurrences(of: association.remotePath, with: association.localPath)
+                    
+                    if !FileManager.default.fileExists(atPath: localPath) && error == nil {
+                        error = .localPathNotFound(torrentName: self.name, localPath: localPath)
+                        continue
+                    }
+                    
+                    association.withLocalUrl { url in
+                        if url != nil {
+                            closure(localPath, nil)
+                        } else {
+                            closure(nil, .localPathNotFound(torrentName: self.name, localPath: localPath))
+                        }
+                    }
+                    return
+                }
+            }
+        }
+        
+        if error != nil {
+            closure(nil, error)
+        } else {
+            closure(nil, .associationNotFound(torrentName: self.name))
+        }
+    }
 }
 
 // MARK: - Wrappers for parsing response from transmission

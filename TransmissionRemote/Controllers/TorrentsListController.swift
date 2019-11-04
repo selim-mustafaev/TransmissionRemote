@@ -1,5 +1,7 @@
 import Cocoa
 import TransmissionRemoteCore
+import DeepDiff
+import UserNotifications
 
 class TorrentsListController: NSViewController, NSMenuDelegate {
     
@@ -46,15 +48,27 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTorrents(_:)), name: .updateTorrents, object: nil)
     }
     
-    override func viewDidDisappear() {
-        NotificationCenter.default.removeObserver(self)
-    }
+//    override func viewDidDisappear() {
+//        NotificationCenter.default.removeObserver(self)
+//    }
     
     // MARK: - Notification handlers
     
     @objc func reloadTorrents(_ notification: Notification) {
         guard let torrents = notification.userInfo?["torrents"] as? [Torrent] else { return }
-        self.torrentsDS?.setData(torrents)
+		let changes = self.torrentsDS?.setData(torrents)
+		changes?.first?.compactMap({ $0.replace }).forEach { replace in
+			if replace.newItem.diffId == replace.oldItem.diffId
+				&& replace.newItem.isFinished()
+				&& !replace.oldItem.isFinished()
+			{
+					if #available(OSX 10.14, *) {
+						UNUserNotificationCenter.current().showDownloadedNotification(for: replace.newItem)
+					} else {
+						// TODO: Implement fallback behavior for 10.13- systems
+					}
+			}
+		}
     }
     
     // MARK: - NSMenuDelegate
@@ -126,45 +140,12 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
         }.compactMap { $0 }
     }
     
-    func withLocalPath(for torrent: Torrent, closure: (String?, TorrentError?) -> Void) {
-        var error: TorrentError? = nil
-        let urls = torrent.serverPath()
-        for url in urls {
-            let path = url.path
-            for association in Settings.shared.pathAssociations {
-                if path.starts(with: association.remotePath) {
-                    let localPath = path.replacingOccurrences(of: association.remotePath, with: association.localPath)
-                    
-                    if !FileManager.default.fileExists(atPath: localPath) && error == nil {
-                        error = .localPathNotFound(torrentName: torrent.name, localPath: localPath)
-                        continue
-                    }
-                    
-                    association.withLocalUrl { url in
-                        if url != nil {
-                            closure(localPath, nil)
-                        } else {
-                            closure(nil, .localPathNotFound(torrentName: torrent.name, localPath: localPath))
-                        }
-                    }
-                    return
-                }
-            }
-        }
-        
-        if error != nil {
-            closure(nil, error)
-        } else {
-            closure(nil, .associationNotFound(torrentName: torrent.name))
-        }
-    }
-    
     func openClickedTorrent() {
         let indexPath = IndexPath(item: self.tableView.clickedRow, section: 0)
         guard let torrent = self.torrentsDS?.item(at: indexPath) else { return }
         guard let wnd = self.view.window else { return }
         
-        self.withLocalPath(for: torrent) { path, error in
+        torrent.withLocalPath { path, error in
             if let path = path {
                 var isDir: ObjCBool = false
                 if !FileManager.default.fileExists(atPath: path, isDirectory: &isDir) {
@@ -222,7 +203,7 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
         guard let torrent = self.contextMenuTorrents().first else { return }
         guard let wnd = self.view.window else { return }
         
-        self.withLocalPath(for: torrent) { path, error in
+        torrent.withLocalPath { path, error in
             if let path = path {
                 NSWorkspace.shared.selectFile(path, inFileViewerRootedAtPath: "")
             } else if let error = error {

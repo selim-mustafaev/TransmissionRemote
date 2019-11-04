@@ -92,9 +92,11 @@ open class CollectionDataSource<Provider: CollectionDataProvider>:
         return self.tableView.selectedRowIndexes.map { self.provider.item(at: IndexPath(item: $0, section: 0) ) }.compactMap { $0 }
     }
     
-    public func setData(_ array: [Provider.T]) {
+	@discardableResult
+    public func setData(_ array: [Provider.T]) -> [[Change<Provider.T>]]  {
         let changes = self.provider.setData([array])
         self.apply(changes: changes)
+		return changes
     }
     
 //    public func apply(changes: [[Change<Provider.T>]]) {

@@ -1,8 +1,9 @@
 import Cocoa
 import TransmissionRemoteCore
+import UserNotifications
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDelegate {
     
     @IBOutlet weak var columnsMenu: NSMenuItem!
     @IBOutlet weak var statusMenu: NSMenu!
@@ -44,6 +45,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let icon = NSImage(named: "menubar_icon")
         statusItem.image = icon
         statusItem.menu = self.statusMenu
+		
+		if #available(OSX 10.14, *) {
+			UNUserNotificationCenter.current().registerNotificationCategories()
+			UNUserNotificationCenter.current().delegate = self
+		}
         
         self.appLaunched = true
     }
@@ -121,5 +127,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func quitApp(_ sender: NSMenuItem) {
         NSApp.terminate(nil)
     }
+	
+	// MARK: - Notifications
+	
+	@available(OSX 10.14, *)
+	func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
+	{
+		if response.actionIdentifier == NotificationAction.revealInFinder.rawValue {
+			if let torrentId = response.notification.request.content.userInfo["torrentId"] as? Int,
+				let torrent = Service.shared.torrents.first(where: { $0.diffId == torrentId })
+			{
+				torrent.withLocalPath { path, error in
+					if let path = path {
+						NSWorkspace.shared.selectFile(path, inFileViewerRootedAtPath: "")
+					} else if let error = error {
+						error.displayAlert(for: nil)
+					} else {
+						NSAlert.showError("Cannot open torrent", suggestion: "Unknown error", for: nil)
+					}
+				}
+			}
+		}
+	}
 }
 
