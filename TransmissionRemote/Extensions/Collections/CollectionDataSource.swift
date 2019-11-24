@@ -12,6 +12,7 @@ open class CollectionDataSource<Provider: CollectionDataProvider>:
 	let provider: Provider
 	let tableView: NSTableView
     var sortPredicates: [NSUserInterfaceItemIdentifier: SortPredicate<Provider.T>] = [:]
+    var cells: [Int:[NSUserInterfaceItemIdentifier:NSView]] = [:]
     
     public var selectionChanged: SelectionChangedHandler?
 	
@@ -40,7 +41,18 @@ open class CollectionDataSource<Provider: CollectionDataProvider>:
 	public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		guard let id = tableColumn?.identifier else { return nil }
 		
-		let cell = tableView.makeView(withIdentifier: id, owner: nil)
+        var cell: NSView? = self.cells[row]?[id]
+        if cell == nil {
+            cell = tableView.makeView(withIdentifier: id, owner: nil)
+
+            if let cell = cell {
+                if self.cells[row] != nil {
+                    self.cells[row]?[id] = cell
+                } else {
+                    self.cells[row] = [id: cell]
+                }
+            }
+        }
 		
 		if let configurableCell = cell as? ConfigurableCell<Provider.T>, let item = self.provider.item(at: IndexPath(item: row, section: 0)) {
 			configurableCell.configure(with: item, at: id)
@@ -98,37 +110,6 @@ open class CollectionDataSource<Provider: CollectionDataProvider>:
         self.apply(changes: changes)
 		return changes
     }
-    
-//    public func apply(changes: [[Change<Provider.T>]]) {
-//        if let firstChanges = changes.first {
-//            self.tableView.beginUpdates()
-//            for change in firstChanges {
-//                switch change {
-//                case .insert(let insert):
-//                    self.tableView.insertRows(at: IndexSet([insert.index]))
-//                    break
-//                case .delete(_):
-//                    break
-//                case .replace(let replace):
-//                    //self.tableView.reloadData(forRowIndexes: IndexSet([replace.index]), columnIndexes: IndexSet(0..<tableView.tableColumns.count))
-//                    break
-//                case .move(let move):
-//                    self.tableView.moveRow(at: move.fromIndex, to: move.toIndex)
-//                    break
-//                }
-//            }
-//
-//            let deletes = firstChanges.compactMap { $0.delete }.sorted { $0.index > $1.index }
-//            for delete in deletes {
-//                self.tableView.removeRows(at: IndexSet([delete.index]))
-//            }
-//
-//            self.tableView.endUpdates()
-//
-//            let replaces = firstChanges.compactMap { $0.replace }
-//            replaces.forEach { self.tableView.reloadData(forRowIndexes: IndexSet([$0.index]), columnIndexes: IndexSet(0..<tableView.tableColumns.count))}
-//        }
-//    }
     
     public func apply(changes: [[Change<Provider.T>]]) {
         if let firstChanges = changes.first {

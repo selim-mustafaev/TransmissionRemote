@@ -154,6 +154,11 @@ public class Service {
     
     private func updateIndex() -> Promise<Void> {
         let items: Set<TorrentFile> = Set(self.torrents.flatMap { $0.files }.filter { $0.downloadedPercents() == 100 })
+        
+        if items.count == self.indexItems.count {
+            return Promise.value(())
+        }
+        
         let removedItems = Array(self.indexItems.subtracting(items))
         let newItemsPromises = items.subtracting(self.indexItems).map(getSerchableItem)
         
