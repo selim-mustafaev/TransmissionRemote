@@ -51,8 +51,15 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
     
     @objc func torrentsUpdated(_ notification: Notification) {
         if self.destination.numberOfItems == 0 {
-            self.destination.addItems(withObjectValues: Service.shared.dirFilters.map { $0.name })
-            self.destination.selectItem(at: 0)
+			if Service.shared.dirFilters.count > 0 {
+				self.destination.addItems(withObjectValues: Service.shared.dirFilters.map { $0.name })
+			} else if let session = Service.shared.session {
+				self.destination.addItem(withObjectValue: session.downloadDir)
+			}
+			
+			if self.destination.numberOfItems > 0 {
+				self.destination.selectItem(at: 0)
+			}
         }
     }
     
