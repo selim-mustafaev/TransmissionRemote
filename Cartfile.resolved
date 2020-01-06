@@ -1,4 +1,4 @@
+github "AliSoftware/OHHTTPStubs" "8.0.0"
 github "PromiseKit/Foundation" "3.3.4"
-github "dduan/BitArray" "0.0.1"
 github "mxcl/PromiseKit" "6.12.0"
 github "onmyway133/DeepDiff" "2.3.1"

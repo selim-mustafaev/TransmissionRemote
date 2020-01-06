@@ -1,7 +1,7 @@
 import Foundation
 import DeepDiff
 
-public class Peer: Decodable, Mergeable {
+public class Peer: Codable, Mergeable {
 	public var address: String
 	public var port: Int
 	public var clientName: String

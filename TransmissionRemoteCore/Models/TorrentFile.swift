@@ -1,7 +1,7 @@
 import Foundation
 import DeepDiff
 
-public enum Priority: Int, CustomStringConvertible {
+public enum Priority: Int, CustomStringConvertible, Codable {
     case low = -1
     case normal = 0
     case high = 1
@@ -15,7 +15,7 @@ public enum Priority: Int, CustomStringConvertible {
     }
 }
 
-public class TorrentFile: Decodable, Mergeable, Hashable {
+public class TorrentFile: Codable, Mergeable, Hashable {
     public var name: String
     public var length: Int64
     public var bytesCompleted: Int64

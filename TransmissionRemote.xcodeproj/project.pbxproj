@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A0449AE23BFF5AA00683E43 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE18A0B23BF7260009F7FDB /* OHHTTPStubs.framework */; };
 		7A067A3B22917CD50070DE55 /* TorrentPriorityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A067A3A22917CD50070DE55 /* TorrentPriorityCell.swift */; };
 		7A3071C62258B4AF0078E970 /* ReusablaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3071C52258B4AF0078E970 /* ReusablaCell.swift */; };
 		7A3071C82258B4D50078E970 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3071C72258B4D50078E970 /* ConfigurableCell.swift */; };
@@ -19,6 +20,8 @@
 		7A483B542205BCFF00EF6038 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A483B532205BCFF00EF6038 /* FilterCell.swift */; };
 		7A483B58220712A200EF6038 /* CustomOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A483B57220712A200EF6038 /* CustomOutlineView.swift */; };
 		7A540C9022B519EB00287942 /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A540C8F22B519EB00287942 /* Spotlight.swift */; };
+		7A66DBBC23C37B9400B85E0F /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE18A0B23BF7260009F7FDB /* OHHTTPStubs.framework */; };
+		7A66DBBD23C37B9400B85E0F /* OHHTTPStubs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE18A0B23BF7260009F7FDB /* OHHTTPStubs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A68CF3721E2A911004001C6 /* FiltersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68CF3621E2A911004001C6 /* FiltersController.swift */; };
 		7A68CF3A21E2A929004001C6 /* TorrentsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68CF3821E2A929004001C6 /* TorrentsListController.swift */; };
 		7A68CF3E21E2A949004001C6 /* TorrentDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A68CF3C21E2A949004001C6 /* TorrentDetailsController.swift */; };
@@ -62,9 +65,6 @@
 		7A7A207121F67676005C61BE /* AddLinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7A206F21F67676005C61BE /* AddLinkController.swift */; };
 		7A7A207221F67676005C61BE /* AddLinkController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A7A207021F67676005C61BE /* AddLinkController.xib */; };
 		7A898E66226B348F00B3C69D /* FileProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A898E65226B348F00B3C69D /* FileProgressCell.swift */; };
-		7A90D87A2233C02E00FE04C2 /* BitArray.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A90D8792233C02E00FE04C2 /* BitArray.framework */; };
-		7A90D87B2233C02E00FE04C2 /* BitArray.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A90D8792233C02E00FE04C2 /* BitArray.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7A90D87D2233C3CF00FE04C2 /* PiecesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A90D87C2233C3CF00FE04C2 /* PiecesView.swift */; };
 		7A9103DF21E38B0000BCE5CF /* PMKFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9103DE21E38AFF00BCE5CF /* PMKFoundation.framework */; };
 		7A9103E021E38B0000BCE5CF /* PMKFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A9103DE21E38AFF00BCE5CF /* PMKFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7A9103EB21E6B1F100BCE5CF /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9103EA21E6B1F100BCE5CF /* Settings.storyboard */; };
@@ -93,6 +93,7 @@
 		7AB4E3BA21DF7D87000B0A03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AB4E3B821DF7D87000B0A03 /* Main.storyboard */; };
 		7AB4E3C921DF8190000B0A03 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */; };
 		7AB4E3CA21DF8190000B0A03 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7ACC801D23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC801C23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift */; };
 		7AF5B578236604BC00603A4F /* UNCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5B577236604BC00603A4F /* UNCenter.swift */; };
 		7AFB99692285FE38002BF723 /* InterfaceIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB99682285FE38002BF723 /* InterfaceIdentifiers.swift */; };
 		7AFB996B22872146002BF723 /* PathsSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB996A22872146002BF723 /* PathsSettingsController.swift */; };
@@ -105,6 +106,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 7A6AF42022B12DC600FEBF82;
 			remoteInfo = TransmissionRemoteCore;
+		};
+		7ACC801F23BF6D0200C5AF3E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7AB4E3A721DF7D85000B0A03 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7AB4E3AE21DF7D85000B0A03;
+			remoteInfo = "Transmission Remote";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -127,9 +135,9 @@
 			files = (
 				7AB4E3CA21DF8190000B0A03 /* PromiseKit.framework in Embed Frameworks */,
 				7A6AF42922B12DC600FEBF82 /* TransmissionRemoteCore.framework in Embed Frameworks */,
+				7A66DBBD23C37B9400B85E0F /* OHHTTPStubs.framework in Embed Frameworks */,
 				7AA89FFC228D992C0008C380 /* DeepDiff.framework in Embed Frameworks */,
 				7A9103E021E38B0000BCE5CF /* PMKFoundation.framework in Embed Frameworks */,
-				7A90D87B2233C02E00FE04C2 /* BitArray.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,7 +176,6 @@
 		7A898E65226B348F00B3C69D /* FileProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressCell.swift; sourceTree = "<group>"; };
 		7A90D8772233ACB600FE04C2 /* Tracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tracker.swift; sourceTree = "<group>"; };
 		7A90D8792233C02E00FE04C2 /* BitArray.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BitArray.framework; path = Carthage/Build/Mac/BitArray.framework; sourceTree = "<group>"; };
-		7A90D87C2233C3CF00FE04C2 /* PiecesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiecesView.swift; sourceTree = "<group>"; };
 		7A9103DC21E3809700BCE5CF /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		7A9103DE21E38AFF00BCE5CF /* PMKFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PMKFoundation.framework; path = Carthage/Build/Mac/PMKFoundation.framework; sourceTree = "<group>"; };
 		7A9103E221E38D9000BCE5CF /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
@@ -217,6 +224,10 @@
 		7AB4E3BB21DF7D87000B0A03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AB4E3BC21DF7D87000B0A03 /* TransmissionRemote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TransmissionRemote.entitlements; sourceTree = "<group>"; };
 		7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/Mac/PromiseKit.framework; sourceTree = "<group>"; };
+		7ACC801A23BF6D0200C5AF3E /* TransmissionRemote UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TransmissionRemote UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ACC801C23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmissionRemote_UITests.swift; sourceTree = "<group>"; };
+		7ACC801E23BF6D0200C5AF3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7AE18A0B23BF7260009F7FDB /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/Mac/OHHTTPStubs.framework; sourceTree = "<group>"; };
 		7AE8ADDD21EA589E0022E816 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		7AF5B577236604BC00603A4F /* UNCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNCenter.swift; sourceTree = "<group>"; };
 		7AFB99662285D829002BF723 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
@@ -230,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A6AF44B22B130D800FEBF82 /* DeepDiff.framework in Frameworks */,
+				7A0449AE23BFF5AA00683E43 /* OHHTTPStubs.framework in Frameworks */,
 				7A6AF43822B12FE000FEBF82 /* PMKFoundation.framework in Frameworks */,
 				7A6AF43922B12FE000FEBF82 /* PromiseKit.framework in Frameworks */,
 			);
@@ -241,9 +253,16 @@
 			files = (
 				7AB4E3C921DF8190000B0A03 /* PromiseKit.framework in Frameworks */,
 				7A6AF42822B12DC600FEBF82 /* TransmissionRemoteCore.framework in Frameworks */,
+				7A66DBBC23C37B9400B85E0F /* OHHTTPStubs.framework in Frameworks */,
 				7AA89FFB228D992C0008C380 /* DeepDiff.framework in Frameworks */,
 				7A9103DF21E38B0000BCE5CF /* PMKFoundation.framework in Frameworks */,
-				7A90D87A2233C02E00FE04C2 /* BitArray.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ACC801723BF6D0200C5AF3E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +330,6 @@
 			children = (
 				7A7A206D21F5421A005C61BE /* CustomCheckBoxCell.swift */,
 				7A483B57220712A200EF6038 /* CustomOutlineView.swift */,
-				7A90D87C2233C3CF00FE04C2 /* PiecesView.swift */,
 				7AA89FF2228AE5290008C380 /* SegmentedCell.swift */,
 			);
 			path = "Custom views";
@@ -448,6 +466,7 @@
 		7AB4E3A621DF7D85000B0A03 = {
 			isa = PBXGroup;
 			children = (
+				7ACC801B23BF6D0200C5AF3E /* TransmissionRemote UITests */,
 				7AB4E3CC21DF819E000B0A03 /* Frameworks */,
 				7A6AF42222B12DC600FEBF82 /* TransmissionRemoteCore */,
 				7AB4E3B121DF7D85000B0A03 /* TransmissionRemote */,
@@ -460,6 +479,7 @@
 			children = (
 				7AB4E3AF21DF7D85000B0A03 /* Transmission Remote.app */,
 				7A6AF42122B12DC600FEBF82 /* TransmissionRemoteCore.framework */,
+				7ACC801A23BF6D0200C5AF3E /* TransmissionRemote UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -485,12 +505,22 @@
 		7AB4E3CC21DF819E000B0A03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7AE18A0B23BF7260009F7FDB /* OHHTTPStubs.framework */,
 				7AA89FFA228D992C0008C380 /* DeepDiff.framework */,
 				7A90D8792233C02E00FE04C2 /* BitArray.framework */,
 				7A9103DE21E38AFF00BCE5CF /* PMKFoundation.framework */,
 				7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7ACC801B23BF6D0200C5AF3E /* TransmissionRemote UITests */ = {
+			isa = PBXGroup;
+			children = (
+				7ACC801C23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift */,
+				7ACC801E23BF6D0200C5AF3E /* Info.plist */,
+			);
+			path = "TransmissionRemote UITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -545,14 +575,32 @@
 			productReference = 7AB4E3AF21DF7D85000B0A03 /* Transmission Remote.app */;
 			productType = "com.apple.product-type.application";
 		};
+		7ACC801923BF6D0200C5AF3E /* TransmissionRemote UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7ACC802123BF6D0200C5AF3E /* Build configuration list for PBXNativeTarget "TransmissionRemote UITests" */;
+			buildPhases = (
+				7ACC801623BF6D0200C5AF3E /* Sources */,
+				7ACC801723BF6D0200C5AF3E /* Frameworks */,
+				7ACC801823BF6D0200C5AF3E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7ACC802023BF6D0200C5AF3E /* PBXTargetDependency */,
+			);
+			name = "TransmissionRemote UITests";
+			productName = "TransmissionRemote UITests";
+			productReference = 7ACC801A23BF6D0200C5AF3E /* TransmissionRemote UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		7AB4E3A721DF7D85000B0A03 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "selim mustafaev";
 				TargetAttributes = {
 					7A6AF42022B12DC600FEBF82 = {
@@ -572,6 +620,11 @@
 							};
 						};
 					};
+					7ACC801923BF6D0200C5AF3E = {
+						CreatedOnToolsVersion = 11.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7AB4E3AE21DF7D85000B0A03;
+					};
 				};
 			};
 			buildConfigurationList = 7AB4E3AA21DF7D85000B0A03 /* Build configuration list for PBXProject "TransmissionRemote" */;
@@ -589,6 +642,7 @@
 			targets = (
 				7AB4E3AE21DF7D85000B0A03 /* Transmission Remote */,
 				7A6AF42022B12DC600FEBF82 /* TransmissionRemoteCore */,
+				7ACC801923BF6D0200C5AF3E /* TransmissionRemote UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -612,6 +666,13 @@
 				7A997C09229851650047F6A5 /* RenameController.xib in Resources */,
 				7A7A207221F67676005C61BE /* AddLinkController.xib in Resources */,
 				7AB4E3BA21DF7D87000B0A03 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ACC801823BF6D0200C5AF3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,7 +732,6 @@
 				7A898E66226B348F00B3C69D /* FileProgressCell.swift in Sources */,
 				7AB4E3B321DF7D85000B0A03 /* AppDelegate.swift in Sources */,
 				7A9ADBA422708CE6008339B7 /* FileNameCell.swift in Sources */,
-				7A90D87D2233C3CF00FE04C2 /* PiecesView.swift in Sources */,
 				7AA89FF12289ECCE0008C380 /* LocalPathCell.swift in Sources */,
 				7AAD1CB721F34F5A00394648 /* AddTorrentController.swift in Sources */,
 				7A68CF4321E2B593004001C6 /* HorizontalSplitViewController.swift in Sources */,
@@ -700,6 +760,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7ACC801623BF6D0200C5AF3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7ACC801D23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -707,6 +775,11 @@
 			isa = PBXTargetDependency;
 			target = 7A6AF42022B12DC600FEBF82 /* TransmissionRemoteCore */;
 			targetProxy = 7A6AF42622B12DC600FEBF82 /* PBXContainerItemProxy */;
+		};
+		7ACC802023BF6D0200C5AF3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7AB4E3AE21DF7D85000B0A03 /* Transmission Remote */;
+			targetProxy = 7ACC801F23BF6D0200C5AF3E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -950,6 +1023,46 @@
 			};
 			name = Release;
 		};
+		7ACC802223BF6D0200C5AF3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 46DTTB8X4S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = "TransmissionRemote UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) $(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "pro.aliencat.TransmissionRemote-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Transmission Remote";
+			};
+			name = Debug;
+		};
+		7ACC802323BF6D0200C5AF3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 46DTTB8X4S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
+				INFOPLIST_FILE = "TransmissionRemote UITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) $(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "pro.aliencat.TransmissionRemote-UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Transmission Remote";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -976,6 +1089,15 @@
 			buildConfigurations = (
 				7AB4E3C021DF7D87000B0A03 /* Debug */,
 				7AB4E3C121DF7D87000B0A03 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7ACC802123BF6D0200C5AF3E /* Build configuration list for PBXNativeTarget "TransmissionRemote UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ACC802223BF6D0200C5AF3E /* Debug */,
+				7ACC802323BF6D0200C5AF3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -39,8 +39,6 @@ class TorrentDetailsController: NSViewController, NSTableViewDataSource, NSTable
 	@IBOutlet weak var trackerUpdateOnLabel: NSTextField!
 	@IBOutlet weak var lastActiveLabel: NSTextField!
 	
-	@IBOutlet weak var piecesView: PiecesView!
-	
 	@IBOutlet weak var trackersTable: NSTableView!
 	@IBOutlet weak var peersTable: NSTableView!
 	@IBOutlet weak var filesTable: NSTableView!
@@ -183,8 +181,6 @@ class TorrentDetailsController: NSViewController, NSTableViewDataSource, NSTable
 			let date = Date(timeIntervalSince1970: TimeInterval(tracker.nextAnnounceTime))
 			self.trackerUpdateOnLabel.stringValue = dateFormatter.string(from: date)
 		}
-		
-		self.piecesView.update(with: torrent.getPieces())
 	}
 	
 	func updateTrackersTab() {

@@ -24,7 +24,9 @@ public extension Array where Element: Mergeable {
                 self.remove(at: move.fromIndex)
                 self.insert(move.item, at: move.toIndex)
                 break
-            }
+			@unknown default:
+				break
+			}
         }
 
         let deletes = changes.compactMap { $0.delete }.sorted { $0.index > $1.index }

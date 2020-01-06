@@ -1,7 +1,7 @@
 import Foundation
 import DeepDiff
 
-public class Tracker: Decodable, Mergeable {
+public class Tracker: Codable, Mergeable {
 	public var host: String
 	public var announce: String
 	public var lastAnnounceSucceeded: Bool

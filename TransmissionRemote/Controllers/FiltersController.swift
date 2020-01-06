@@ -54,6 +54,8 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
 				break
             case .move(_):
                 break
+			@unknown default:
+				break
 			}
 		}
 		
@@ -69,6 +71,8 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
 				break
             case .move(_):
                 break
+			@unknown default:
+				break
 			}
 		}
         

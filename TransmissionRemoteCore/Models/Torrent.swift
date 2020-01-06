@@ -1,8 +1,7 @@
 import Foundation
-import BitArray
 import DeepDiff
 
-public class Torrent: Decodable, Mergeable, CustomStringConvertible {
+public class Torrent: Codable, Mergeable, CustomStringConvertible {
     public var id: Int = 0
     public var name: String = ""
     public var totalSize: Int64 = 0
@@ -143,7 +142,7 @@ public class Torrent: Decodable, Mergeable, CustomStringConvertible {
         self.secondsSeeding = item.secondsSeeding
     }
 	
-	// MARK: - Decodable
+	// MARK: - Codable
 	
 	enum CodingKeys: String, CodingKey {
 		case id, name, totalSize, status, downloadDir, eta, leftUntilDone, peersGettingFromUs, peersSendingToUs, rateUpload, rateDownload, sizeWhenDone, uploadRatio, metadataPercentComplete, files, errorString, addedDate, doneDate, pieceCount, pieceSize, comment, downloadedEver, downloadLimit, downloadLimited, uploadedEver, uploadLimit, uploadLimited, maxConnectedPeers, activityDate, pieces, trackerStats, peers, priorities, wanted, bandwidthPriority, queuePosition, secondsSeeding
@@ -202,6 +201,47 @@ public class Torrent: Decodable, Mergeable, CustomStringConvertible {
         }
 	}
 	
+	public func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(self.id, forKey: .id)
+		try container.encode(self.name, forKey: .name)
+		try container.encode(self.totalSize, forKey: .totalSize)
+		try container.encode(self.status, forKey: .status)
+		try container.encode(self.downloadDir, forKey: .downloadDir)
+		try container.encode(self.eta, forKey: .eta)
+		try container.encode(self.leftUntilDone, forKey: .leftUntilDone)
+		try container.encode(self.peersGettingFromUs, forKey: .peersGettingFromUs)
+		try container.encode(self.peersSendingToUs, forKey: .peersSendingToUs)
+		try container.encode(self.rateUpload, forKey: .rateUpload)
+		try container.encode(self.rateDownload, forKey: .rateDownload)
+		try container.encode(self.sizeWhenDone, forKey: .sizeWhenDone)
+		try container.encode(self.uploadRatio, forKey: .uploadRatio)
+		try container.encode(self.metadataPercentComplete, forKey: .metadataPercentComplete)
+		try container.encode(self.files, forKey: .files)
+		try container.encode(self.errorString, forKey: .errorString)
+		try container.encode(self.addedDate, forKey: .addedDate)
+		try container.encode(self.doneDate, forKey: .doneDate)
+		try container.encode(self.pieceCount, forKey: .pieceCount)
+		try container.encode(self.pieceSize, forKey: .pieceSize)
+		try container.encode(self.comment, forKey: .comment)
+		try container.encode(self.downloadedEver, forKey: .downloadedEver)
+		try container.encode(self.downloadLimit, forKey: .downloadLimit)
+		try container.encode(self.downloadLimited, forKey: .downloadLimited)
+		try container.encode(self.uploadedEver, forKey: .uploadedEver)
+		try container.encode(self.uploadLimit, forKey: .uploadLimit)
+		try container.encode(self.uploadLimited, forKey: .uploadLimited)
+		try container.encode(self.maxConnectedPeers, forKey: .maxConnectedPeers)
+		try container.encode(self.activityDate, forKey: .activityDate)
+		try container.encode(self.pieces, forKey: .pieces)
+		try container.encode(self.trackerStats, forKey: .trackerStats)
+		try container.encode(self.peers, forKey: .peers)
+		try container.encode(self.priorities, forKey: .priorities)
+		try container.encode(self.wanted, forKey: .wanted)
+		try container.encode(self.bandwidthPriority, forKey: .bandwidthPriority)
+		try container.encode(self.queuePosition, forKey: .queuePosition)
+		try container.encode(self.secondsSeeding, forKey: .secondsSeeding)
+	}
+	
 	// MARK: - Common
     
     public init(name: String, files: [TorrentFile]) {
@@ -234,10 +274,10 @@ public class Torrent: Decodable, Mergeable, CustomStringConvertible {
 		return self.errorString.count > 0
 	}
 	
-	public func getPieces() -> BitArray {
-		guard let data = Data(base64Encoded: self.pieces) else { return [] }
-		return BitArray(self.pieceCount, contentByBytes: Array(data))
-	}
+//	public func getPieces() -> BitArray {
+//		guard let data = Data(base64Encoded: self.pieces) else { return [] }
+//		return BitArray(self.pieceCount, contentByBytes: Array(data))
+//	}
     
     // We cannot figure out real torrent path here, so, return array of possible locations
     public func serverPath() -> [URL] {
@@ -289,16 +329,16 @@ public class Torrent: Decodable, Mergeable, CustomStringConvertible {
 
 // MARK: - Wrappers for parsing response from transmission
 
-struct TorrentsWrapper: Decodable {
+struct TorrentsWrapper: Codable {
     let torrents: [Torrent]
 }
 
-struct TorrentAdded: Decodable {
+struct TorrentAdded: Codable {
     let id: Int
     let name: String
 }
 
-struct TorrentAddedWrapper: Decodable {
+struct TorrentAddedWrapper: Codable {
     let torrentAdded: TorrentAdded
     
     enum CodingKeys: String, CodingKey {
@@ -306,6 +346,6 @@ struct TorrentAddedWrapper: Decodable {
     }
 }
 
-struct Empty: Decodable {
+struct Empty: Codable {
     
 }

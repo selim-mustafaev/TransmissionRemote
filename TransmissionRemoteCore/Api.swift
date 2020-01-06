@@ -1,6 +1,7 @@
 import Foundation
 import PromiseKit
 import PMKFoundation
+import OHHTTPStubs
 
 public class Api {
     private static var sessionId = UserDefaults.standard.string(forKey: "SessionID") ?? ""
@@ -33,7 +34,7 @@ public class Api {
         }
     }
     
-    private static func make<T>(_ request: URLRequest) -> Promise<T> where T: Decodable {
+    private static func make<T>(_ request: URLRequest) -> Promise<T> where T: Codable {
         return URLSession.shared.dataTask(.promise, with: request).then(on: self.queue) { data, response -> Promise<T> in
             guard let response = response as? HTTPURLResponse else { return Promise(error: self.genError("Network error", suggestion: "Unknown response type")) }
             guard response.statusCode != 409 else {
@@ -56,9 +57,9 @@ public class Api {
             }
             
             do {
-//				let str = String(data: data, encoding: .utf8)
-//				print("=============================================================")
-//				print(str ?? "")
+				let str = String(data: data, encoding: .utf8)
+				print("=============================================================")
+				print(str ?? "")
                 let jsonResp = try JSONDecoder().decode(Response<T>.self, from: data)
                 if jsonResp.result != "success" {
                     return Promise(error: self.genError("Decoding error", suggestion: jsonResp.result))
@@ -66,6 +67,7 @@ public class Api {
                     return Promise.value(jsonResp.arguments)
                 }
             } catch {
+				print(error)
                 return Promise(error: self.genError("Decoding error", suggestion: "Decoding torrents info failed"))
             }
         }
@@ -237,4 +239,60 @@ public class Api {
             .then(on: self.queue, self.make)
             .map { (wrapper: Empty) in }
     }
+	
+	// MARK: - Stuff for UI testing
+	
+	public static func setupStubs() {
+
+		
+		stub(condition: pathMatches("/transmission/rpc")) { request in
+			guard let stream = request.httpBodyStream else { return OHHTTPStubsResponse(data: Data(), statusCode: 404, headers: nil) }
+			
+			stream.open()
+			if let dict = try? JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any] {
+				if let method = dict["method"] as? String {
+					if method == "session-get" {
+						return self.testSessionResponse()
+					} else if method == "torrent-get" {
+						return self.testTorrentsResponse()
+					}
+				}
+			}
+			return OHHTTPStubsResponse(data: Data(), statusCode: 404, headers: nil)
+		}
+	}
+	
+	private static func testSessionResponse() -> OHHTTPStubsResponse {
+		var server = Server()
+		server.downloadDir = "/home/selim/downloads/torrent"
+		server.freeSpace = 802673147904
+		server.incompleteDir = "/dev/null/Downloads"
+		server.incompleteDirEnabled = false
+		server.peerLimitPerTorrent = 50
+		server.version = "2.94 (test)"
+		
+		if let data = try? JSONEncoder().encode(server) {
+			return OHHTTPStubsResponse(data: data, statusCode: 200, headers: nil)
+		} else {
+			return OHHTTPStubsResponse(data: Data(), statusCode: 404, headers: nil)
+		}
+	}
+	
+	private static func testTorrentsResponse() -> OHHTTPStubsResponse {
+		var torrents: [Torrent] = []
+		
+		for i in 0..<500 {
+			let torrent = Torrent(name: "Test torrent \(i)", files: [])
+			torrents.append(torrent)
+		}
+		
+		let torrentsWrapper = TorrentsWrapper(torrents:torrents)
+		let response = Response<TorrentsWrapper>(arguments: torrentsWrapper)
+		
+		if let data = try? JSONEncoder().encode(response) {
+			return OHHTTPStubsResponse(data: data, statusCode: 200, headers: nil)
+		} else {
+			return OHHTTPStubsResponse(data: Data(), statusCode: 404, headers: nil)
+		}
+	}
 }
