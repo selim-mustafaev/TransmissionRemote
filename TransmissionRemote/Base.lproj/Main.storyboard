@@ -951,11 +951,11 @@
             <objects>
                 <viewController id="Qgt-Wq-Vab" customClass="TorrentDetailsController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="85h-QI-kOr">
-                        <rect key="frame" x="0.0" y="0.0" width="961" height="303"/>
+                        <rect key="frame" x="0.0" y="0.0" width="961" height="272"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <box boxType="custom" borderType="none" borderWidth="0.0" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="RoN-EO-eft">
-                                <rect key="frame" x="0.0" y="275" width="961" height="28"/>
+                                <rect key="frame" x="0.0" y="244" width="961" height="28"/>
                                 <view key="contentView" id="S0E-xR-QS7">
                                     <rect key="frame" x="0.0" y="0.0" width="961" height="28"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1036,28 +1036,28 @@
                                 <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="B11-iR-2b2">
-                                <rect key="frame" x="0.0" y="272" width="961" height="5"/>
+                                <rect key="frame" x="0.0" y="241" width="961" height="5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="mjb-w8-Ivd"/>
                                 </constraints>
                             </box>
                             <tabView type="noTabsNoBorder" initialItem="a8B-VJ-JK9" translatesAutoresizingMaskIntoConstraints="NO" id="2Eh-Fs-e1w">
-                                <rect key="frame" x="0.0" y="0.0" width="961" height="275"/>
+                                <rect key="frame" x="0.0" y="0.0" width="961" height="244"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="General" identifier="general" id="a8B-VJ-JK9">
                                         <view key="view" id="bTw-R3-oIg">
-                                            <rect key="frame" x="0.0" y="0.0" width="961" height="275"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="961" height="200"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <box title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Xwr-FK-2Uz">
-                                                    <rect key="frame" x="5" y="4" width="316" height="265"/>
+                                                    <rect key="frame" x="5" y="4" width="316" height="190"/>
                                                     <view key="contentView" id="tfY-Sh-lmU">
-                                                        <rect key="frame" x="3" y="3" width="310" height="259"/>
+                                                        <rect key="frame" x="3" y="3" width="310" height="184"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="pkf-ms-YPM">
-                                                                <rect key="frame" x="57" y="56" width="195" height="148"/>
+                                                                <rect key="frame" x="57" y="18" width="195" height="148"/>
                                                                 <rows>
                                                                     <gridRow id="4aW-H1-p6Y"/>
                                                                     <gridRow id="Axf-w9-0eb"/>
@@ -1226,13 +1226,13 @@
                                                     </view>
                                                 </box>
                                                 <box title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nxz-ts-DVU">
-                                                    <rect key="frame" x="323" y="4" width="315" height="265"/>
+                                                    <rect key="frame" x="323" y="4" width="315" height="190"/>
                                                     <view key="contentView" id="5Zv-aP-v3M">
-                                                        <rect key="frame" x="3" y="3" width="309" height="259"/>
+                                                        <rect key="frame" x="3" y="3" width="309" height="184"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="7dl-R5-LBj">
-                                                                <rect key="frame" x="49" y="67" width="211" height="126"/>
+                                                                <rect key="frame" x="49" y="29" width="211" height="126"/>
                                                                 <rows>
                                                                     <gridRow id="F76-LU-Q87"/>
                                                                     <gridRow id="oSm-AQ-ymP"/>
@@ -1380,13 +1380,13 @@
                                                     </view>
                                                 </box>
                                                 <box title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Ah5-xf-ago">
-                                                    <rect key="frame" x="640" y="4" width="316" height="265"/>
+                                                    <rect key="frame" x="640" y="4" width="316" height="190"/>
                                                     <view key="contentView" id="3SC-0A-Eah">
-                                                        <rect key="frame" x="3" y="3" width="310" height="259"/>
+                                                        <rect key="frame" x="3" y="3" width="310" height="184"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="ka9-q3-lPp">
-                                                                <rect key="frame" x="45" y="56" width="220" height="148"/>
+                                                                <rect key="frame" x="45" y="18" width="220" height="148"/>
                                                                 <rows>
                                                                     <gridRow id="gtp-nw-zfg"/>
                                                                     <gridRow id="pH3-3P-XMp"/>
@@ -1572,18 +1572,18 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Trackers" identifier="Trackers" id="t9r-Ef-VYB">
-                                        <view key="view" misplaced="YES" id="epm-Lq-POr">
-                                            <rect key="frame" x="0.0" y="0.0" width="961" height="275"/>
+                                        <view key="view" id="epm-Lq-POr">
+                                            <rect key="frame" x="0.0" y="0.0" width="961" height="41"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pf9-wg-Pjh">
-                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="249"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="41"/>
                                                     <clipView key="contentView" id="jPW-x1-oyN">
-                                                        <rect key="frame" x="0.0" y="0.0" width="961" height="249"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="961" height="41"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Em9-bE-F1z" viewBased="YES" id="Zut-N1-dJg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="961" height="224"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="961" height="16"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1602,8 +1602,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="TrackerName" misplaced="YES" id="6Vz-JK-zry" customClass="TrackerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="1" y="1" width="300" height="17"/>
+                                                                            <tableCellView identifier="TrackerName" id="6Vz-JK-zry" customClass="TrackerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="1" y="1" width="300" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cQO-Wu-Vaj">
@@ -1640,8 +1640,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="TrackerStatus" misplaced="YES" id="8xa-00-hAh" customClass="TrackerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="304" y="1" width="400" height="17"/>
+                                                                            <tableCellView identifier="TrackerStatus" id="8xa-00-hAh" customClass="TrackerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="304" y="1" width="400" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ztU-EH-LCO">
@@ -1678,8 +1678,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="TrackerUpdateIn" misplaced="YES" id="0f1-M7-qdj" customClass="TrackerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="707" y="1" width="100" height="17"/>
+                                                                            <tableCellView identifier="TrackerUpdateIn" id="0f1-M7-qdj" customClass="TrackerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="707" y="1" width="100" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Lue-DG-hcO">
@@ -1716,8 +1716,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="TrackerSeeds" misplaced="YES" id="xgX-RO-seh" customClass="TrackerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="810" y="1" width="50" height="17"/>
+                                                                            <tableCellView identifier="TrackerSeeds" id="xgX-RO-seh" customClass="TrackerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="810" y="1" width="50" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="exa-ny-Sw0">
@@ -1768,18 +1768,18 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Peers" identifier="Peers" id="hjP-2H-B3l">
-                                        <view key="view" misplaced="YES" id="emH-V5-kvb">
-                                            <rect key="frame" x="0.0" y="0.0" width="961" height="275"/>
+                                        <view key="view" id="emH-V5-kvb">
+                                            <rect key="frame" x="0.0" y="0.0" width="961" height="38"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Kb-o6-RrH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="249"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="38"/>
                                                     <clipView key="contentView" id="g4i-LW-7FR">
-                                                        <rect key="frame" x="1" y="0.0" width="959" height="248"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <rect key="frame" x="1" y="0.0" width="959" height="37"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="bHs-Aa-7ZT" viewBased="YES" id="rwy-rJ-tQ2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="223"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="12"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1798,8 +1798,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="PeerHost" misplaced="YES" id="O81-Zu-1g9" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="1" y="1" width="192" height="17"/>
+                                                                            <tableCellView identifier="PeerHost" id="O81-Zu-1g9" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="1" y="1" width="192" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bYD-v4-UPu">
@@ -1836,8 +1836,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView misplaced="YES" id="Qqb-rW-qVQ" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="196" y="1" width="83" height="17"/>
+                                                                            <tableCellView id="Qqb-rW-qVQ" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="196" y="1" width="83" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="iwW-rN-RMW">
@@ -1874,8 +1874,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="PeerCountry" misplaced="YES" id="2dW-h9-lYv" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="282" y="1" width="106" height="17"/>
+                                                                            <tableCellView identifier="PeerCountry" id="2dW-h9-lYv" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="282" y="1" width="106" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="tVb-pH-D8y">
@@ -1912,8 +1912,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="PeerClient" misplaced="YES" id="cym-E2-uhA" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="391" y="1" width="210" height="17"/>
+                                                                            <tableCellView identifier="PeerClient" id="cym-E2-uhA" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="391" y="1" width="210" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TOR-hs-i7M">
@@ -1950,8 +1950,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="PeerFlags" misplaced="YES" id="HyD-Vv-yZz" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="604" y="1" width="64" height="17"/>
+                                                                            <tableCellView identifier="PeerFlags" id="HyD-Vv-yZz" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="604" y="1" width="64" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="6qK-li-W4b">
@@ -1988,8 +1988,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="PeersHave" misplaced="YES" id="Vv3-2a-RHl" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="671" y="1" width="64" height="17"/>
+                                                                            <tableCellView identifier="PeersHave" id="Vv3-2a-RHl" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="671" y="1" width="64" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="L72-dt-QdO">
@@ -2026,8 +2026,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="PeerUpSpeed" misplaced="YES" id="lzB-GS-taE" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="738" y="1" width="85" height="17"/>
+                                                                            <tableCellView identifier="PeerUpSpeed" id="lzB-GS-taE" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="738" y="1" width="85" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zdd-cR-FMr">
@@ -2064,8 +2064,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="PeerDownSpeed" misplaced="YES" id="PeZ-mL-T8x" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="826" y="1" width="102" height="17"/>
+                                                                            <tableCellView identifier="PeerDownSpeed" id="PeZ-mL-T8x" customClass="PeerCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="826" y="1" width="102" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oOf-Wd-gU0">
@@ -2116,18 +2116,18 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Files" identifier="Files" id="Oe2-Gx-umN">
-                                        <view key="view" misplaced="YES" id="9l1-la-qyj">
-                                            <rect key="frame" x="0.0" y="0.0" width="961" height="275"/>
+                                        <view key="view" id="9l1-la-qyj">
+                                            <rect key="frame" x="0.0" y="0.0" width="961" height="244"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUt-dE-SwN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="249"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="244"/>
                                                     <clipView key="contentView" id="kXb-JI-Lu2">
-                                                        <rect key="frame" x="1" y="0.0" width="959" height="248"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <rect key="frame" x="1" y="0.0" width="959" height="243"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="OM3-Oe-ZSv" viewBased="YES" id="rdy-v2-YtE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="223"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="218"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2146,8 +2146,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="FileName" misplaced="YES" id="KE5-TI-lQh" customClass="FileNameCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="1" y="1" width="468" height="17"/>
+                                                                            <tableCellView identifier="FileName" id="KE5-TI-lQh" customClass="FileNameCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="1" y="1" width="468" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9qS-P0-0oV">
@@ -2194,8 +2194,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="FileSize" misplaced="YES" id="enk-kR-ah7" customClass="FileCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="472" y="1" width="88" height="17"/>
+                                                                            <tableCellView identifier="FileSize" id="enk-kR-ah7" customClass="FileCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="472" y="1" width="88" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YCZ-Tu-hHj">
@@ -2232,8 +2232,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="FileDone" misplaced="YES" id="74G-H7-FSE" customClass="FileCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="563" y="1" width="89" height="17"/>
+                                                                            <tableCellView identifier="FileDone" id="74G-H7-FSE" customClass="FileCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="563" y="1" width="89" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Vun-rm-w6N">
@@ -2271,11 +2271,11 @@
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="FilePercents" id="MBw-ag-RZ4" customClass="FileProgressCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="655" y="1" width="88" height="17"/>
+                                                                                <rect key="frame" x="655" y="1" width="88" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="SJN-yl-41h">
-                                                                                        <rect key="frame" x="24" y="0.0" width="64" height="17"/>
+                                                                                        <rect key="frame" x="24" y="0.0" width="64" height="16"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="percents" id="cU6-lK-lMY">
                                                                                             <font key="font" metaFont="system"/>
                                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -2283,7 +2283,7 @@
                                                                                         </textFieldCell>
                                                                                     </textField>
                                                                                     <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="r5e-zD-LBE">
-                                                                                        <rect key="frame" x="2" y="0.0" width="16" height="16"/>
+                                                                                        <rect key="frame" x="2" y="0.0" width="16" height="15"/>
                                                                                     </progressIndicator>
                                                                                 </subviews>
                                                                                 <constraints>
@@ -2315,8 +2315,8 @@
                                                                         </textFieldCell>
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
-                                                                            <tableCellView identifier="FilePriority" misplaced="YES" id="iaO-gY-7gm" customClass="FilePriorityCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                                                <rect key="frame" x="746" y="1" width="98" height="17"/>
+                                                                            <tableCellView identifier="FilePriority" id="iaO-gY-7gm" customClass="FilePriorityCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                                                <rect key="frame" x="746" y="1" width="98" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6hU-8F-pkG">
@@ -2359,7 +2359,7 @@
                                                         <rect key="frame" x="1" y="119" width="223" height="15"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
-                                                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="UFX-4o-Efo">
+                                                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="UFX-4o-Efo">
                                                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
@@ -2426,18 +2426,18 @@
                 </viewController>
                 <customObject id="zV3-DC-5LN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="971" y="1200"/>
+            <point key="canvasLocation" x="970.5" y="1301"/>
         </scene>
         <!--Filters Controller-->
         <scene sceneID="rRZ-pV-b4e">
             <objects>
                 <viewController id="Epe-uL-5Pi" customClass="FiltersController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="1eF-iW-tIy">
-                        <rect key="frame" x="0.0" y="0.0" width="273" height="710"/>
+                        <rect key="frame" x="0.0" y="0.0" width="273" height="704"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="27" horizontalPageScroll="10" verticalLineScroll="27" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDN-AB-kSn">
-                                <rect key="frame" x="0.0" y="105" width="273" height="605"/>
+                                <rect key="frame" x="0.0" y="99" width="273" height="605"/>
                                 <clipView key="contentView" drawsBackground="NO" id="gaC-88-MCv">
                                     <rect key="frame" x="0.0" y="0.0" width="273" height="605"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2553,10 +2553,10 @@
                                 </scroller>
                             </scrollView>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="blc-xe-5wT">
-                                <rect key="frame" x="0.0" y="102" width="273" height="5"/>
+                                <rect key="frame" x="0.0" y="96" width="273" height="5"/>
                             </box>
-                            <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="dl8-zZ-ucU">
-                                <rect key="frame" x="8" y="8" width="257" height="88"/>
+                            <gridView xPlacement="leading" yPlacement="fill" rowAlignment="firstBaseline" translatesAutoresizingMaskIntoConstraints="NO" id="dl8-zZ-ucU">
+                                <rect key="frame" x="8" y="8" width="257" height="82"/>
                                 <rows>
                                     <gridRow id="QQc-iB-hoZ"/>
                                     <gridRow id="rBj-tH-pdj"/>
@@ -2569,8 +2569,8 @@
                                 </columns>
                                 <gridCells>
                                     <gridCell row="QQc-iB-hoZ" column="2dZ-7t-0pU" id="043-AJ-DIK">
-                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d75-Sz-O3l">
-                                            <rect key="frame" x="-2" y="72" width="48" height="16"/>
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d75-Sz-O3l">
+                                            <rect key="frame" x="-2" y="66" width="48" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Server:" id="Ks4-Nt-e2C">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2579,8 +2579,8 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="QQc-iB-hoZ" column="dRn-en-cNe" id="KZg-CE-312">
-                                        <textField key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ksd-rL-AaZ">
-                                            <rect key="frame" x="155" y="72" width="104" height="16"/>
+                                        <textField key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ksd-rL-AaZ">
+                                            <rect key="frame" x="155" y="66" width="104" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" id="hzL-0h-YPv">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2589,8 +2589,8 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="rBj-tH-pdj" column="2dZ-7t-0pU" id="DUz-Wy-NKP">
-                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NfQ-xa-vh8">
-                                            <rect key="frame" x="-2" y="50" width="35" height="16"/>
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NfQ-xa-vh8">
+                                            <rect key="frame" x="-2" y="44" width="35" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Free:" id="YcR-DB-Z4P">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2599,8 +2599,8 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="rBj-tH-pdj" column="dRn-en-cNe" id="GIS-rJ-PZ6">
-                                        <textField key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ziR-fk-mNi">
-                                            <rect key="frame" x="155" y="50" width="104" height="16"/>
+                                        <textField key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ziR-fk-mNi">
+                                            <rect key="frame" x="155" y="44" width="104" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" id="suu-AB-0uZ">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2609,7 +2609,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="z3L-dV-W4l" column="2dZ-7t-0pU" id="KtC-A4-0Ry">
-                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7jI-II-6qX">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7jI-II-6qX">
                                             <rect key="frame" x="-2" y="22" width="68" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Download:" id="IYC-Jp-7gI">
                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -2619,7 +2619,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="z3L-dV-W4l" column="dRn-en-cNe" id="Bfb-i0-KWu">
-                                        <textField key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KcF-3q-ctj">
+                                        <textField key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KcF-3q-ctj">
                                             <rect key="frame" x="155" y="22" width="104" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" id="q8f-ZT-rBM">
                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -2681,17 +2681,17 @@
             <objects>
                 <viewController id="kH5-bb-4fW" customClass="TorrentsListController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="Ajz-YY-U2y">
-                        <rect key="frame" x="0.0" y="0.0" width="1655" height="275"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1655" height="250"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjx-If-f0x">
-                                <rect key="frame" x="0.0" y="0.0" width="1655" height="146"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1655" height="251"/>
                                 <clipView key="contentView" id="Xfb-8Y-nfH">
-                                    <rect key="frame" x="0.0" y="0.0" width="1655" height="146"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1655" height="251"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveName="" rowSizeStyle="automatic" headerView="yaJ-WN-ALX" viewBased="YES" id="HUT-rt-KUV">
-                                            <rect key="frame" x="0.0" y="0.0" width="1655" height="121"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1655" height="226"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2710,8 +2710,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="Name" misplaced="YES" id="loT-nD-aWo" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="116" height="17"/>
+                                                        <tableCellView identifier="Name" id="loT-nD-aWo" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="1" y="1" width="116" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lET-PY-bpL">
@@ -2748,8 +2748,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="Size" misplaced="YES" id="zjA-Zy-sHT" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="120" y="1" width="100" height="17"/>
+                                                        <tableCellView identifier="Size" id="zjA-Zy-sHT" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="120" y="1" width="100" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gdG-o8-hoZ">
@@ -2787,17 +2787,17 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="Progress" id="ImG-Vm-1t4" customClass="ProgressCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="223" y="1" width="100" height="17"/>
+                                                            <rect key="frame" x="223" y="1" width="100" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <progressIndicator wantsLayer="YES" maxValue="100" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="vKs-GE-wMP">
-                                                                    <rect key="frame" x="1" y="1" width="16" height="16"/>
+                                                                    <rect key="frame" x="1" y="0.0" width="16" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="vKs-GE-wMP" secondAttribute="height" multiplier="1:1" id="aNm-S8-Kgg"/>
                                                                     </constraints>
                                                                 </progressIndicator>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="30t-YN-pb9">
-                                                                    <rect key="frame" x="23" y="0.0" width="79" height="18"/>
+                                                                    <rect key="frame" x="23" y="0.0" width="79" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="zNp-C1-gTp">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2807,7 +2807,7 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="vKs-GE-wMP" firstAttribute="leading" secondItem="ImG-Vm-1t4" secondAttribute="leading" constant="1" id="2s8-4J-0tH"/>
-                                                                <constraint firstAttribute="bottom" secondItem="vKs-GE-wMP" secondAttribute="bottom" constant="1" id="FHs-uN-SoX"/>
+                                                                <constraint firstAttribute="bottom" secondItem="vKs-GE-wMP" secondAttribute="bottom" id="FHs-uN-SoX"/>
                                                                 <constraint firstAttribute="trailing" secondItem="30t-YN-pb9" secondAttribute="trailing" id="SaK-A4-CfQ"/>
                                                                 <constraint firstAttribute="bottom" secondItem="30t-YN-pb9" secondAttribute="bottom" id="YAJ-qO-qFQ"/>
                                                                 <constraint firstItem="30t-YN-pb9" firstAttribute="top" secondItem="ImG-Vm-1t4" secondAttribute="top" constant="-1" id="ZPr-mf-Q8o"/>
@@ -2834,8 +2834,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="Seeds" misplaced="YES" id="Crr-yF-32C" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="326" y="1" width="64" height="17"/>
+                                                        <tableCellView identifier="Seeds" id="Crr-yF-32C" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="326" y="1" width="64" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YWu-yZ-It7">
@@ -2872,8 +2872,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="Peers" misplaced="YES" id="nQj-n4-9Ip" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="393" y="1" width="64" height="17"/>
+                                                        <tableCellView identifier="Peers" id="nQj-n4-9Ip" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="393" y="1" width="64" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Cv5-Tn-1jV">
@@ -2910,8 +2910,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="DownSpeed" misplaced="YES" id="9z7-AA-dAD" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="460" y="1" width="88" height="17"/>
+                                                        <tableCellView identifier="DownSpeed" id="9z7-AA-dAD" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="460" y="1" width="88" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="iFc-Ay-JNJ">
@@ -2948,8 +2948,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="UpSpeed" misplaced="YES" id="khC-Fz-AHV" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="551" y="1" width="92" height="17"/>
+                                                        <tableCellView identifier="UpSpeed" id="khC-Fz-AHV" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="551" y="1" width="92" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Rfo-fV-syy">
@@ -2986,8 +2986,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="Eta" misplaced="YES" id="CE2-BU-uE3" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="646" y="1" width="61" height="17"/>
+                                                        <tableCellView identifier="Eta" id="CE2-BU-uE3" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="646" y="1" width="61" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Nx0-iq-2p1">
@@ -3024,8 +3024,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="Ratio" misplaced="YES" id="MYG-Te-e2j" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="710" y="1" width="124" height="17"/>
+                                                        <tableCellView identifier="Ratio" id="MYG-Te-e2j" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="710" y="1" width="124" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="yoj-Rd-Uki">
@@ -3064,8 +3064,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="Priority" misplaced="YES" id="KmG-Zz-LGP" customClass="TorrentPriorityCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="837" y="1" width="83" height="17"/>
+                                                        <tableCellView identifier="Priority" id="KmG-Zz-LGP" customClass="TorrentPriorityCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="837" y="1" width="83" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="LDv-jE-crL">
@@ -3113,8 +3113,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="QueuePosition" misplaced="YES" id="ACG-sz-k9r" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="923" y="1" width="103" height="17"/>
+                                                        <tableCellView identifier="QueuePosition" id="ACG-sz-k9r" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="923" y="1" width="103" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="PBQ-Pd-hiO">
@@ -3151,8 +3151,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="SeedingTime" misplaced="YES" id="Lhr-38-g6W" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="1029" y="1" width="127" height="17"/>
+                                                        <tableCellView identifier="SeedingTime" id="Lhr-38-g6W" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="1029" y="1" width="127" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="B37-w3-nAd">
@@ -3189,8 +3189,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="AddedDate" misplaced="YES" id="dTd-cL-ebB" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="1159" y="1" width="108" height="17"/>
+                                                        <tableCellView identifier="AddedDate" id="dTd-cL-ebB" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="1159" y="1" width="108" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uId-aR-8xQ">
@@ -3227,8 +3227,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="ActivityDate" misplaced="YES" id="rKb-xm-a0E" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="1270" y="1" width="104" height="17"/>
+                                                        <tableCellView identifier="ActivityDate" id="rKb-xm-a0E" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="1270" y="1" width="104" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="WnL-dV-9PI">
@@ -3265,8 +3265,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="Uploaded" misplaced="YES" id="hac-Wg-76m" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="1377" y="1" width="98" height="17"/>
+                                                        <tableCellView identifier="Uploaded" id="hac-Wg-76m" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="1377" y="1" width="98" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Vni-RH-rGP">
@@ -3303,8 +3303,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="Downloaded" misplaced="YES" id="1R9-UP-mrc" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
-                                                            <rect key="frame" x="1478" y="1" width="113" height="17"/>
+                                                        <tableCellView identifier="Downloaded" id="1R9-UP-mrc" customClass="TorrentCell" customModule="Transmission_Remote" customModuleProvider="target">
+                                                            <rect key="frame" x="1478" y="1" width="113" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dQd-RN-HLT">
@@ -3329,6 +3329,7 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <accessibility identifier="torrents_table"/>
                                             <connections>
                                                 <action trigger="doubleAction" selector="doubleClick:" target="kH5-bb-4fW" id="7e0-bj-na8"/>
                                                 <outlet property="menu" destination="e5c-p6-zLK" id="IWd-JT-8rL"/>

@@ -57,9 +57,9 @@ public class Api {
             }
             
             do {
-				let str = String(data: data, encoding: .utf8)
-				print("=============================================================")
-				print(str ?? "")
+//				let str = String(data: data, encoding: .utf8)
+//				print("=============================================================")
+//				print(str ?? "")
                 let jsonResp = try JSONDecoder().decode(Response<T>.self, from: data)
                 if jsonResp.result != "success" {
                     return Promise(error: self.genError("Decoding error", suggestion: jsonResp.result))
@@ -241,10 +241,59 @@ public class Api {
     }
 	
 	// MARK: - Stuff for UI testing
+    
+    private static var test: String = ""
+    private static var requestCount: Int = 0
+    
+    private static var session: Server = {
+        var server = Server()
+        server.downloadDir = "/home/selim/downloads/torrent"
+        server.freeSpace = 802673147904
+        server.incompleteDir = "/dev/null/Downloads"
+        server.incompleteDirEnabled = false
+        server.peerLimitPerTorrent = 50
+        server.version = "2.94 (test)"
+        return server
+    }()
+    
+    private static var firstArray: [Torrent] = {
+        var torrents: [Torrent] = []
+        
+        for i in 0..<10 {
+            var files: [TorrentFile] = []
+            for j in 0..<10 {
+                let file = TorrentFile(name: "Torrent \(i), file \(j)", length: 1024)
+                files.append(file)
+            }
+            let torrent = Torrent(name: "Test torrent \(i)", files: files)
+            torrent.id = i
+            torrents.append(torrent)
+        }
+        
+        return torrents
+    }()
+    
+    private static var secondArray: [Torrent] = {
+        var torrents: [Torrent] = []
+        
+        for i in 1..<10 {
+            var files: [TorrentFile] = []
+            for j in 0..<10 {
+                let file = TorrentFile(name: "Torrent \(i), file \(j)", length: 1024)
+                files.append(file)
+            }
+            let torrent = Torrent(name: "Test torrent \(i)", files: files)
+            torrent.id = i
+            torrents.append(torrent)
+        }
+        
+        return torrents
+    }()
 	
-	public static func setupStubs() {
-
-		
+    public static func setupStubs(with test: String) {
+        self.test = test
+        self.requestCount = 0
+        
 		stub(condition: pathMatches("/transmission/rpc")) { request in
 			guard let stream = request.httpBodyStream else { return OHHTTPStubsResponse(data: Data(), statusCode: 404, headers: nil) }
 			
@@ -263,15 +312,7 @@ public class Api {
 	}
 	
 	private static func testSessionResponse() -> OHHTTPStubsResponse {
-		var server = Server()
-		server.downloadDir = "/home/selim/downloads/torrent"
-		server.freeSpace = 802673147904
-		server.incompleteDir = "/dev/null/Downloads"
-		server.incompleteDirEnabled = false
-		server.peerLimitPerTorrent = 50
-		server.version = "2.94 (test)"
-		
-		if let data = try? JSONEncoder().encode(server) {
+        if let data = try? JSONEncoder().encode(self.session) {
 			return OHHTTPStubsResponse(data: data, statusCode: 200, headers: nil)
 		} else {
 			return OHHTTPStubsResponse(data: Data(), statusCode: 404, headers: nil)
@@ -279,15 +320,14 @@ public class Api {
 	}
 	
 	private static func testTorrentsResponse() -> OHHTTPStubsResponse {
-		var torrents: [Torrent] = []
-		
-		for i in 0..<500 {
-			let torrent = Torrent(name: "Test torrent \(i)", files: [])
-			torrents.append(torrent)
-		}
-		
-		let torrentsWrapper = TorrentsWrapper(torrents:torrents)
+        var torrentsWrapper = TorrentsWrapper(torrents:self.firstArray)
+        
+        if self.test == "diff" && self.requestCount >= 1 {
+            torrentsWrapper = TorrentsWrapper(torrents:self.secondArray)
+        }
+        
 		let response = Response<TorrentsWrapper>(arguments: torrentsWrapper)
+        self.requestCount += 1
 		
 		if let data = try? JSONEncoder().encode(response) {
 			return OHHTTPStubsResponse(data: data, statusCode: 200, headers: nil)

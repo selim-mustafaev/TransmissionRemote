@@ -22,10 +22,9 @@ public class Service {
     private var indexItems: Set<TorrentFile> = []
 	
 	init() {
-		print("=== Init service")
 		if ProcessInfo.processInfo.environment.contains(where: { $0.key == "isUITest" && $0.value == "true" }) {
-			print("=== Run in UI testing mode")
-			Api.setupStubs()
+            let test = ProcessInfo.processInfo.environment["test"]!
+            Api.setupStubs(with: test)
 		}
 		
 		self.currentFilter = self.statusFilters.first!

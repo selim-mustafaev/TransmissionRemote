@@ -94,6 +94,7 @@
 		7AB4E3C921DF8190000B0A03 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */; };
 		7AB4E3CA21DF8190000B0A03 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7ACC801D23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC801C23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift */; };
+		7AF1C5E023C6288C00485BDC /* XCTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1C5DF23C6288C00485BDC /* XCTestExtension.swift */; };
 		7AF5B578236604BC00603A4F /* UNCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5B577236604BC00603A4F /* UNCenter.swift */; };
 		7AFB99692285FE38002BF723 /* InterfaceIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB99682285FE38002BF723 /* InterfaceIdentifiers.swift */; };
 		7AFB996B22872146002BF723 /* PathsSettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB996A22872146002BF723 /* PathsSettingsController.swift */; };
@@ -229,6 +230,7 @@
 		7ACC801E23BF6D0200C5AF3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AE18A0B23BF7260009F7FDB /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/Mac/OHHTTPStubs.framework; sourceTree = "<group>"; };
 		7AE8ADDD21EA589E0022E816 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		7AF1C5DF23C6288C00485BDC /* XCTestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestExtension.swift; sourceTree = "<group>"; };
 		7AF5B577236604BC00603A4F /* UNCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNCenter.swift; sourceTree = "<group>"; };
 		7AFB99662285D829002BF723 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		7AFB99682285FE38002BF723 /* InterfaceIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceIdentifiers.swift; sourceTree = "<group>"; };
@@ -517,10 +519,19 @@
 		7ACC801B23BF6D0200C5AF3E /* TransmissionRemote UITests */ = {
 			isa = PBXGroup;
 			children = (
+				7AF1C5DE23C6286A00485BDC /* Extensions */,
 				7ACC801C23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift */,
 				7ACC801E23BF6D0200C5AF3E /* Info.plist */,
 			);
 			path = "TransmissionRemote UITests";
+			sourceTree = "<group>";
+		};
+		7AF1C5DE23C6286A00485BDC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7AF1C5DF23C6288C00485BDC /* XCTestExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -764,6 +775,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AF1C5E023C6288C00485BDC /* XCTestExtension.swift in Sources */,
 				7ACC801D23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
