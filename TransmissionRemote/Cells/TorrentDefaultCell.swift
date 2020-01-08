@@ -6,6 +6,7 @@ class TorrentCell: ConfigurableCell<Torrent> {
         switch column {
         case .name:
             self.textField?.stringValue = torrent.name
+			self.setAccessibilityLabel(torrent.name)
             break
         case .size:
             let formatter = ByteCountFormatter()

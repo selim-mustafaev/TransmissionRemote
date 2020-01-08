@@ -276,7 +276,7 @@ public class Api {
     private static var secondArray: [Torrent] = {
         var torrents: [Torrent] = []
         
-        for i in 1..<10 {
+        for i in 1..<12 {
             var files: [TorrentFile] = []
             for j in 0..<10 {
                 let file = TorrentFile(name: "Torrent \(i), file \(j)", length: 1024)
@@ -312,7 +312,8 @@ public class Api {
 	}
 	
 	private static func testSessionResponse() -> OHHTTPStubsResponse {
-        if let data = try? JSONEncoder().encode(self.session) {
+		let response = Response<Server>(arguments: self.session)
+        if let data = try? JSONEncoder().encode(response) {
 			return OHHTTPStubsResponse(data: data, statusCode: 200, headers: nil)
 		} else {
 			return OHHTTPStubsResponse(data: Data(), statusCode: 404, headers: nil)

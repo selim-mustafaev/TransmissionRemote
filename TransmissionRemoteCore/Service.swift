@@ -55,6 +55,8 @@ public class Service {
     }
     
     @objc func movingToForeground(_ notification: Notification) {
+		guard self.session != nil else { return }
+		
         self.refreshInterval = TimeInterval(Settings.shared.refreshInterval)
         self.startUpdatingTorrents()
     }
@@ -106,7 +108,7 @@ public class Service {
         
         Api.getSession().done { self.session = $0 }
             .catch { error in
-                print("Error querying sesion: \(error)")
+                print("Error querying session: \(error)")
         }
     }
     

@@ -33,15 +33,22 @@ class TransmissionRemote_UITests: XCTestCase {
     }
     */
     
-    func testDiff() {
+	// Test adding/removing torrents
+	// Change from 0..<10 to 1..<12 (remove first torrent, and add two new to the end)
+    func testAddRemove() {
         let app = XCUIApplication()
         app.launchEnvironment = ["isUITest": "true", "test": "diff"]
         app.launch()
         
         let torrentsTable = app.tables["torrents_table"]
-        XCTAssert(torrentsTable.tableRows.count == 10)
+		
+		var observableResult = torrentsTable.tableRows.allElementsBoundByIndex.map { $0.cells.firstMatch.label }
+		var idealResult = (0..<10).map { "Test torrent \($0)" }
+        XCTAssert(observableResult == idealResult)
         
         wait(for: 6)
-        XCTAssert(torrentsTable.tableRows.count == 9)
+		observableResult = torrentsTable.tableRows.allElementsBoundByIndex.map { $0.cells.firstMatch.label }
+		idealResult = (1..<12).map { "Test torrent \($0)" }
+        XCTAssert(torrentsTable.tableRows.count == 11)
     }
 }
