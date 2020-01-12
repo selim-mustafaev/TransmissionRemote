@@ -21,7 +21,10 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
             NotificationCenter.default.post(name: .selectedTorrentsChanged, object: nil, userInfo: ["torrents": torrents])
         }
         
-        self.tableView.autosaveName = "TorrentsTable"
+		if !NSApplication.underUITest {
+			self.tableView.autosaveName = "TorrentsTable"
+		}
+		
         self.torrentsDS?.setSortPredicates([
             .name: { $0.name.caseInsensitiveCompare($1.name) == .orderedAscending },
             .size: { $0.sizeWhenDone < $1.sizeWhenDone },

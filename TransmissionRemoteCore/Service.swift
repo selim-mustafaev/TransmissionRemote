@@ -22,7 +22,7 @@ public class Service {
     private var indexItems: Set<TorrentFile> = []
 	
 	init() {
-		if ProcessInfo.processInfo.environment.contains(where: { $0.key == "isUITest" && $0.value == "true" }) {
+		if NSApplication.underUITest {
             let test = ProcessInfo.processInfo.environment["test"]!
             Api.setupStubs(with: test)
 		}
@@ -50,11 +50,14 @@ public class Service {
     }
     
     @objc func movingToBackground(_ notification: Notification) {
+		guard !NSApplication.underUITest else { return }
+		
         self.refreshInterval = TimeInterval(Settings.shared.refreshIntervalWhenMinimized)
         self.startUpdatingTorrents()
     }
     
     @objc func movingToForeground(_ notification: Notification) {
+		guard !NSApplication.underUITest else { return }
 		guard self.session != nil else { return }
 		
         self.refreshInterval = TimeInterval(Settings.shared.refreshInterval)

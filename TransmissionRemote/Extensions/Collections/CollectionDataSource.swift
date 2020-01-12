@@ -41,19 +41,22 @@ open class CollectionDataSource<Provider: CollectionDataProvider>:
 	public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		guard let id = tableColumn?.identifier else { return nil }
 		
-        var cell: NSView? = self.cells[row]?[id]
-        if cell == nil {
-            cell = tableView.makeView(withIdentifier: id, owner: nil)
-
-            if let cell = cell {
-                if self.cells[row] != nil {
-                    self.cells[row]?[id] = cell
-                } else {
-                    self.cells[row] = [id: cell]
-                }
-            }
-        }
+		//print("viewFor tableColumn row: \(row), id: \(id.rawValue)")
 		
+//        var cell: NSView? = self.cells[row]?[id]
+//        if cell == nil {
+//            cell = tableView.makeView(withIdentifier: id, owner: nil)
+//
+//            if let cell = cell {
+//                if self.cells[row] != nil {
+//                    self.cells[row]?[id] = cell
+//                } else {
+//                    self.cells[row] = [id: cell]
+//                }
+//            }
+//        }
+		
+		let cell = tableView.makeView(withIdentifier: id, owner: nil)
 		if let configurableCell = cell as? ConfigurableCell<Provider.T>, let item = self.provider.item(at: IndexPath(item: row, section: 0)) {
 			configurableCell.configure(with: item, at: id)
 		}
@@ -113,6 +116,10 @@ open class CollectionDataSource<Provider: CollectionDataProvider>:
     
     public func apply(changes: [[Change<Provider.T>]]) {
         if let firstChanges = changes.first {
+			if firstChanges.count == 0 {
+				return
+			}
+			
             let inserts = firstChanges.compactMap { $0.insert }
             let replaces = firstChanges.compactMap { $0.replace }
             let moves = firstChanges.compactMap { $0.move }
@@ -120,10 +127,10 @@ open class CollectionDataSource<Provider: CollectionDataProvider>:
             
             self.tableView.beginUpdates()
             
-            self.tableView.removeRows(at: IndexSet(deletes.map { $0.index }))
-            self.tableView.insertRows(at: IndexSet(inserts.map { $0.index }))
-            moves.forEach { self.tableView.moveRow(at: $0.fromIndex, to: $0.toIndex) }
-            self.tableView.reloadData(forRowIndexes: IndexSet(replaces.map { $0.index }), columnIndexes: IndexSet(0..<tableView.tableColumns.count))
+			if deletes.count > 0 { self.tableView.removeRows(at: IndexSet(deletes.map { $0.index })) }
+			if inserts.count > 0 { self.tableView.insertRows(at: IndexSet(inserts.map { $0.index })) }
+			if moves.count > 0 { moves.forEach { self.tableView.moveRow(at: $0.fromIndex, to: $0.toIndex) } }
+			if replaces.count > 0 { self.tableView.reloadData(forRowIndexes: IndexSet(replaces.map { $0.index }), columnIndexes: IndexSet(0..<tableView.tableColumns.count)) }
             
             self.tableView.endUpdates()
         }

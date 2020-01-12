@@ -256,7 +256,7 @@ public class Api {
         return server
     }()
     
-    private static var firstArray: [Torrent] = {
+    private static var initialTorrentsArray: [Torrent] = {
         var torrents: [Torrent] = []
         
         for i in 0..<10 {
@@ -273,10 +273,27 @@ public class Api {
         return torrents
     }()
     
-    private static var secondArray: [Torrent] = {
+    private static var addRemoveTorrentsArray: [Torrent] = {
         var torrents: [Torrent] = []
         
         for i in 1..<12 {
+            var files: [TorrentFile] = []
+            for j in 0..<10 {
+                let file = TorrentFile(name: "Torrent \(i), file \(j)", length: 1024)
+                files.append(file)
+            }
+            let torrent = Torrent(name: "Test torrent \(i)", files: files)
+            torrent.id = i
+            torrents.append(torrent)
+        }
+        
+        return torrents
+    }()
+	
+    private static var sortTorrentsArray: [Torrent] = {
+        var torrents: [Torrent] = []
+        
+        for i in [0,1,2,3,4,5,6,7,8,55] {
             var files: [TorrentFile] = []
             for j in 0..<10 {
                 let file = TorrentFile(name: "Torrent \(i), file \(j)", length: 1024)
@@ -321,11 +338,15 @@ public class Api {
 	}
 	
 	private static func testTorrentsResponse() -> OHHTTPStubsResponse {
-        var torrentsWrapper = TorrentsWrapper(torrents:self.firstArray)
+        var torrentsWrapper = TorrentsWrapper(torrents:self.initialTorrentsArray)
         
-        if self.test == "diff" && self.requestCount >= 1 {
-            torrentsWrapper = TorrentsWrapper(torrents:self.secondArray)
-        }
+		if self.requestCount >= 1 {
+			if self.test == "diff" {
+				torrentsWrapper = TorrentsWrapper(torrents:self.addRemoveTorrentsArray)
+			} else if self.test == "sort" {
+				torrentsWrapper = TorrentsWrapper(torrents:self.sortTorrentsArray)
+			}
+		}
         
 		let response = Response<TorrentsWrapper>(arguments: torrentsWrapper)
         self.requestCount += 1

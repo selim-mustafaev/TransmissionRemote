@@ -17,6 +17,7 @@
 		7A3071D02258CE220078E970 /* ArrayDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3071CF2258CE220078E970 /* ArrayDataProvider.swift */; };
 		7A3071D22258CE790078E970 /* CollectionArryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3071D12258CE790078E970 /* CollectionArryDataSource.swift */; };
 		7A36FB9821EBE2FF006AD83C /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36FB9721EBE2FF006AD83C /* ProgressCell.swift */; };
+		7A3A861B23CA71C900A8DF94 /* NSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3A861A23CA71C900A8DF94 /* NSApplication.swift */; };
 		7A483B542205BCFF00EF6038 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A483B532205BCFF00EF6038 /* FilterCell.swift */; };
 		7A483B58220712A200EF6038 /* CustomOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A483B57220712A200EF6038 /* CustomOutlineView.swift */; };
 		7A540C9022B519EB00287942 /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A540C8F22B519EB00287942 /* Spotlight.swift */; };
@@ -157,6 +158,7 @@
 		7A3071D12258CE790078E970 /* CollectionArryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionArryDataSource.swift; sourceTree = "<group>"; };
 		7A3071D3225BED960078E970 /* Peer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peer.swift; sourceTree = "<group>"; };
 		7A36FB9721EBE2FF006AD83C /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
+		7A3A861A23CA71C900A8DF94 /* NSApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSApplication.swift; sourceTree = "<group>"; };
 		7A483B532205BCFF00EF6038 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		7A483B57220712A200EF6038 /* CustomOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOutlineView.swift; sourceTree = "<group>"; };
 		7A540C8F22B519EB00287942 /* Spotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotlight.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				7A7448622212C13D009874BD /* ArrayMerge.swift */,
 				7A540C8F22B519EB00287942 /* Spotlight.swift */,
 				7AF5B577236604BC00603A4F /* UNCenter.swift */,
+				7A3A861A23CA71C900A8DF94 /* NSApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -715,6 +718,7 @@
 				7A6AF42D22B12E7F00FEBF82 /* Api.swift in Sources */,
 				7A6AF43E22B1301900FEBF82 /* TorrentFile.swift in Sources */,
 				7A6AF44922B1309D00FEBF82 /* CocoaError.swift in Sources */,
+				7A3A861B23CA71C900A8DF94 /* NSApplication.swift in Sources */,
 				7AA6DB32232EE24E00531ED5 /* Errors.swift in Sources */,
 				7A6AF44022B1301900FEBF82 /* Tracker.swift in Sources */,
 				7A6AF42E22B12E7F00FEBF82 /* Service.swift in Sources */,
