@@ -1,7 +1,7 @@
 import Foundation
-import DeepDiff
+import DifferenceKit
 
-public class TorrentFilter: Mergeable {
+public class TorrentFilter: Mergeable, CustomStringConvertible {
 	public var name = ""
 	public var category: Category = .statuses
 	public var status: Status? = .all
@@ -23,16 +23,20 @@ public class TorrentFilter: Mergeable {
         case waiting = "Waiting"
     }
     
-    public var diffId: Int {
+    public var differenceIdentifier: Int {
         return self.name.hashValue
     }
     
-    public static func compareContent(_ a: TorrentFilter, _ b: TorrentFilter) -> Bool {
-        return a.name == b.name
-            && a.category == b.category
-            && a.status == b.status
-            && [Torrent].compareContent(a.filteredTorrents, b.filteredTorrents)
+    public var description: String {
+        "\(self.name) (\(self.filteredTorrents.count)) - \(Unmanaged.passUnretained(self).toOpaque())"
     }
+	
+	public func isContentEqual(to source: TorrentFilter) -> Bool {
+		return self.name == source.name
+            && self.category == source.category
+            && self.status == source.status
+			&& self.filteredTorrents.isContentEqual(to: source.filteredTorrents)
+	}
 	
 	init(name: String, filtered: [Torrent], category: Category) {
 		self.name = name

@@ -1,4 +1,4 @@
 github "mxcl/PromiseKit"
 github "PromiseKit/Foundation"
-github "onmyway133/DeepDiff"
 github "AliSoftware/OHHTTPStubs"
+github "ra1028/DifferenceKit"

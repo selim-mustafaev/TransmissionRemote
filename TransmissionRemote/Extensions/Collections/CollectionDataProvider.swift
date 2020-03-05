@@ -1,5 +1,5 @@
 import Foundation
-import DeepDiff
+import DifferenceKit
 
 public protocol CollectionDataProvider {
 	associatedtype T
@@ -9,8 +9,10 @@ public protocol CollectionDataProvider {
 	func item(at indexPath: IndexPath) -> T?
 	
 	func updateItem(at indexPath: IndexPath, value: T)
-    func setSortPredicates(_ predicates: [SortPredicate<T>]) -> [[Change<T>]]
-    func setFilterPredicate(_ predicate: @escaping (T) -> Bool) -> [[Change<T>]]
-    func removeFilterPredicate() -> [[Change<T>]]
-    func setData(_ array: [[T]]) -> [[Change<T>]]
+    func setSortPredicates(_ predicates: [SortPredicate<T>]) -> StagedChangeset<[T]>
+    func setFilterPredicate(_ predicate: @escaping (T) -> Bool) -> StagedChangeset<[T]>
+    func removeFilterPredicate() -> StagedChangeset<[T]>
+    func setData(_ array: [T]) -> StagedChangeset<[T]>
+	func updateFilteredItems()
+	func updateData(_ data: [T])
 }

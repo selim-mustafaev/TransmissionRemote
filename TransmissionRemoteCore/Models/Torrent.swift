@@ -1,5 +1,5 @@
 import Foundation
-import DeepDiff
+import DifferenceKit
 
 public class Torrent: Codable, Mergeable, CustomStringConvertible {
     public var id: Int = 0
@@ -70,37 +70,37 @@ public class Torrent: Codable, Mergeable, CustomStringConvertible {
     // MARK: - CustomStringConvertible
     
     public var description: String {
-        return self.name
+        return self.name + " (" + String(self.rateUpload) + ")"
     }
 	
 	// MARK: - Mergeable
     
-    public var diffId: Int {
+    public var differenceIdentifier: Int {
         return self.id
     }
-    
-    public static func compareContent(_ a: Torrent, _ b: Torrent) -> Bool {
-        return a.id == b.id
-            && a.name == b.name
-            && a.totalSize == b.totalSize
-            && a.status == b.status
-            && a.eta == b.eta
-            && a.leftUntilDone == b.leftUntilDone
-            && a.peersGettingFromUs == b.peersGettingFromUs
-            && a.peersSendingToUs == b.peersSendingToUs
-            && a.rateUpload == b.rateUpload
-            && a.rateDownload == b.rateDownload
-            && a.sizeWhenDone == b.sizeWhenDone
-            && a.uploadRatio == b.uploadRatio
-            && a.addedDate == b.addedDate
-            && a.doneDate == b.doneDate
-            && a.downloadedEver == b.downloadedEver
-            && a.uploadedEver == b.uploadedEver
-            && a.activityDate == b.activityDate
-            && a.bandwidthPriority == b.bandwidthPriority
-            && a.queuePosition == b.queuePosition
-            && a.secondsSeeding == b.secondsSeeding
-    }
+	
+	public func isContentEqual(to source: Torrent) -> Bool {
+        return self.id == source.id
+            && self.name == source.name
+            && self.totalSize == source.totalSize
+            && self.status == source.status
+            && self.eta == source.eta
+            && self.leftUntilDone == source.leftUntilDone
+            && self.peersGettingFromUs == source.peersGettingFromUs
+            && self.peersSendingToUs == source.peersSendingToUs
+            && self.rateUpload == source.rateUpload
+            && self.rateDownload == source.rateDownload
+            && self.sizeWhenDone == source.sizeWhenDone
+            && self.uploadRatio == source.uploadRatio
+            && self.addedDate == source.addedDate
+            && self.doneDate == source.doneDate
+            && self.downloadedEver == source.downloadedEver
+            && self.uploadedEver == source.uploadedEver
+            && self.activityDate == source.activityDate
+            && self.bandwidthPriority == source.bandwidthPriority
+            && self.queuePosition == source.queuePosition
+            && self.secondsSeeding == source.secondsSeeding
+	}
     
     public func copy(from item: Torrent) {
         self.id = item.id

@@ -1,25 +1,25 @@
 import Foundation
-import DeepDiff
+import DifferenceKit
 
-extension Array: DiffAware where Element: DiffAware {
+extension Array: Differentiable where Element: Differentiable {
     
-    public var diffId: Int {
+    public var differenceIdentifier: Int {
         var hasher = Hasher()
         for item in self {
-            hasher.combine(item.diffId)
+            hasher.combine(item.differenceIdentifier)
         }
         return hasher.finalize()
     }
-    
-    public static func compareContent(_ a: Array<Element>, _ b: Array<Element>) -> Bool {
-        guard a.count == b.count else { return false }
+	
+	public func isContentEqual(to source: Array<Element>) -> Bool {
+		guard self.count == source.count else { return false }
         
-        for index in a.indices {
-            if !Element.compareContent(a[index], b[index]) {
+        for index in self.indices {
+			if !self[index].isContentEqual(to: source[index]) {
                 return false
             }
         }
         
         return true
-    }
+	}
 }

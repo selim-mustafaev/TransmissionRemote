@@ -1,5 +1,5 @@
 import Cocoa
-import DeepDiff
+import DifferenceKit
 import TransmissionRemoteCore
 
 class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
@@ -33,55 +33,37 @@ class FiltersController: NSViewController, NSOutlineViewDataSource, NSOutlineVie
     // MARK: - Notification handlers
     
     @objc func filtersUpdated(_ notification: Notification) {
-		guard let dirChanges = notification.userInfo?["dirChanges"] as? [Change<TorrentFilter>] else { return }
-		guard let statusChanges = notification.userInfo?["statChanges"] as? [Change<TorrentFilter>] else { return }
-		
-		if dirChanges.count == 0 && statusChanges.count == 0 {
-			return
-		}
-		
-		self.outlineView.beginUpdates()
-		for change in statusChanges {
-			switch change {
-            case .insert(let insert):
-				self.outlineView.insertItems(at: IndexSet([insert.index]), inParent: TorrentFilter.Category.statuses)
-				break
-            case .delete(let delete):
-				self.outlineView.removeItems(at: IndexSet([delete.index]), inParent: TorrentFilter.Category.statuses)
-				break
-            case .replace(let replace):
-                self.outlineView.reloadItem(replace.oldItem)
-				break
-            case .move(_):
-                break
-			@unknown default:
-				break
-			}
-		}
-		
-		for change in dirChanges {
-			switch change {
-			case .insert(let insert):
-				self.outlineView.insertItems(at: IndexSet([insert.index]), inParent: TorrentFilter.Category.downloadDirs)
-				break
-			case .delete(_):
-				break
-			case .replace(let replace):
-				self.outlineView.reloadItem(replace.oldItem)
-				break
-            case .move(_):
-                break
-			@unknown default:
-				break
-			}
-		}
+		guard let dirChanges = notification.userInfo?["dirChanges"] as? StagedChangeset<[TorrentFilter]> else { return }
+		guard let statusChanges = notification.userInfo?["statChanges"] as? StagedChangeset<[TorrentFilter]> else { return }
         
-        let deletes = dirChanges.compactMap { $0.delete }.sorted { $0.index > $1.index }
-        for delete in deletes {
-            self.outlineView.removeItems(at: IndexSet([delete.index]), inParent: TorrentFilter.Category.downloadDirs)
-        }
+		if !dirChanges.isEmpty {
+			for changeset in dirChanges {
+                self.outlineView.beginUpdates()
+				changeset.elementInserted.forEach { insert in
+					self.outlineView.insertItems(at: IndexSet([insert.element]), inParent: TorrentFilter.Category.downloadDirs)
+				}
+				changeset.elementUpdated.forEach { update in
+					//self.outlineView.reloadItem(changeset.data[update.element])
+                    self.outlineView.reloadData(forRowIndexes: IndexSet([update.element]), columnIndexes: IndexSet([0]))
+				}
+				let deletes = changeset.elementDeleted.sorted { $0.element > $1.element }
+				deletes.forEach { delete in
+					self.outlineView.removeItems(at: IndexSet([delete.element]), inParent: TorrentFilter.Category.downloadDirs)
+				}
+                self.outlineView.endUpdates()
+			}
+		}
 		
-		self.outlineView.endUpdates()
+		if !statusChanges.isEmpty {
+			for changeset in statusChanges {
+                self.outlineView.beginUpdates()
+				changeset.elementUpdated.forEach { update in
+					//self.outlineView.reloadItem(changeset.data[update.element])
+                    self.outlineView.reloadData(forRowIndexes: IndexSet([update.element]), columnIndexes: IndexSet([0]))
+				}
+                self.outlineView.endUpdates()
+			}
+		}
     }
     
     @objc func torrentsUpdated(_ notification: Notification) {

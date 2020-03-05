@@ -1,6 +1,6 @@
 import Foundation
 import Cocoa
-import DeepDiff
+import DifferenceKit
 
 open class CollectionDataSource<Provider: CollectionDataProvider>:
 	NSObject,
@@ -41,21 +41,6 @@ open class CollectionDataSource<Provider: CollectionDataProvider>:
 	public func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		guard let id = tableColumn?.identifier else { return nil }
 		
-		//print("viewFor tableColumn row: \(row), id: \(id.rawValue)")
-		
-//        var cell: NSView? = self.cells[row]?[id]
-//        if cell == nil {
-//            cell = tableView.makeView(withIdentifier: id, owner: nil)
-//
-//            if let cell = cell {
-//                if self.cells[row] != nil {
-//                    self.cells[row]?[id] = cell
-//                } else {
-//                    self.cells[row] = [id: cell]
-//                }
-//            }
-//        }
-		
 		let cell = tableView.makeView(withIdentifier: id, owner: nil)
 		if let configurableCell = cell as? ConfigurableCell<Provider.T>, let item = self.provider.item(at: IndexPath(item: row, section: 0)) {
 			configurableCell.configure(with: item, at: id)
@@ -79,7 +64,7 @@ open class CollectionDataSource<Provider: CollectionDataProvider>:
         }.compactMap { $0 }
 
         let changes = self.provider.setSortPredicates(predicates)
-        self.apply(changes: changes)
+        self.apply(changes: changes) { _ in self.provider.updateFilteredItems() }
     }
     
     public func setSortPredicates(_ functions: [NSUserInterfaceItemIdentifier: SortFunc<Provider.T>]) {
@@ -95,12 +80,12 @@ open class CollectionDataSource<Provider: CollectionDataProvider>:
     
     public func setFilterPredicate(_ predicate: @escaping (Provider.T) -> Bool) {
         let changes = self.provider.setFilterPredicate(predicate)
-        self.apply(changes: changes)
+        self.apply(changes: changes) { _ in self.provider.updateFilteredItems() }
     }
     
     public func removeFilterPredicate() {
         let changes = self.provider.removeFilterPredicate()
-        self.apply(changes: changes)
+		self.apply(changes: changes) { _ in self.provider.updateFilteredItems() }
     }
     
     public func getSelectedItems() -> [Provider.T] {
@@ -108,31 +93,19 @@ open class CollectionDataSource<Provider: CollectionDataProvider>:
     }
     
 	@discardableResult
-    public func setData(_ array: [Provider.T]) -> [[Change<Provider.T>]]  {
-        let changes = self.provider.setData([array])
-        self.apply(changes: changes)
+    public func setData(_ array: [Provider.T]) -> StagedChangeset<[Provider.T]>  {
+        let changes = self.provider.setData(array)
+		
+        self.apply(changes: changes) { data in
+			//self.provider.updateFilteredItems()
+			self.provider.updateData(data)
+		}
+		
 		return changes
     }
     
-    public func apply(changes: [[Change<Provider.T>]]) {
-        if let firstChanges = changes.first {
-			if firstChanges.count == 0 {
-				return
-			}
-			
-            let inserts = firstChanges.compactMap { $0.insert }
-            let replaces = firstChanges.compactMap { $0.replace }
-            let moves = firstChanges.compactMap { $0.move }
-            let deletes = firstChanges.compactMap { $0.delete }
-            
-            self.tableView.beginUpdates()
-            
-			if deletes.count > 0 { self.tableView.removeRows(at: IndexSet(deletes.map { $0.index })) }
-			if inserts.count > 0 { self.tableView.insertRows(at: IndexSet(inserts.map { $0.index })) }
-			if moves.count > 0 { moves.forEach { self.tableView.moveRow(at: $0.fromIndex, to: $0.toIndex) } }
-			if replaces.count > 0 { self.tableView.reloadData(forRowIndexes: IndexSet(replaces.map { $0.index }), columnIndexes: IndexSet(0..<tableView.tableColumns.count)) }
-            
-            self.tableView.endUpdates()
-        }
+	public func apply(changes: StagedChangeset<[Provider.T]>, _ updateData: ([Provider.T]) -> Void) {
+		guard !changes.isEmpty else { return }
+		self.tableView.reloadTable(using: changes, with: [], setData: updateData)
     }
 }

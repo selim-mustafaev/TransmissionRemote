@@ -33,7 +33,7 @@ public extension UNUserNotificationCenter {
 		self.showNotification(title: "Torrent download finished",
 							  body: torrent.name,
 							  category: .torrentDownloaded,
-							  info: ["torrentId": torrent.diffId])
+							  info: ["torrentId": torrent.differenceIdentifier])
 	}
 	
 	func registerNotificationCategories() {

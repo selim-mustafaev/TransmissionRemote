@@ -1,96 +1,91 @@
 import Foundation
 import Cocoa
-import DeepDiff
+import DifferenceKit
 import TransmissionRemoteCore
 
-public class ArrayDataProvider<T>: CollectionDataProvider where T: Mergeable & DiffAware & AnyObject {
+public class ArrayDataProvider<T>: CollectionDataProvider where T: Mergeable & AnyObject {
     
 	// MARK: - Internal Properties
-    var items: [[T]] = []
-    var filteredItems: [[T]] = []
+    var items: [T] = []
+    var filteredItems: [T] = []
+	var filteredItemsTemp: [T] = []
     
     var sortPredicates: [SortPredicate<T>] = []
     var filterPredicate: ((T) -> Bool)?
 	
 	// MARK: - Lifecycle
-	init(array: [[T]]) {
+	init(array: [T]) {
 		self.items = array
         self.filteredItems = self.items
 	}
 	
 	// MARK: - CollectionDataProvider
 	public func numberOfSections() -> Int {
-		return filteredItems.count
+		return 1
 	}
 	
 	public func numberOfItems(in section: Int) -> Int {
-		guard section >= 0 && section < filteredItems.count else {
-			return 0
-		}
-		return filteredItems[section].count
+		return filteredItems.count
 	}
 	
 	public func item(at indexPath: IndexPath) -> T? {
-		guard indexPath.section >= 0 &&
-			indexPath.section < filteredItems.count &&
-			indexPath.item >= 0 &&
-			indexPath.item < filteredItems[indexPath.section].count else
+		guard indexPath.item >= 0 && indexPath.item < filteredItems.count else
 		{
 			return nil
 		}
-		return filteredItems[indexPath.section][indexPath.item]
+		return filteredItems[indexPath.item]
 	}
 	
 	public func updateItem(at indexPath: IndexPath, value: T) {
-		guard indexPath.section >= 0 &&
-			indexPath.section < filteredItems.count &&
-			indexPath.item >= 0 &&
-			indexPath.item < filteredItems[indexPath.section].count else
+		guard indexPath.item >= 0 && indexPath.item < filteredItems.count else
 		{
 			return
 		}
-		filteredItems[indexPath.section][indexPath.item] = value
+		filteredItems[indexPath.item] = value
 	}
     
-    public func setSortPredicates(_ predicates: [SortPredicate<T>]) -> [[Change<T>]] {
+    public func setSortPredicates(_ predicates: [SortPredicate<T>]) -> StagedChangeset<[T]> {
         self.sortPredicates = predicates
-        return self.updateFilteredItems()
+        return self.calcChanges()
     }
     
-    public func setFilterPredicate(_ predicate: @escaping (T) -> Bool) -> [[Change<T>]] {
+    public func setFilterPredicate(_ predicate: @escaping (T) -> Bool) -> StagedChangeset<[T]> {
         self.filterPredicate = predicate
-        return self.updateFilteredItems()
+        return self.calcChanges()
     }
     
-    public func removeFilterPredicate() -> [[Change<T>]] {
+    public func removeFilterPredicate() -> StagedChangeset<[T]> {
         self.filterPredicate = nil
-        return self.updateFilteredItems()
+        return self.calcChanges()
     }
     
-    public func setData(_ array: [[T]]) -> [[Change<T>]] {
+    public func setData(_ array: [T]) -> StagedChangeset<[T]> {
         self.items = array
-        return self.updateFilteredItems()
+        return self.calcChanges()
     }
     
-    private func updateFilteredItems() -> [[Change<T>]] {
-        var processed: [[T]] = []
+    private func calcChanges() -> StagedChangeset<[T]> {
+        var processed: [T] = []
         if let predicate = self.filterPredicate {
-            processed = self.items.map { $0.filter(predicate) }
+            processed = self.items.filter(predicate)
         } else {
             processed = self.items
         }
         
         if self.sortPredicates.count > 0 {
-            processed = processed.map { $0.sorted(using: self.sortPredicates) }
+            processed = processed.sorted(using: self.sortPredicates)
         }
-        
-        //let wf = WagnerFischer<T>(reduceMove: false)
-        var changes: [[Change<T>]] = []
-        for index in self.filteredItems.indices {
-            let change = /*wf.*/diff(old: self.filteredItems[index], new: processed[index])
-            changes.append(change)
-        }
-        self.filteredItems = processed
+		
+		let changes = StagedChangeset(source: self.filteredItems, target: processed)
+        self.filteredItemsTemp = processed
         return changes
     }
+	
+	public func updateFilteredItems() {
+		self.filteredItems = self.filteredItemsTemp
+	}
+	
+	public func updateData(_ data: [T]) {
+		self.filteredItems = data
+	}
 }

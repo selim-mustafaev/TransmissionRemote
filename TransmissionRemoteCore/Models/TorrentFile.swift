@@ -1,5 +1,5 @@
 import Foundation
-import DeepDiff
+import DifferenceKit
 
 public enum Priority: Int, CustomStringConvertible, Codable {
     case low = -1

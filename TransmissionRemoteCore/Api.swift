@@ -312,7 +312,7 @@ public class Api {
         self.requestCount = 0
         
 		stub(condition: pathMatches("/transmission/rpc")) { request in
-			guard let stream = request.httpBodyStream else { return OHHTTPStubsResponse(data: Data(), statusCode: 404, headers: nil) }
+			guard let stream = request.httpBodyStream else { return HTTPStubsResponse(data: Data(), statusCode: 404, headers: nil) }
 			
 			stream.open()
 			if let dict = try? JSONSerialization.jsonObject(with: stream, options: []) as? [String: Any] {
@@ -324,37 +324,46 @@ public class Api {
 					}
 				}
 			}
-			return OHHTTPStubsResponse(data: Data(), statusCode: 404, headers: nil)
+			return HTTPStubsResponse(data: Data(), statusCode: 404, headers: nil)
 		}
 	}
 	
-	private static func testSessionResponse() -> OHHTTPStubsResponse {
+	private static func testSessionResponse() -> HTTPStubsResponse {
 		let response = Response<Server>(arguments: self.session)
         if let data = try? JSONEncoder().encode(response) {
-			return OHHTTPStubsResponse(data: data, statusCode: 200, headers: nil)
+			return HTTPStubsResponse(data: data, statusCode: 200, headers: nil)
 		} else {
-			return OHHTTPStubsResponse(data: Data(), statusCode: 404, headers: nil)
+			return HTTPStubsResponse(data: Data(), statusCode: 404, headers: nil)
 		}
 	}
 	
-	private static func testTorrentsResponse() -> OHHTTPStubsResponse {
+	private static func testTorrentsResponse() -> HTTPStubsResponse {
         var torrentsWrapper = TorrentsWrapper(torrents:self.initialTorrentsArray)
         
 		if self.requestCount >= 1 {
 			if self.test == "diff" {
-				torrentsWrapper = TorrentsWrapper(torrents:self.addRemoveTorrentsArray)
+				torrentsWrapper = TorrentsWrapper(torrents: self.addRemoveTorrentsArray)
 			} else if self.test == "sort" {
-				torrentsWrapper = TorrentsWrapper(torrents:self.sortTorrentsArray)
-			}
+				torrentsWrapper = TorrentsWrapper(torrents: self.sortTorrentsArray)
+            } else if self.test == "update_speed" {
+//				let finalArray = self.initialTorrentsArray.map { (torrent: Torrent) -> Torrent in
+//					torrent.rateUpload = Int64(self.requestCount*torrent.id*1000)
+//					return torrent
+//				}
+                self.initialTorrentsArray.forEach { torrent in
+                    torrent.rateUpload = Int64(self.requestCount*torrent.id*1000)
+                }
+				torrentsWrapper = TorrentsWrapper(torrents: self.initialTorrentsArray)
+            }
 		}
         
 		let response = Response<TorrentsWrapper>(arguments: torrentsWrapper)
         self.requestCount += 1
 		
 		if let data = try? JSONEncoder().encode(response) {
-			return OHHTTPStubsResponse(data: data, statusCode: 200, headers: nil)
+			return HTTPStubsResponse(data: data, statusCode: 200, headers: nil)
 		} else {
-			return OHHTTPStubsResponse(data: Data(), statusCode: 404, headers: nil)
+			return HTTPStubsResponse(data: Data(), statusCode: 404, headers: nil)
 		}
 	}
 }

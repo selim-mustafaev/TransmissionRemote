@@ -1,5 +1,5 @@
 import Foundation
-import DeepDiff
+import DifferenceKit
 
 public class Tracker: Codable, Mergeable {
 	public var host: String
@@ -10,19 +10,19 @@ public class Tracker: Codable, Mergeable {
 	public var nextAnnounceTime: Int64
 	public var seederCount: Int
 	
-	public var diffId: Int {
+	public var differenceIdentifier: Int {
 		return self.host.hashValue
 	}
-    
-    public static func compareContent(_ a: Tracker, _ b: Tracker) -> Bool {
-        return a.host == b.host
-            && a.announce == b.announce
-            && a.lastAnnounceTime == b.lastAnnounceTime
-            && a.lastAnnounceSucceeded == b.lastAnnounceSucceeded
-            && a.lastAnnounceResult == b.lastAnnounceResult
-            && a.nextAnnounceTime == b.nextAnnounceTime
-            && a.seederCount == b.seederCount
-    }
+	
+	public func isContentEqual(to source: Tracker) -> Bool {
+        return self.host == source.host
+            && self.announce == source.announce
+            && self.lastAnnounceTime == source.lastAnnounceTime
+            && self.lastAnnounceSucceeded == source.lastAnnounceSucceeded
+            && self.lastAnnounceResult == source.lastAnnounceResult
+            && self.nextAnnounceTime == source.nextAnnounceTime
+            && self.seederCount == source.seederCount
+	}
 	
 	public func copy(from item: Tracker) {
 		self.host = item.host

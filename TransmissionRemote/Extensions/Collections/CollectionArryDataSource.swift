@@ -1,16 +1,12 @@
 import Foundation
 import Cocoa
-import DeepDiff
 import TransmissionRemoteCore
 
 open class CollectionArrayDataSource<T: Mergeable & AnyObject>: CollectionDataSource<ArrayDataProvider<T>>
 {
 	// MARK: - Lifecycle
-	public convenience init(collectionView: NSTableView, array: [T]) {
-		self.init(collectionView: collectionView, array: [array])
-	}
 	
-	public init(collectionView: NSTableView, array: [[T]]) {
+	public init(collectionView: NSTableView, array: [T]) {
 		let provider = ArrayDataProvider(array: array)
 		super.init(tableView: collectionView, provider: provider)
 	}

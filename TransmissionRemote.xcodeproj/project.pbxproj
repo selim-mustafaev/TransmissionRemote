@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7A0449AE23BFF5AA00683E43 /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE18A0B23BF7260009F7FDB /* OHHTTPStubs.framework */; };
 		7A067A3B22917CD50070DE55 /* TorrentPriorityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A067A3A22917CD50070DE55 /* TorrentPriorityCell.swift */; };
 		7A3071C62258B4AF0078E970 /* ReusablaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3071C52258B4AF0078E970 /* ReusablaCell.swift */; };
 		7A3071C82258B4D50078E970 /* ConfigurableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3071C72258B4D50078E970 /* ConfigurableCell.swift */; };
@@ -18,6 +17,9 @@
 		7A3071D22258CE790078E970 /* CollectionArryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3071D12258CE790078E970 /* CollectionArryDataSource.swift */; };
 		7A36FB9821EBE2FF006AD83C /* ProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A36FB9721EBE2FF006AD83C /* ProgressCell.swift */; };
 		7A3A861B23CA71C900A8DF94 /* NSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3A861A23CA71C900A8DF94 /* NSApplication.swift */; };
+		7A3A865523CB640F00A8DF94 /* DifferenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A3A865423CB640F00A8DF94 /* DifferenceKit.framework */; };
+		7A3A865623CB640F00A8DF94 /* DifferenceKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A3A865423CB640F00A8DF94 /* DifferenceKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7A3A865723CB642000A8DF94 /* DifferenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A3A865423CB640F00A8DF94 /* DifferenceKit.framework */; };
 		7A483B542205BCFF00EF6038 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A483B532205BCFF00EF6038 /* FilterCell.swift */; };
 		7A483B58220712A200EF6038 /* CustomOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A483B57220712A200EF6038 /* CustomOutlineView.swift */; };
 		7A540C9022B519EB00287942 /* Spotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A540C8F22B519EB00287942 /* Spotlight.swift */; };
@@ -60,7 +62,6 @@
 		7A6AF44822B1307F00FEBF82 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB99662285D829002BF723 /* Notifications.swift */; };
 		7A6AF44922B1309D00FEBF82 /* CocoaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAD1CB921F354E400394648 /* CocoaError.swift */; };
 		7A6AF44A22B130C400FEBF82 /* DiffAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA89FF8228D898E0008C380 /* DiffAware.swift */; };
-		7A6AF44B22B130D800FEBF82 /* DeepDiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA89FFA228D992C0008C380 /* DeepDiff.framework */; };
 		7A7A206C21F4BDF9005C61BE /* CheckedFsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7A206B21F4BDF9005C61BE /* CheckedFsItemCell.swift */; };
 		7A7A206E21F5421A005C61BE /* CustomCheckBoxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7A206D21F5421A005C61BE /* CustomCheckBoxCell.swift */; };
 		7A7A207121F67676005C61BE /* AddLinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7A206F21F67676005C61BE /* AddLinkController.swift */; };
@@ -80,12 +81,11 @@
 		7A9ADBA822709AEB008339B7 /* TorrentDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9ADBA722709AEB008339B7 /* TorrentDefaultCell.swift */; };
 		7AA6DB32232EE24E00531ED5 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA6DB31232EE24E00531ED5 /* Errors.swift */; };
 		7AA6DB36232EE5C000531ED5 /* PresentableError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA6DB34232EE47200531ED5 /* PresentableError.swift */; };
+		7AA73349240C49B6008CF8BD /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE18A0B23BF7260009F7FDB /* OHHTTPStubs.framework */; };
 		7AA89FEF2289ECC10008C380 /* RemotePathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA89FEE2289ECC10008C380 /* RemotePathCell.swift */; };
 		7AA89FF12289ECCE0008C380 /* LocalPathCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA89FF02289ECCE0008C380 /* LocalPathCell.swift */; };
 		7AA89FF3228AE5290008C380 /* SegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA89FF2228AE5290008C380 /* SegmentedCell.swift */; };
 		7AA89FF5228B3C150008C380 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA89FF4228B3C150008C380 /* Alerts.swift */; };
-		7AA89FFB228D992C0008C380 /* DeepDiff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA89FFA228D992C0008C380 /* DeepDiff.framework */; };
-		7AA89FFC228D992C0008C380 /* DeepDiff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA89FFA228D992C0008C380 /* DeepDiff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7AA8A022228FEF3B0008C380 /* Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA8A021228FEF3B0008C380 /* Sorting.swift */; };
 		7AAD1CB721F34F5A00394648 /* AddTorrentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAD1CB521F34F5A00394648 /* AddTorrentController.swift */; };
 		7AAD1CB821F34F5A00394648 /* AddTorrentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AAD1CB621F34F5A00394648 /* AddTorrentController.xib */; };
@@ -94,6 +94,7 @@
 		7AB4E3BA21DF7D87000B0A03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AB4E3B821DF7D87000B0A03 /* Main.storyboard */; };
 		7AB4E3C921DF8190000B0A03 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */; };
 		7AB4E3CA21DF8190000B0A03 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7AC9962C240F00C60061EBDE /* NSTableViewReload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC9962B240F00C60061EBDE /* NSTableViewReload.swift */; };
 		7ACC801D23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACC801C23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift */; };
 		7AF1C5E023C6288C00485BDC /* XCTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF1C5DF23C6288C00485BDC /* XCTestExtension.swift */; };
 		7AF5B578236604BC00603A4F /* UNCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF5B577236604BC00603A4F /* UNCenter.swift */; };
@@ -137,8 +138,8 @@
 			files = (
 				7AB4E3CA21DF8190000B0A03 /* PromiseKit.framework in Embed Frameworks */,
 				7A6AF42922B12DC600FEBF82 /* TransmissionRemoteCore.framework in Embed Frameworks */,
+				7A3A865623CB640F00A8DF94 /* DifferenceKit.framework in Embed Frameworks */,
 				7A66DBBD23C37B9400B85E0F /* OHHTTPStubs.framework in Embed Frameworks */,
-				7AA89FFC228D992C0008C380 /* DeepDiff.framework in Embed Frameworks */,
 				7A9103E021E38B0000BCE5CF /* PMKFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -159,6 +160,7 @@
 		7A3071D3225BED960078E970 /* Peer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peer.swift; sourceTree = "<group>"; };
 		7A36FB9721EBE2FF006AD83C /* ProgressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCell.swift; sourceTree = "<group>"; };
 		7A3A861A23CA71C900A8DF94 /* NSApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSApplication.swift; sourceTree = "<group>"; };
+		7A3A865423CB640F00A8DF94 /* DifferenceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DifferenceKit.framework; path = Carthage/Build/Mac/DifferenceKit.framework; sourceTree = "<group>"; };
 		7A483B532205BCFF00EF6038 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		7A483B57220712A200EF6038 /* CustomOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomOutlineView.swift; sourceTree = "<group>"; };
 		7A540C8F22B519EB00287942 /* Spotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotlight.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		7AB4E3BB21DF7D87000B0A03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AB4E3BC21DF7D87000B0A03 /* TransmissionRemote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TransmissionRemote.entitlements; sourceTree = "<group>"; };
 		7AB4E3C421DF8190000B0A03 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/Mac/PromiseKit.framework; sourceTree = "<group>"; };
+		7AC9962B240F00C60061EBDE /* NSTableViewReload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTableViewReload.swift; sourceTree = "<group>"; };
 		7ACC801A23BF6D0200C5AF3E /* TransmissionRemote UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TransmissionRemote UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ACC801C23BF6D0200C5AF3E /* TransmissionRemote_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmissionRemote_UITests.swift; sourceTree = "<group>"; };
 		7ACC801E23BF6D0200C5AF3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -244,8 +247,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A6AF44B22B130D800FEBF82 /* DeepDiff.framework in Frameworks */,
-				7A0449AE23BFF5AA00683E43 /* OHHTTPStubs.framework in Frameworks */,
+				7A3A865723CB642000A8DF94 /* DifferenceKit.framework in Frameworks */,
+				7AA73349240C49B6008CF8BD /* OHHTTPStubs.framework in Frameworks */,
 				7A6AF43822B12FE000FEBF82 /* PMKFoundation.framework in Frameworks */,
 				7A6AF43922B12FE000FEBF82 /* PromiseKit.framework in Frameworks */,
 			);
@@ -257,8 +260,8 @@
 			files = (
 				7AB4E3C921DF8190000B0A03 /* PromiseKit.framework in Frameworks */,
 				7A6AF42822B12DC600FEBF82 /* TransmissionRemoteCore.framework in Frameworks */,
+				7A3A865523CB640F00A8DF94 /* DifferenceKit.framework in Frameworks */,
 				7A66DBBC23C37B9400B85E0F /* OHHTTPStubs.framework in Frameworks */,
-				7AA89FFB228D992C0008C380 /* DeepDiff.framework in Frameworks */,
 				7A9103DF21E38B0000BCE5CF /* PMKFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,6 +328,7 @@
 				7AFB99682285FE38002BF723 /* InterfaceIdentifiers.swift */,
 				7AA89FF4228B3C150008C380 /* Alerts.swift */,
 				7AA8A021228FEF3B0008C380 /* Sorting.swift */,
+				7AC9962B240F00C60061EBDE /* NSTableViewReload.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -510,6 +514,7 @@
 		7AB4E3CC21DF819E000B0A03 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A3A865423CB640F00A8DF94 /* DifferenceKit.framework */,
 				7AE18A0B23BF7260009F7FDB /* OHHTTPStubs.framework */,
 				7AA89FFA228D992C0008C380 /* DeepDiff.framework */,
 				7A90D8792233C02E00FE04C2 /* BitArray.framework */,
@@ -742,6 +747,7 @@
 				7A7A207121F67676005C61BE /* AddLinkController.swift in Sources */,
 				7A68CF3A21E2A929004001C6 /* TorrentsListController.swift in Sources */,
 				7A36FB9821EBE2FF006AD83C /* ProgressCell.swift in Sources */,
+				7AC9962C240F00C60061EBDE /* NSTableViewReload.swift in Sources */,
 				7A68CF3721E2A911004001C6 /* FiltersController.swift in Sources */,
 				7A483B58220712A200EF6038 /* CustomOutlineView.swift in Sources */,
 				7A898E66226B348F00B3C69D /* FileProgressCell.swift in Sources */,

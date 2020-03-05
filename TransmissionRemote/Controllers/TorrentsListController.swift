@@ -1,6 +1,6 @@
 import Cocoa
 import TransmissionRemoteCore
-import DeepDiff
+import DifferenceKit
 import UserNotifications
 
 class TorrentsListController: NSViewController, NSMenuDelegate {
@@ -58,20 +58,27 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
     // MARK: - Notification handlers
     
     @objc func reloadTorrents(_ notification: Notification) {
+		// FIXME
         guard let torrents = notification.userInfo?["torrents"] as? [Torrent] else { return }
 		let changes = self.torrentsDS?.setData(torrents)
-		changes?.first?.compactMap({ $0.replace }).forEach { replace in
-			if replace.newItem.diffId == replace.oldItem.diffId
-				&& replace.newItem.isFinished()
-				&& !replace.oldItem.isFinished()
-			{
-					if #available(OSX 10.14, *) {
-						UNUserNotificationCenter.current().showDownloadedNotification(for: replace.newItem)
-					} else {
-						// TODO: Implement fallback behavior for 10.13- systems
-					}
-			}
-		}
+		//print("==================================================")
+		//print(changes)
+		
+//        if let changeset = changes?.first {
+//			changeset.elementUpdated.forEach { replace in
+//                replace.element
+//				if changeset.data[replace.element].differenceIdentifier == replace.oldItem.differenceIdentifier
+//					&& replace.newItem.isFinished()
+//					&& !replace.oldItem.isFinished()
+//				{
+//						if #available(OSX 10.14, *) {
+//							UNUserNotificationCenter.current().showDownloadedNotification(for: replace.newItem)
+//						} else {
+//							// TODO: Implement fallback behavior for 10.13- systems
+//						}
+//				}
+//			}
+//		}
     }
     
     // MARK: - NSMenuDelegate
@@ -90,17 +97,17 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
     
     func setupColumns() {
         guard let ad = NSApplication.shared.delegate as? AppDelegate else { return }
-        
+
         let columnsView = NSMenu(title: "")
         for column in self.tableView.tableColumns {
             column.isHidden = !Settings.shared.torrentColumns.contains(column.identifier.rawValue)
-            
+
             let menuItem = NSMenuItem(title: column.title, action: #selector(self.columnSelectionHandler(_:)), keyEquivalent: "")
             menuItem.state = column.isHidden ? .off : .on
             menuItem.identifier = column.identifier
             columnsView.addItem(menuItem)
         }
-        
+
         ad.columnsMenu.submenu = columnsView
     }
     

@@ -52,6 +52,7 @@ class TransmissionRemote_UITests: XCTestCase {
         XCTAssert(observableResult == idealResult)
     }
 	
+    // Test sorting by name
 	func testSort() {
         let app = XCUIApplication()
         app.launchEnvironment = ["isUITest": "true", "test": "sort"]
@@ -62,13 +63,34 @@ class TransmissionRemote_UITests: XCTestCase {
 		let torrentsTable = app.tables["torrents_table"]
 		let nameButton = app.tables["torrents_table"].buttons["Name"]
 		nameButton.click()
-		
-		wait(for: 3)
+
+		wait(for: 6)
 		
 		let observableResult = torrentsTable.tableRows.allElementsBoundByIndex.map { $0.cells.firstMatch.label }
 		let idealResult = [0,1,2,3,4,5,55,6,7,8].map { "Test torrent \($0)" }
 		XCTAssert(observableResult == idealResult)
-		
-		//wait(for: 60)
 	}
+    
+    // Test repositioning torrents, sorted by upload speed
+    func testUpdateSpeedSorted() {
+        let app = XCUIApplication()
+        app.launchEnvironment = ["isUITest": "true", "test": "update_speed"]
+        app.launch()
+        
+        wait(for: 6)
+        
+        let torrentsTable = app.tables["torrents_table"]
+        let nameButton = app.tables["torrents_table"].buttons["Up speed"]
+        //nameButton.click()
+        
+        if nameButton.isHittable {
+            nameButton.click()
+        } else {
+            let coords = nameButton.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+            coords.click()
+            coords.click()
+        }
+        
+        wait(for: 100)
+    }
 }

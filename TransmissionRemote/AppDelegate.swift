@@ -135,7 +135,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
 	{
 		if response.actionIdentifier == NotificationAction.revealInFinder.rawValue {
 			if let torrentId = response.notification.request.content.userInfo["torrentId"] as? Int,
-				let torrent = Service.shared.torrents.first(where: { $0.diffId == torrentId })
+				let torrent = Service.shared.torrents.first(where: { $0.differenceIdentifier == torrentId })
 			{
 				torrent.withLocalPath { path, error in
 					if let path = path {

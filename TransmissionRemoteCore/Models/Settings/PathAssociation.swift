@@ -1,5 +1,5 @@
 import Foundation
-import DeepDiff
+import DifferenceKit
 
 public class PathAssociation: Codable, Mergeable {
     public var localPath: String
@@ -54,13 +54,13 @@ public class PathAssociation: Codable, Mergeable {
         return url
     }
     
-    public var diffId: Int {
+    public var differenceIdentifier: Int {
         return remotePath.hashValue
     }
-    
-    public static func compareContent(_ a: PathAssociation, _ b: PathAssociation) -> Bool {
-        return a.remotePath == b.remotePath && a.localPath == b.localPath
-    }
+	
+	public func isContentEqual(to source: PathAssociation) -> Bool {
+		return self.remotePath == source.remotePath && self.localPath == source.localPath
+	}
     
     public func copy(from item: PathAssociation) {
         self.localPath = item.localPath

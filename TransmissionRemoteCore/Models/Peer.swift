@@ -1,5 +1,5 @@
 import Foundation
-import DeepDiff
+import DifferenceKit
 
 public class Peer: Codable, Mergeable {
 	public var address: String
@@ -10,7 +10,7 @@ public class Peer: Codable, Mergeable {
 	public var rateToClient: Int64
 	public var rateToPeer: Int64
 	
-	public var diffId: Int {
+	public var differenceIdentifier: Int {
 		return "\(self.address):\(self.port)".hashValue
 	}
     
@@ -22,6 +22,15 @@ public class Peer: Codable, Mergeable {
             && a.rateToClient == b.rateToClient
             && a.flagStr == b.flagStr
     }
+	
+	public func isContentEqual(to source: Peer) -> Bool {
+        return self.address == source.address
+            && self.clientName == source.clientName
+            && self.progress == source.progress
+            && self.rateToPeer == source.rateToPeer
+            && self.rateToClient == source.rateToClient
+            && self.flagStr == source.flagStr
+	}
 	
 	public func copy(from item: Peer) {
 		self.address = item.address

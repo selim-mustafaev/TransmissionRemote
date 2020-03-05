@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -2121,13 +2121,13 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUt-dE-SwN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="194"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="961" height="119"/>
                                                     <clipView key="contentView" id="kXb-JI-Lu2">
-                                                        <rect key="frame" x="1" y="0.0" width="959" height="193"/>
+                                                        <rect key="frame" x="1" y="0.0" width="959" height="118"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="OM3-Oe-ZSv" viewBased="YES" id="rdy-v2-YtE">
-                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="168"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="959" height="93"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2681,17 +2681,17 @@
             <objects>
                 <viewController id="kH5-bb-4fW" customClass="TorrentsListController" customModule="Transmission_Remote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="Ajz-YY-U2y">
-                        <rect key="frame" x="0.0" y="0.0" width="1655" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1655" height="200"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjx-If-f0x">
-                                <rect key="frame" x="0.0" y="0.0" width="1655" height="201"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1655" height="151"/>
                                 <clipView key="contentView" id="Xfb-8Y-nfH">
-                                    <rect key="frame" x="0.0" y="0.0" width="1655" height="201"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="1655" height="151"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" autosaveName="" rowHeight="16" rowSizeStyle="automatic" headerView="yaJ-WN-ALX" viewBased="YES" id="HUT-rt-KUV">
-                                            <rect key="frame" x="0.0" y="0.0" width="1655" height="176"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1655" height="126"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
