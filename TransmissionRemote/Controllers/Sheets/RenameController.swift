@@ -16,15 +16,24 @@ class RenameController: NSViewController, NSTextFieldDelegate {
     
     // MARK: - Actions
     
-    @IBAction func ok(_ sender: NSButton) {
-        guard let wnd = self.view.window else { return }
-        
-        Api.rename(path: torrent.name, to: self.name.stringValue, in: torrent.id).done {
-            Service.shared.updateTorrents()
+    @MainActor
+    func renameTorrent() async {
+        do {
+            try await Api.rename(path: torrent.name,
+                                 to: self.name.stringValue,
+                                 in: torrent.id)
+            
+            await Service.shared.updateTorrents()
             self.dismiss(nil)
-        }.catch { error in
-            NSAlert.showError(error, for: wnd)
+        } catch {
+            if let wnd = self.view.window {
+                NSAlert.showError(error, for: wnd)
+            }
         }
+    }
+    
+    @IBAction func ok(_ sender: NSButton) {
+        Task { await renameTorrent() }
     }
     
     func controlTextDidChange(_ obj: Notification) {

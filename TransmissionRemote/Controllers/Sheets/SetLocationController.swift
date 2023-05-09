@@ -27,14 +27,12 @@ class SetLocationController: NSViewController {
             return
         }
         
-        Api.set(location: self.path.stringValue, for: self.ids, move: self.move.state == .on)
-            .done { self.dismiss(nil) }
-            .catch { error in
-                print("Error setting new location: ", error)
-                self.dismiss(nil)
-            }
-        
-        self.dismiss(nil)
+        Task { @MainActor in
+            try? await Api.set(location: self.path.stringValue,
+                               for: self.ids,
+                               move: self.move.state == .on)
+            self.dismiss(nil)
+        }
     }
     
     @IBAction func browse(_ sender: NSButton) {

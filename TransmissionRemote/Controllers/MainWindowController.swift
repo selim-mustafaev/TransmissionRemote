@@ -1,5 +1,4 @@
 import Cocoa
-import PromiseKit
 import TransmissionRemoteCore
 
 class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldDelegate {
@@ -81,19 +80,25 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
     }
     
     @IBAction func addTorrentFile(_ sender: NSMenuItem) {
-        self.selectTorrentFile()
-            .done(self.openTorrentFile)
-            .catch {
-                print("Error adding torrent: \($0)")
+        Task { @MainActor in
+            do {
+                let url = try await self.selectTorrentFile()
+                self.openTorrentFile(url)
+            } catch {
+                print("Error adding torrent: \(error)")
             }
+        }
     }
     
     @IBAction func addLink(_ sender: NSMenuItem) {
-        self.openAddLinkSheet()
-            .done(self.openMagnetLink)
-            .catch {
-                print("Error adding torrent: \($0)")
+        Task { @MainActor in
+            do {
+                let link = try await self.openAddLinkSheet()
+                self.openMagnetLink(link)
+            } catch {
+                print("Error adding torrent: \(error)")
             }
+        }
     }
     
     @IBAction func removeTorrent(_ sender: NSMenuItem) {
@@ -105,27 +110,27 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
     }
     
     @IBAction func startTorrents(_ sender: NSToolbarItem) {
-        let selectedTorrents = self.torrentsListController.getSelectedTorrents()
-        Api.startTorrents(by: selectedTorrents.map { $0.id }).catch { error in
-            print("Error starting torrents: \(error)")
+        Task { @MainActor in
+            let selectedTorrents = self.torrentsListController.getSelectedTorrents()
+            try? await Api.startTorrents(by: selectedTorrents.map { $0.id })
+            await Service.shared.updateTorrents()
         }
-        Service.shared.updateTorrents()
     }
     
     @IBAction func stopTorrents(_ sender: NSToolbarItem) {
-        let selectedTorrents = self.torrentsListController.getSelectedTorrents()
-        Api.stopTorrents(by: selectedTorrents.map { $0.id }).catch { error in
-            print("Error stopping torrents: \(error)")
+        Task { @MainActor in
+            let selectedTorrents = self.torrentsListController.getSelectedTorrents()
+            try? await Api.stopTorrents(by: selectedTorrents.map { $0.id })
+            await Service.shared.updateTorrents()
         }
-        Service.shared.updateTorrents()
     }
     
     // MARK: - Utils
     
-    func selectTorrentFile() -> Promise<URL> {
-        return Promise { seal in
+    func selectTorrentFile() async throws -> URL {
+        try await withCheckedThrowingContinuation { continuation in
             guard let wnd = self.window else {
-                seal.reject(CocoaError.error("self.window is nil"))
+                continuation.resume(throwing: CocoaError.error("self.window is nil"))
                 return
             }
             
@@ -139,25 +144,25 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
             panel.beginSheetModal(for: wnd) { response in
                 if response == .OK {
                     if let url = panel.url {
-                        seal.fulfill(url)
+                        continuation.resume(returning: url)
                     } else {
-                        seal.reject(CocoaError.error("File URL not found"))
+                        continuation.resume(throwing: CocoaError.error("File URL not found"))
                     }
                 } else {
-                    seal.reject(CocoaError.cancelError())
+                    continuation.resume(throwing: CocoaError.cancelError())
                 }
             }
         }
     }
     
-    func openAddLinkSheet() -> Promise<String> {
-        return Promise { seal in
+    func openAddLinkSheet() async throws -> String {
+        try await withCheckedThrowingContinuation { continuation in
             let addLinkController = AddLinkController(nibName: "AddLinkController", bundle: nil)
             addLinkController.onOk = { url in
-                seal.fulfill(url)
+                continuation.resume(returning: url)
             }
             addLinkController.onCancel = {
-                seal.reject(CocoaError.cancelError())
+                continuation.resume(throwing: CocoaError.cancelError())
             }
             self.window?.contentViewController?.presentAsSheet(addLinkController)
         }
@@ -170,11 +175,11 @@ class MainWindowController: NSWindowController, NSWindowDelegate, NSSearchFieldD
     }
     
     func removeSelectedTorrents(withData: Bool) {
-        let selectedTorrents = self.torrentsListController.getSelectedTorrents()
-        Api.removeTorrents(by: selectedTorrents.map { $0.id }, deleteData: withData).catch { error in
-            print("Error removing torrents: \(error)")
+        Task { @MainActor in
+            let selectedTorrents = self.torrentsListController.getSelectedTorrents()
+            try? await Api.removeTorrents(by: selectedTorrents.map { $0.id }, deleteData: withData)
+            await Service.shared.updateTorrents()
         }
-        Service.shared.updateTorrents()
     }
     
     func openMagnetLink(_ link: String) {

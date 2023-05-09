@@ -178,35 +178,35 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
     // MARK: - Context menu actions
     
     @IBAction func startSelected(_ sender: NSMenuItem) {
-        let ids = self.contextMenuTorrents().map { $0.id }
-        Api.startTorrents(by: ids).catch { error in
-            print("Error starting torrents: \(error)")
+        Task { @MainActor in
+            let ids = self.contextMenuTorrents().map { $0.id }
+            try? await Api.startTorrents(by: ids)
+            await Service.shared.updateTorrents()
         }
-        Service.shared.updateTorrents()
     }
     
     @IBAction func stopSelected(_ sender: NSMenuItem) {
-        let ids = self.contextMenuTorrents().map { $0.id }
-        Api.stopTorrents(by: ids).catch { error in
-            print("Error stopping torrents: \(error)")
+        Task { @MainActor in
+            let ids = self.contextMenuTorrents().map { $0.id }
+            try? await Api.stopTorrents(by: ids)
+            await Service.shared.updateTorrents()
         }
-        Service.shared.updateTorrents()
     }
     
     @IBAction func removeSelected(_ sender: NSMenuItem) {
-        let ids = self.contextMenuTorrents().map { $0.id }
-        Api.removeTorrents(by: ids, deleteData: false).catch { error in
-            print("Error removing torrents: \(error)")
+        Task { @MainActor in
+            let ids = self.contextMenuTorrents().map { $0.id }
+            try? await Api.removeTorrents(by: ids, deleteData: false)
+            await Service.shared.updateTorrents()
         }
-        Service.shared.updateTorrents()
     }
     
     @IBAction func removeWithDataSelected(_ sender: NSMenuItem) {
-        let ids = self.contextMenuTorrents().map { $0.id }
-        Api.removeTorrents(by: ids, deleteData: true).catch { error in
-            print("Error removing torrents: \(error)")
+        Task { @MainActor in
+            let ids = self.contextMenuTorrents().map { $0.id }
+            try? await Api.removeTorrents(by: ids, deleteData: true)
+            await Service.shared.updateTorrents()
         }
-        Service.shared.updateTorrents()
     }
     
     @IBAction func revealInFinderSelected(_ sender: NSMenuItem) {
@@ -247,13 +247,10 @@ class TorrentsListController: NSViewController, NSMenuDelegate {
     }
     
     @IBAction func prioritySelected(_ sender: NSMenuItem) {
-        let torrents = self.getSelectedTorrents().map { $0.id }
-        Api.set(priority: sender.tag, for: torrents)
-            .done {
-                Service.shared.updateTorrents()
-            }
-            .catch { error in
-                print("Error setting priority: ", error)
-            }
+        Task { @MainActor in
+            let torrents = self.getSelectedTorrents().map { $0.id }
+            try? await Api.set(priority: sender.tag, for: torrents)
+            await Service.shared.updateTorrents()
+        }
     }
 }

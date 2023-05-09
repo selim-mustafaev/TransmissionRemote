@@ -17,24 +17,26 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(AppDelegate.handleGetURLEvent(event:replyEvent:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
     }
     
+    func updateSession() async throws {
+        try await Service.shared.updateSession()
+        Service.shared.startUpdatingTorrents()
+        
+        if  let link = self.magnetLinkToOpen,
+            let wndController = await NSApplication.shared.mainWindow?.windowController as? MainWindowController
+        {
+            await wndController.openMagnetLink(link)
+        }
+        
+        if  let filename = self.torrentFileToOpen,
+            let wndController = await NSApplication.shared.mainWindow?.windowController as? MainWindowController
+        {
+            await wndController.openTorrentFile(URL(fileURLWithPath: filename))
+        }
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if Settings.shared.connection.isComplete() {
-            Service.shared.updateSession().done {
-                Service.shared.startUpdatingTorrents()
-                if  let link = self.magnetLinkToOpen,
-                    let wndController = NSApplication.shared.mainWindow?.windowController as? MainWindowController
-                {
-                    wndController.openMagnetLink(link)
-                }
-                
-                if  let filename = self.torrentFileToOpen,
-                    let wndController = NSApplication.shared.mainWindow?.windowController as? MainWindowController
-                {
-                    wndController.openTorrentFile(URL(fileURLWithPath: filename))
-                }
-            }.catch { error in
-                print("Error updating session: \(error)")
-            }
+            Task { try? await updateSession() }
 		} else {
 			self.openConnectionSettings()
 		}
@@ -92,8 +94,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     
     @objc func connectionSettingsUpdated(_ notification: Notification) {
         if Settings.shared.connection.isComplete() {
-            Service.shared.updateSession().done(Service.shared.startUpdatingTorrents).catch { error in
-                print("Error updating session: \(error)")
+            Task { @MainActor in
+                do {
+                    try await Service.shared.updateSession()
+                    Service.shared.startUpdatingTorrents()
+                } catch {
+                    print("Error updating session: \(error)")
+                }
             }
         }
     }
@@ -113,14 +120,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     }
     
     @IBAction func startAllTorrents(_ sender: NSMenuItem) {
-        Api.startTorrents(by: Service.shared.torrents.map { $0.id }).catch { error in
-            print("Starting all torrents failed: ", error)
+        Task { @MainActor in
+            try? await Api.startTorrents(by: Service.shared.torrents.map { $0.id })
         }
     }
     
     @IBAction func stopAllTorrents(_ sender: NSMenuItem) {
-        Api.stopTorrents(by: Service.shared.torrents.map { $0.id }).catch { error in
-            print("Stopping all torrents failed: ", error)
+        Task { @MainActor in
+            try? await Api.stopTorrents(by: Service.shared.torrents.map { $0.id })
         }
     }
     

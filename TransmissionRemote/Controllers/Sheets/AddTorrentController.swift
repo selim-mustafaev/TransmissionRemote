@@ -1,5 +1,4 @@
 import Cocoa
-import PromiseKit
 import TransmissionRemoteCore
 
 class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
@@ -23,21 +22,7 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
         
         self.peerLimitField.integerValue = Service.shared.session?.peerLimitPerTorrent ?? 20
         
-        self.parseTorrent(source: self.source)
-            .done { torrent in
-                self.torrent = torrent
-                self.savAsField.stringValue = self.torrent?.name ?? ""
-                if let files = self.torrent?.files {
-                    self.filesTree = self.generateTree(from: files)
-                    self.calcSizes(for: self.filesTree)
-                    self.outlineView.reloadData()
-                }
-            }.catch { error in
-                if let wnd = self.view.window {
-                    NSAlert.showError(error, for: wnd)
-                    self.dismiss(nil)
-                }
-            }
+        self.parseTorrentFile()
     }
     
     override func viewWillAppear() {
@@ -47,6 +32,25 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
     
     override func viewWillDisappear() {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func parseTorrentFile() {
+        Task { @MainActor in
+            do {
+                self.torrent = try await self.parseTorrent(source: self.source)
+                self.savAsField.stringValue = self.torrent?.name ?? ""
+                if let files = self.torrent?.files {
+                    self.filesTree = self.generateTree(from: files)
+                    self.calcSizes(for: self.filesTree)
+                    self.outlineView.reloadData()
+                }
+            } catch {
+                if let wnd = self.view.window {
+                    NSAlert.showError(error, for: wnd)
+                    self.dismiss(nil)
+                }
+            }
+        }
     }
     
     @objc func torrentsUpdated(_ notification: Notification) {
@@ -65,8 +69,11 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
     
     // MARK: - Actions
     
-    @IBAction func okAction(_ sender: NSButton) {
-        guard let torrent = self.torrent else { return }
+    @MainActor
+    func addTorrent() async throws {
+        guard let torrent = self.torrent else {
+            return
+        }
         
         let files = torrent.files
         var wanted: [Int] = []
@@ -79,26 +86,32 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
             }
         }
         
-        var addPromise = Api.addTorrent(from: self.source, location: self.destination.stringValue, maxPeers: self.peerLimitField.integerValue, wanted: wanted, unwanted: unwanted, start: true)
+        let id = try await Api.addTorrent(from: self.source,
+                                          location: self.destination.stringValue,
+                                          maxPeers: self.peerLimitField.integerValue,
+                                          wanted: wanted,
+                                          unwanted: unwanted,
+                                          start: true)
         
         if self.savAsField.stringValue != torrent.name {
-            addPromise = addPromise.then { id in
-                return Api.rename(path: torrent.name, to: self.savAsField.stringValue, in: id).map { id }
-            }
-        }
-
-        addPromise.done { _ in
-            Service.shared.updateTorrents()
-            self.dismiss(nil)
-        }
-        .catch { error in
-            self.dismiss(nil)
-            if let wnd = self.view.window {
-                NSAlert.showError(error, for: wnd)
-            }
+            try await Api.rename(path: torrent.name, to: self.savAsField.stringValue, in: id)
         }
         
-        
+        await Service.shared.updateTorrents()
+        self.dismiss(nil)
+    }
+    
+    @IBAction func okAction(_ sender: NSButton) {
+        Task { @MainActor in
+            do {
+                try await addTorrent()
+            } catch {
+                self.dismiss(nil)
+                if let wnd = self.view.window {
+                    NSAlert.showError(error, for: wnd)
+                }
+            }
+        }
     }
     
     @IBAction func cancelAction(_ sender: NSButton) {
@@ -256,12 +269,12 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
         }
     }
     
-    func parseTorrentFile(url: URL) -> Promise<Torrent> {
-        return Promise { seal in
+    func parseTorrentFile(url: URL) async throws -> Torrent {
+        try await withCheckedThrowingContinuation { continuation in
             DispatchQueue.global().async {
                 let bencode = Bencode(file: url)
                 guard let info = bencode?["info"], let name = info["name"].string else {
-                    seal.reject(CocoaError.error("Error opening torrent file", suggestion: "Failed to find info section"))
+                    continuation.resume(throwing: CocoaError.error("Error opening torrent file", suggestion: "Failed to find info section"))
                     return
                 }
                 
@@ -277,20 +290,20 @@ class AddTorrentController: NSViewController, NSOutlineViewDataSource, NSOutline
                     files.append(TorrentFile(name: name, length: Int64(info["length"].int ?? 0)))
                 }
                 
-                seal.fulfill(Torrent(name: name, files: files))
+                continuation.resume(returning: Torrent(name: name, files: files))
             }
         }
     }
     
-    func parseTorrent(source: Torrent.Source) -> Promise<Torrent> {
+    func parseTorrent(source: Torrent.Source) async throws -> Torrent {
         switch source {
         case .file(let url):
-            return self.parseTorrentFile(url: url)
+            return try await self.parseTorrentFile(url: url)
         case .link(let link):
             if let magnet = Magnet(link) {
-                return Promise.value(Torrent(name: magnet.dn, files: []))
+                return Torrent(name: magnet.dn, files: [])
             } else {
-                return Promise(error: CocoaError.error("Error parsing magnet link"))
+                throw CocoaError.error("Error parsing magnet link")
             }
         }
     }

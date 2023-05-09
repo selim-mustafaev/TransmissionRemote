@@ -1,6 +1,5 @@
 import Foundation
 import Cocoa
-import PromiseKit
 import CoreSpotlight
 import AVFoundation
 import os.log
@@ -18,7 +17,6 @@ public class Service {
 	
     private var updateTimer: Timer? = nil
     private var refreshInterval: TimeInterval = 5
-    private var indexPromise: Promise<Void> = .value(())
     private var indexItems: Set<TorrentFile> = []
 	
 	init() {
@@ -79,10 +77,10 @@ public class Service {
     public func startUpdatingTorrents() {
         guard Settings.shared.connection.isComplete() else { return }
         
-        self.updateTorrents()
+        Task { await self.updateTorrents() }
         self.updateTimer?.invalidate()
         self.updateTimer = Timer.scheduledTimer(withTimeInterval: self.refreshInterval, repeats: true) { timer in
-            self.updateTorrents()
+            Task { await self.updateTorrents() }
         }
     }
     
@@ -91,32 +89,32 @@ public class Service {
         self.updateTimer = nil
     }
     
-    public func updateTorrents() {
-        Api.getTorrents().done { torrents in
-            self.torrents = torrents
-			self.updateFilters()
-			self.updateSelectedTorrent()
-            
-            if self.indexPromise.isResolved {
-                self.indexPromise = self.updateIndex()
-            }
-            
-            NotificationCenter.default.post(name: .updateTorrents, object: nil, userInfo: ["torrents": self.currentFilter.filteredTorrents])
-        }.catch { error in
+    @MainActor
+    public func updateTorrents() async {
+        
+        Task { try? await updateSession() }
+        
+        do {
+            self.torrents = try await Api.getTorrents()
+            self.updateFilters()
+            self.updateSelectedTorrent()
+            NotificationCenter.default.post(name: .updateTorrents,
+                                            object: nil,
+                                            userInfo: ["torrents": self.currentFilter.filteredTorrents])
+            try? await self.updateIndex()
+        } catch {
             self.torrents = []
             self.updateFilters()
-			NotificationCenter.default.post(name: .updateTorrents, object: nil, userInfo: ["torrents": self.currentFilter.filteredTorrents])
+            NotificationCenter.default.post(name: .updateTorrents,
+                                            object: nil,
+                                            userInfo: ["torrents": self.currentFilter.filteredTorrents])
             print("Error: \(error.localizedDescription)")
-        }
-        
-        Api.getSession().done { self.session = $0 }
-            .catch { error in
-                print("Error querying session: \(error)")
         }
     }
     
-    public func updateSession() -> Promise<Void> {
-        return Api.getSession().done { self.session = $0 }
+    @MainActor
+    public func updateSession() async throws {
+        self.session = try await Api.getSession()
     }
 	
 	public func updateFilters() {
@@ -162,48 +160,35 @@ public class Service {
 		NotificationCenter.default.post(name: .updateTorrents, object: nil, userInfo: ["torrents": self.currentFilter.filteredTorrents])
 	}
     
-    private func updateIndex() -> Promise<Void> {
+    private func updateIndex() async throws {
         let items: Set<TorrentFile> = Set(self.torrents.flatMap { $0.files }.filter { $0.downloadedPercents() == 100 })
         
         if items.count == self.indexItems.count {
-            return Promise.value(())
+            return
         }
         
         let removedItems = Array(self.indexItems.subtracting(items))
-        let newItemsPromises = items.subtracting(self.indexItems).map(getSerchableItem)
-        
-        return when(resolved: newItemsPromises).map { (results: [PromiseKit.Result<CSSearchableItem>]) -> [CSSearchableItem]  in
-                return results.compactMap {
-                    switch $0 {
-                    case .fulfilled(let value): return value
-                    case .rejected: return nil
-                    }
-                }
-            }
-            .then(on: DispatchQueue.global(), CSSearchableIndex.default().index)
-            .then(on: DispatchQueue.global()) { CSSearchableIndex.default().remove(ids: removedItems.compactMap { $0.name }) }
-            .done { self.indexItems = items }
+        let newItems = try await items.subtracting(self.indexItems).asyncMap(getSerchableItem)
+        try await CSSearchableIndex.default().index(items: newItems)
+        try await CSSearchableIndex.default().remove(ids: removedItems.compactMap { $0.name })
+        self.indexItems = items
     }
     
-    func getSerchableItem(for file: TorrentFile) -> Promise<CSSearchableItem> {
-        return Promise { seal in
-            DispatchQueue.global().async {
-                guard let localURL = file.startAccess() else {
-                    seal.reject(CocoaError.error("Failed to get local URL of torrent file"))
-                    return
-                }
-                
-                self.searchableAttributes(for: localURL).done { attributeSet in
-                    file.stopAccess()
-                    let item = CSSearchableItem(uniqueIdentifier: file.name, domainIdentifier: "torrent_files", attributeSet: attributeSet)
-                    seal.fulfill(item)
-                }
-            }
+    func getSerchableItem(for file: TorrentFile) async throws -> CSSearchableItem {
+        guard let localURL = file.startAccess() else {
+            throw CocoaError.error("Failed to get local URL of torrent file")
         }
+        
+        let attributeSet = await self.searchableAttributes(for: localURL)
+        
+        file.stopAccess()
+        return CSSearchableItem(uniqueIdentifier: file.name,
+                                domainIdentifier: "torrent_files",
+                                attributeSet: attributeSet)
     }
     
-    func searchableAttributes(for url: URL) -> Guarantee<CSSearchableItemAttributeSet> {
-        return Guarantee { seal in
+    func searchableAttributes(for url: URL) async -> CSSearchableItemAttributeSet {
+        await withCheckedContinuation { continuation in
             DispatchQueue.global().async {
                 let attributeSet = CSSearchableItemAttributeSet(itemContentType: kUTTypeText as String)
                 attributeSet.displayName = url.lastPathComponent
@@ -228,7 +213,7 @@ public class Service {
 //                    seal.fulfill(attributeSet)
 //                }
                 
-                seal(attributeSet)
+                continuation.resume(returning: attributeSet)
             }
         }
     }

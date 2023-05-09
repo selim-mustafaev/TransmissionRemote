@@ -1,28 +1,29 @@
 import Foundation
 import CoreSpotlight
-import PromiseKit
 
 extension CSSearchableIndex {
     
-    func index(items: [CSSearchableItem]) -> Promise<Void> {
-        return Promise { seal in
+    func index(items: [CSSearchableItem]) async throws {
+        
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             self.indexSearchableItems(items) { error in
-                if let error = error {
-                    seal.reject(error)
+                if let error {
+                    continuation.resume(throwing: error)
                 } else {
-                    seal.fulfill_()
+                    continuation.resume(returning: ())
                 }
             }
         }
     }
     
-    func remove(ids: [String]) -> Promise<Void> {
-        return Promise { seal in
+    func remove(ids: [String]) async throws {
+        
+        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             self.deleteSearchableItems(withIdentifiers: ids) { error in
-                if let error = error {
-                    seal.reject(error)
+                if let error {
+                    continuation.resume(throwing: error)
                 } else {
-                    seal.fulfill_()
+                    continuation.resume(returning: ())
                 }
             }
         }

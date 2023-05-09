@@ -1,7 +1,6 @@
 import Foundation
-import PromiseKit
-import PMKFoundation
 import OHHTTPStubs
+import OHHTTPStubsSwift
 
 public class Api {
     private static var sessionId = UserDefaults.standard.string(forKey: "SessionID") ?? ""
@@ -11,65 +10,61 @@ public class Api {
         return NSError(domain: "", code: code, userInfo: [NSLocalizedDescriptionKey: msg, NSLocalizedRecoverySuggestionErrorKey: suggestion])
     }
     
-    private static func createRequest(method: String, arguments: [String: Any]?) -> Promise<URLRequest> {
+    private static func createRequest(method: String, arguments: [String: Any]?) throws -> URLRequest {
         guard let url = Settings.shared.connection.url() else {
-            return Promise(error: self.genError("Network error", suggestion: "Network request failed"))
+            throw self.genError("Network error", suggestion: "Network request failed")
         }
         
-        return Promise { seal in
-            self.queue.async {
-                var request = URLRequest(url: url)
-                request.httpMethod = "POST"
-                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                request.addValue("application/json", forHTTPHeaderField: "Accept")
-                request.addValue(self.sessionId, forHTTPHeaderField: "X-Transmission-Session-Id")
-                
-                var body: [String: Any] = ["method": method]
-                if let args = arguments {
-                    body["arguments"] = args
-                }
-                request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
-                seal.fulfill(request)
-            }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue(self.sessionId, forHTTPHeaderField: "X-Transmission-Session-Id")
+        
+        var body: [String: Any] = ["method": method]
+        if let args = arguments {
+            body["arguments"] = args
         }
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
+        return request
     }
     
-    private static func make<T>(_ request: URLRequest) -> Promise<T> where T: Codable {
-        return URLSession.shared.dataTask(.promise, with: request).then(on: self.queue) { data, response -> Promise<T> in
-            guard let response = response as? HTTPURLResponse else { return Promise(error: self.genError("Network error", suggestion: "Unknown response type")) }
-            guard response.statusCode != 409 else {
-                if let idHeader = response.allHeaderFields["X-Transmission-Session-Id"] as? String {
-                    self.sessionId = idHeader
-                    UserDefaults.standard.set(idHeader, forKey: "SessionID")
-                    UserDefaults.standard.synchronize()
-                    return self.createRequest(method: "", arguments: nil).map { newRequest in
-                        var requestCopy = newRequest
-                        requestCopy.httpBody = request.httpBody
-                        return requestCopy
-                    }
-                    .then(on: self.queue, self.make)
-                } else {
-                    return Promise(error: self.genError("Network error", suggestion: "Getting session failed"))
-                }
+    private static func make<T>(_ request: URLRequest) async throws -> T where T: Codable {
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let response = response as? HTTPURLResponse else {
+            throw self.genError("Network error", suggestion: "Unknown response type")
+        }
+        
+        guard response.statusCode != 409 else {
+            if let idHeader = response.allHeaderFields["X-Transmission-Session-Id"] as? String {
+                self.sessionId = idHeader
+                UserDefaults.standard.set(idHeader, forKey: "SessionID")
+                UserDefaults.standard.synchronize()
+                var newRequest = try self.createRequest(method: "", arguments: nil)
+                newRequest.httpBody = request.httpBody
+                return try await make(newRequest)
+            } else {
+                throw self.genError("Network error", suggestion: "Getting session failed")
             }
-            guard response.statusCode >= 200 && response.statusCode < 300 else {
-                return Promise(error: self.genError("Network error", suggestion: "Getting session failed"))
+        }
+        
+        guard response.statusCode >= 200 && response.statusCode < 300 else {
+            throw self.genError("Network error", suggestion: "Getting session failed")
+        }
+        
+        do {
+//                let str = String(data: data, encoding: .utf8)
+//                print("=============================================================")
+//                print(str ?? "")
+            let jsonResp = try JSONDecoder().decode(Response<T>.self, from: data)
+            if jsonResp.result != "success" {
+                throw self.genError("Decoding error", suggestion: jsonResp.result)
+            } else {
+                return jsonResp.arguments
             }
-            
-            do {
-//				let str = String(data: data, encoding: .utf8)
-//				print("=============================================================")
-//				print(str ?? "")
-                let jsonResp = try JSONDecoder().decode(Response<T>.self, from: data)
-                if jsonResp.result != "success" {
-                    return Promise(error: self.genError("Decoding error", suggestion: jsonResp.result))
-                } else {
-                    return Promise.value(jsonResp.arguments)
-                }
-            } catch {
-				print(error)
-                return Promise(error: self.genError("Decoding error", suggestion: "Decoding torrents info failed"))
-            }
+        } catch {
+            throw self.genError("Decoding error", suggestion: "Decoding torrents info failed")
         }
     }
     
@@ -117,23 +112,30 @@ public class Api {
         "secondsSeeding"
     ]
     
-    public static func getSession() -> Promise<Server> {
-        return self.createRequest(method: "session-get", arguments: nil).then(on: self.queue, self.make)
+    public static func getSession() async throws -> Server {
+        let request = try self.createRequest(method: "session-get", arguments: nil)
+        return try await make(request)
     }
     
-    public static func getTorrents() -> Promise<[Torrent]> {
+    public static func getTorrents() async throws -> [Torrent] {
         let arguments = [
             "fields": self.torrentFields
         ]
         
-        return self.createRequest(method: "torrent-get", arguments: arguments)
-            .then(on: self.queue, self.make)
-            .map { (wrapper: TorrentsWrapper) in wrapper.torrents }
+        let request = try self.createRequest(method: "torrent-get", arguments: arguments)
+        let wrapper: TorrentsWrapper = try await make(request)
+        return wrapper.torrents
     }
     
-    public static func addTorrent(from source: Torrent.Source, location: String? = nil, maxPeers: Int? = nil, wanted: [Int], unwanted: [Int], start: Bool) -> Promise<Int> {
+    public static func addTorrent(from source: Torrent.Source,
+                                  location: String? = nil,
+                                  maxPeers: Int? = nil,
+                                  wanted: [Int],
+                                  unwanted: [Int],
+                                  start: Bool) async throws -> Int {
+        
         guard let session = Service.shared.session else {
-            return Promise(error: CocoaError.error("Session is nil"))
+            throw CocoaError.error("Session is nil")
         }
         
         var arguments: [String : Any] = [
@@ -149,7 +151,7 @@ public class Api {
             if let base64code = try? Data(contentsOf: url).base64EncodedString() {
                 arguments["metainfo"] = base64code
             } else {
-                return Promise(error: CocoaError.error("Error reading torrent file"))
+                throw CocoaError.error("Error reading torrent file")
             }
             break
         case .link(let magnet):
@@ -157,87 +159,81 @@ public class Api {
             break
         }
         
-        return self.createRequest(method: "torrent-add", arguments: arguments)
-            .then(on: self.queue, self.make)
-            .map { (wrapper: TorrentAddedWrapper) in wrapper.torrentAdded.id }
+        let request = try self.createRequest(method: "torrent-add", arguments: arguments)
+        let wrapper: TorrentAddedWrapper = try await make(request)
+        return wrapper.torrentAdded.id
     }
     
-    public static func removeTorrents(by ids: [Int], deleteData: Bool = true) -> Promise<Void> {
+    public static func removeTorrents(by ids: [Int], deleteData: Bool = true) async throws {
         let arguments: [String: Any] = [
             "delete-local-data": deleteData ? 1 : 0,
             "ids": ids
         ]
         
-        return self.createRequest(method: "torrent-remove", arguments: arguments)
-            .then(on: self.queue, self.make)
-            .map { (wrapper: Empty) in }
+        let request = try self.createRequest(method: "torrent-remove", arguments: arguments)
+        let _: Empty = try await make(request)
     }
     
-    public static func set(wantedFiles: [Int], unwantedFiles: [Int], for torrents: [Int]) -> Promise<[Int]> {
+    public static func set(wantedFiles: [Int], unwantedFiles: [Int], for torrents: [Int]) async throws -> [Int] {
         let arguments: [String: Any] = [
             "files-wanted": wantedFiles,
             "files-unwanted": unwantedFiles,
             "ids": torrents
         ]
         
-        return self.createRequest(method: "torrent-set", arguments: arguments)
-            .then(on: self.queue, self.make)
-            .map { (wrapper: Empty) in torrents }
+        let request = try self.createRequest(method: "torrent-set", arguments: arguments)
+        let _: Empty = try await make(request)
+        return torrents
     }
     
-    public static func startTorrents(by ids: [Int]) -> Promise<Void> {
+    public static func startTorrents(by ids: [Int]) async throws {
         let arguments: [String: Any] = [
             "ids": ids
         ]
         
-        return self.createRequest(method: "torrent-start", arguments: arguments)
-            .then(on: self.queue, self.make)
-            .map { (wrapper: Empty) in }
+        let request = try self.createRequest(method: "torrent-start", arguments: arguments)
+        let _: Empty = try await make(request)
     }
     
-    public static func stopTorrents(by ids: [Int]) -> Promise<Void> {
+    public static func stopTorrents(by ids: [Int]) async throws {
         let arguments: [String: Any] = [
             "ids": ids
         ]
-
-        return self.createRequest(method: "torrent-stop", arguments: arguments)
-            .then(on: self.queue, self.make)
-            .map { (wrapper: Empty) in }
+        
+        let request = try self.createRequest(method: "torrent-stop", arguments: arguments)
+        let _: Empty = try await make(request)
     }
     
-    public static func set(location: String, for torrents: [Int], move: Bool) -> Promise<Void> {
+    public static func set(location: String, for torrents: [Int], move: Bool) async throws {
         let arguments: [String: Any] = [
             "ids": torrents,
             "location": location,
             "move": move ? 1 : 0
         ]
         
-        return self.createRequest(method: "torrent-set-location", arguments: arguments)
-            .then(on: self.queue, self.make)
-            .map { (wrapper: Empty) in }
+        let request = try self.createRequest(method: "torrent-set-location", arguments: arguments)
+        let _: Empty = try await make(request)
     }
     
-    public static func rename(path: String, to newPath: String, in torrent: Int) -> Promise<Void> {
+    public static func rename(path: String, to newPath: String, in torrent: Int) async throws {
         let arguments: [String: Any] = [
             "path": path,
             "name": newPath,
             "ids": [torrent]
         ]
         
-        return self.createRequest(method: "torrent-rename-path", arguments: arguments)
-            .then(on: self.queue, self.make)
-            .map { (wrapper: Empty) in }
+        let request = try self.createRequest(method: "torrent-rename-path", arguments: arguments)
+        let _: Empty = try await make(request)
     }
     
-    public static func set(priority: Int, for torrents: [Int]) -> Promise<Void> {
+    public static func set(priority: Int, for torrents: [Int]) async throws {
         let arguments: [String: Any] = [
             "bandwidthPriority": priority,
             "ids": torrents
         ]
         
-        return self.createRequest(method: "torrent-set", arguments: arguments)
-            .then(on: self.queue, self.make)
-            .map { (wrapper: Empty) in }
+        let request = try self.createRequest(method: "torrent-set", arguments: arguments)
+        let _: Empty = try await make(request)
     }
 	
 	// MARK: - Stuff for UI testing
